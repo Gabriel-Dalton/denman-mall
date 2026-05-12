@@ -1,0 +1,69 @@
+[     306ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ http://localhost:8765/assets/scripts/hours-of-operation.js:23
+[   35327ms] [ERROR] Access to fetch at 'https://www.facebook.com/thedenmanplacemall' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   35328ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.facebook.com/thedenmanplacemall:0
+[   35495ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://www.facebook.com/thedenmanplacemall:0
+[   35769ms] [ERROR] Access to fetch at 'https://www.instagram.com/thedenmanmall/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   35769ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.instagram.com/thedenmanmall/:0
+[   36178ms] [ERROR] Access to fetch at 'https://www.linkedin.com/company/denmanplacemall' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   36179ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.linkedin.com/company/denmanplacemall:0
+[   36518ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://x.com/thedenmanmall:0
+[   36614ms] [ERROR] Access to fetch at 'https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   36614ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6:0
+[   36650ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6:0
+[   37099ms] [ERROR] Access to fetch at 'https://www.93coffee.ca/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   37099ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.93coffee.ca/:0
+[   37497ms] [ERROR] Access to fetch at 'https://www.myaccountax.ca/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   37498ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.myaccountax.ca/:0
+[   37742ms] [ERROR] Access to fetch at 'https://www.playnow.com/lottery/lotto-649/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   37742ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.playnow.com/lottery/lotto-649/:0
+[   38137ms] [ERROR] Access to fetch at 'https://www.burgerking.ca/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   38138ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.burgerking.ca/:0
+[   38330ms] [ERROR] Access to fetch at 'https://www.canadapost-postescanada.ca/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   38331ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.canadapost-postescanada.ca/:0
+[   38853ms] [ERROR] Access to fetch at 'https://wesn.ca/clothes-collectibles/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   38854ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://wesn.ca/clothes-collectibles/:0
+[   38877ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_RESPONSE.NotSameOrigin @ https://wesn.ca/clothes-collectibles/:0
+[   39449ms] [ERROR] Access to fetch at 'https://glacierliquor.ca/pages/denman-beer-wine-spirits' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   39450ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://glacierliquor.ca/pages/denman-beer-wine-spirits:0
+[   39709ms] [ERROR] Access to fetch at 'https://www.denmandental.com/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   39709ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.denmandental.com/:0
+[   39916ms] [ERROR] Access to fetch at 'https://www.devaklock.ca/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   39917ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.devaklock.ca/:0
+[   40221ms] [ERROR] Access to fetch at 'https://www.dollarama.com/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   40221ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.dollarama.com/:0
+[   40962ms] [ERROR] Access to fetch at 'https://westendbia.com/trick-or-treat-on-denman-street-3/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   40962ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://westendbia.com/trick-or-treat-on-denman-street-3/:0
+[   41802ms] [ERROR] Access to fetch at 'https://www.hedyfry.com/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   41802ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.hedyfry.com/:0
+[   42326ms] [ERROR] Access to fetch at 'https://www.lostlagoon.ca/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   42326ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.lostlagoon.ca/:0
+[   43666ms] [ERROR] Access to fetch at 'https://www.murrick.com/locations/murrick-west-end/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   43666ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.murrick.com/locations/murrick-west-end/:0
+[   45229ms] [ERROR] Access to fetch at 'https://www.nofrills.ca/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   45229ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.nofrills.ca/:0
+[   46504ms] [ERROR] Access to fetch at 'https://opendoorlaw.com/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   46504ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://opendoorlaw.com/:0
+[   47298ms] [ERROR] Access to fetch at 'https://vancouver.ca/streets-transportation/metered-parking.aspx' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   47299ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://vancouver.ca/streets-transportation/metered-parking.aspx:0
+[   47428ms] [ERROR] Access to fetch at 'https://www.translink.ca/schedules-and-maps' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   47428ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.translink.ca/schedules-and-maps:0
+[   48822ms] [ERROR] Access to fetch at 'https://g.co/kgs/8Ww2MQa' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   48822ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://g.co/kgs/8Ww2MQa:0
+[   48868ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://g.co/kgs/8Ww2MQa:0
+[   49566ms] [ERROR] Access to fetch at 'https://www.shoppersdrugmart.ca/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   49566ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.shoppersdrugmart.ca/:0
+[   49828ms] [ERROR] Access to fetch at 'https://www.specsavers.ca/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   49828ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.specsavers.ca/:0
+[   50576ms] [ERROR] Access to fetch at 'https://stanleyparkdentist.com/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   50576ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://stanleyparkdentist.com/:0
+[   52626ms] [ERROR] Access to fetch at 'https://teateclinic.com/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   52626ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://teateclinic.com/:0
+[   54057ms] [ERROR] Access to fetch at 'https://theicecreamparlour.ca/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   54058ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://theicecreamparlour.ca/:0
+[   54744ms] [ERROR] Access to fetch at 'https://www.theupsstore.ca/42/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   54744ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://www.theupsstore.ca/42/:0
+[   54914ms] [ERROR] Access to fetch at 'https://wesn.ca/kays-place/' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8765/directory.html:0
+[   54914ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://wesn.ca/kays-place/:0
+[   54926ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_RESPONSE.NotSameOrigin @ https://wesn.ca/kays-place/:0
+[   76068ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://yvrtravel.com/:0
+[   76333ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://yvrtravel.com/:0

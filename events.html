@@ -43,61 +43,266 @@
   .skip-link:focus{left:1rem;top:1rem;outline:3px solid #fff;outline-offset:2px;}
   a:focus-visible,button:focus-visible,[tabindex]:focus-visible,summary:focus-visible{outline:2px solid #1a73e8;outline-offset:2px;border-radius:2px;}
 </style>
+<!--SCHEMA:start-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ShoppingCenter",
+      "@id": "https://denmanmall.com/#mall",
+      "name": "Denman Place Mall",
+      "url": "https://denmanmall.com/",
+      "image": "https://denmanmall.com/assets/images/open-graph.webp",
+      "logo": "https://denmanmall.com/assets/images/denman-mall-logo.webp",
+      "telephone": "+1-604-685-1466",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1030 Denman St",
+        "addressLocality": "Vancouver",
+        "addressRegion": "BC",
+        "postalCode": "V6G 2M6",
+        "addressCountry": "CA"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "08:00",
+          "closes": "22:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/thedenmanplacemall",
+        "https://www.instagram.com/thedenmanmall/",
+        "https://www.linkedin.com/company/denmanplacemall",
+        "https://x.com/thedenmanmall"
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Events at Denman Place Mall",
+      "url": "https://denmanmall.com/events",
+      "isPartOf": {
+        "@id": "https://denmanmall.com/#mall"
+      }
+    }
+  ]
+}
+</script>
+<!--SCHEMA:end-->
 </head>
 <body class="antialiased bg-body text-body font-body">
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <div class=""> 
-      <section x-data="{ mobileNavOpen: false }" class="">
-        <nav>
-          <div class="container mx-auto px-4">
-            <div class="relative flex h-24 items-center">
-              <div class="hidden xl:flex items-center"><a class="inline-block text-black font-medium hover:underline mr-10" href="index.html">Home</a><a class="inline-block text-black font-medium hover:underline mr-10" href="directory.html">Store Directory</a></div>
-          <div class="hidden xl:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div class="flex-grow text-center">
-         <a href="index.html"> <span class="block text-3xl tracking-tighter mb-1">Denman Place Mall</span></a>
-         <p class="text-lg text-coolGray-900">Open Today | 8:00 AM to 10:00 PM</p>
-        </div>
-        </div>
-                 <div class="xl:hidden inline-block">
-    <div class="flex-grow text-center">
-     <a href="index.html"><span class="block tracking-tighter text-2xl sm:text-3xl md:text-4xl xl:text-5xl mb-2">Denman Place Mall</span></a>
-     <p class="text-sm text-coolGray-800">Open Today | 8:00 AM to 10:00 PM</p>
-    </div>
-    </div>
-              <button x-on:click="mobileNavOpen = !mobileNavOpen" :aria-expanded="mobileNavOpen.toString()" aria-expanded="false" aria-label="Open menu" aria-controls="mobile-nav" class="xl:hidden py-1 ml-auto">
-                <svg width="44" height="16" viewBox="0 0 44 16" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect width="44" height="2" rx="1" fill="black"></rect><rect y="14" width="44" height="2" rx="1" fill="black"></rect></svg>
-              </button>
-              <div class="hidden xl:flex ml-auto mr-12 items-center"><a class="inline-block text-black font-medium hover:underline mr-10" href="about.html">About Us</a><a class="inline-block text-black font-medium hover:underline" href="contact.html">Contact Us</a></div>
-            </div>
+      <!--PARTIAL:nav-->
+<section x-data="{ mobileNavOpen: false }" class="">
+  <style id="mall-i18n-css">
+    .mall-lang-wrap{position:relative;display:inline-flex;align-items:center;}
+    .mall-lang-btn{position:relative;display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .7rem;color:#000;font-weight:500;border:1px solid #000;border-radius:9999px;background:transparent;font-size:.875rem;line-height:1;cursor:pointer;transition:background .15s,color .15s;font-family:inherit;}
+    .mall-lang-btn:hover,.mall-lang-btn[aria-expanded="true"]{background:#000;color:#fff;}
+    .mall-lang-btn .mall-lang-code{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600;}
+    .mall-lang-btn .mall-lang-chev{transition:transform .2s ease;}
+    .mall-lang-btn[aria-expanded="true"] .mall-lang-chev{transform:rotate(180deg);}
+    .mall-lang-btn--compact{padding:.4rem;border-radius:9999px;}
+    .mall-lang-btn--compact .mall-lang-code{margin-left:.25rem;}
+    .mall-lang-menu{position:absolute;right:0;top:calc(100% + .5rem);min-width:14rem;background:#fff;border:1px solid #e5e7eb;border-radius:.5rem;box-shadow:0 10px 25px -3px rgba(0,0,0,.12),0 4px 6px -2px rgba(0,0,0,.05);padding:.5rem 0;z-index:60;}
+    .mall-lang-menu[data-align="left"]{right:auto;left:0;}
+    .mall-lang-menu button{display:flex;width:100%;text-align:left;padding:.55rem 1rem;align-items:center;justify-content:space-between;background:transparent;border:0;font-size:1rem;cursor:pointer;color:#000;font-family:inherit;}
+    .mall-lang-menu button:hover,.mall-lang-menu button:focus-visible{background:#f3f4f6;outline:none;}
+    .mall-lang-menu button[aria-selected="true"]{font-weight:600;}
+    .mall-lang-menu .mall-lang-code{font-size:.7rem;color:#6b7280;text-transform:uppercase;margin-left:.75rem;letter-spacing:.05em;}
+    .mall-lang-mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
+    .mall-lang-mobile-grid button{text-align:left;padding:.625rem .75rem;border:1px solid #e5e7eb;border-radius:.375rem;background:#fff;font-size:1rem;cursor:pointer;font-family:inherit;color:#000;}
+    .mall-lang-mobile-grid button:hover,.mall-lang-mobile-grid button:focus-visible{background:#f3f4f6;outline:none;}
+    .mall-lang-mobile-grid .mall-lang-code{display:block;font-size:.7rem;color:#6b7280;text-transform:uppercase;margin-top:.15rem;letter-spacing:.05em;}
+    .mall-lang-mobile-section{margin-top:2rem;padding-top:1.5rem;border-top:1px solid #e5e7eb;}
+    .mall-lang-mobile-section p{font-size:.75rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem;}
+  </style>
+  <nav aria-label="Main navigation">
+    <div class="container mx-auto px-4">
+      <div class="relative flex h-24 items-center">
+        <div class="hidden xl:flex items-center"><a class="inline-block text-black font-medium hover:underline mr-10" href="index.html">Home</a><a class="inline-block text-black font-medium hover:underline mr-10" href="directory.html">Store Directory</a></div>
+        <div class="hidden xl:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div class="flex-grow text-center">
+            <a href="index.html"><span translate="no" class="notranslate block text-3xl tracking-tighter mb-1">Denman Place Mall</span></a>
+            <p class="text-lg text-coolGray-900">Open Today | 8:00 AM to 10:00 PM</p>
           </div>
-        </nav>
-<div id="mobile-nav" x-cloak="" x-show="mobileNavOpen" x-transition="" class="fixed top-0 left-0 bottom-0 w-5/6 max-w-md z-50">
-  <div x-on:click="mobileNavOpen = false" class="fixed inset-0 bg-gray-800 opacity-50"></div>
-          <nav class="relative flex flex-col py-8 px-8 w-full h-full bg-white overflow-y-auto">
-            <div class="flex items-center mb-8">
-                    <div class="mr-auto">
-         <a href="index.html">
-         <span class="block text-2xl tracking-tighter mb-2">Denman Place Mall</span></a>
-        <p class="text-sm text-coolGray-700">Open Today | 8:00 AM to 10:00 PM</p>
-        </div> 
-              <button x-on:click="mobileNavOpen = false" aria-label="Close Menu">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 18L18 6M6 6L18 18" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-              </button>
-            </div>
-            <div class="py-10">
-              <ul class="flex flex-col space-y-12 text-xl sm:text-2xl font-medium text-black">
-              <li><a class="hover:underline" href="index.html">Home</a></li>
-                <li><a class="hover:underline" href="directory.html">Store Directory</a></li>
-                <li><a class="hover:underline" href="about.html">About Us</a></li>
-                <li><a class="hover:underline" href="contact.html">Contact Us</a></li>
-              </ul>
-            </div>
-            <div class="mt-auto"><a class="block w-full px-4 py-4 text-center text-lg font-semibold text-black hover:text-white border border-black hover:bg-black rounded-full transition duration-200" href="directory.html">View Store Directory</a></div>
-          </nav>
         </div>
-      </section>
+        <div class="xl:hidden inline-block">
+          <div class="flex-grow text-center">
+            <a href="index.html"><span translate="no" class="notranslate block tracking-tighter text-2xl sm:text-3xl md:text-4xl xl:text-5xl mb-2">Denman Place Mall</span></a>
+            <p class="text-sm text-coolGray-800">Open Today | 8:00 AM to 10:00 PM</p>
+          </div>
+        </div>
+
+        <div class="ml-auto flex items-center" x-data="{ langOpen: false, current: 'EN' }" x-init="current = (window.MallI18n && MallI18n.currentLabel()) || 'EN'" @mall-lang-change.window="current = $event.detail.label">
+          <!-- Language switcher: visible at all breakpoints -->
+          <div class="mall-lang-wrap notranslate" translate="no" @click.outside="langOpen = false" @keydown.escape.window="langOpen = false">
+            <button type="button" @click="langOpen = !langOpen" :aria-expanded="langOpen.toString()" aria-haspopup="listbox" aria-label="Change language" class="mall-lang-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span class="mall-lang-code" x-text="current">EN</span>
+              <svg width="10" height="10" viewBox="0 0 10 10" class="mall-lang-chev" aria-hidden="true" focusable="false"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <ul x-show="langOpen" x-cloak x-transition.opacity role="listbox" aria-label="Select language" class="mall-lang-menu">
+              <template x-for="opt in (window.MallI18n ? MallI18n.options : [])" :key="opt.code">
+                <li>
+                  <button type="button" role="option" :aria-selected="(current === opt.label).toString()" @click="MallI18n.set(opt.code); langOpen = false" :dir="opt.rtl ? 'rtl' : 'ltr'">
+                    <span x-text="opt.native"></span>
+                    <span class="mall-lang-code" x-text="opt.label"></span>
+                  </button>
+                </li>
+              </template>
+            </ul>
+          </div>
+
+          <div class="hidden xl:flex items-center" style="margin-left:2rem"><a class="inline-block text-black font-medium hover:underline mr-10" href="about.html">About Us</a><a class="inline-block text-black font-medium hover:underline" href="contact.html">Contact Us</a></div>
+
+          <button x-on:click="mobileNavOpen = !mobileNavOpen" :aria-expanded="mobileNavOpen.toString()" aria-expanded="false" aria-label="Open menu" aria-controls="mobile-nav" class="xl:hidden py-1" style="margin-left:1rem">
+            <svg width="44" height="16" viewBox="0 0 44 16" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect width="44" height="2" rx="1" fill="black"></rect><rect y="14" width="44" height="2" rx="1" fill="black"></rect></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div id="mobile-nav" x-cloak="" x-show="mobileNavOpen" x-transition="" class="fixed top-0 left-0 bottom-0 w-5/6 max-w-md z-50">
+    <div x-on:click="mobileNavOpen = false" class="fixed inset-0 bg-gray-800 opacity-50"></div>
+    <nav class="relative flex flex-col py-8 px-8 w-full h-full bg-white overflow-y-auto" aria-label="Mobile navigation">
+      <div class="flex items-center mb-8">
+        <div class="mr-auto">
+          <a href="index.html"><span translate="no" class="notranslate block text-2xl tracking-tighter mb-2">Denman Place Mall</span></a>
+          <p class="text-sm text-coolGray-700">Open Today | 8:00 AM to 10:00 PM</p>
+        </div>
+        <button x-on:click="mobileNavOpen = false" aria-label="Close menu">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 18L18 6M6 6L18 18" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="py-10">
+        <ul class="flex flex-col space-y-12 text-xl sm:text-2xl font-medium text-black">
+          <li><a class="hover:underline" href="index.html">Home</a></li>
+          <li><a class="hover:underline" href="directory.html">Store Directory</a></li>
+          <li><a class="hover:underline" href="about.html">About Us</a></li>
+          <li><a class="hover:underline" href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="mall-lang-mobile-section notranslate" translate="no" x-data>
+        <p>Language / 语言 / زبان</p>
+        <div class="mall-lang-mobile-grid">
+          <template x-for="opt in (window.MallI18n ? MallI18n.options : [])" :key="opt.code">
+            <button type="button" @click="MallI18n.set(opt.code); mobileNavOpen = false" :dir="opt.rtl ? 'rtl' : 'ltr'">
+              <span x-text="opt.native"></span>
+              <span class="mall-lang-code" x-text="opt.label"></span>
+            </button>
+          </template>
+        </div>
+      </div>
+      <div class="mt-auto pt-8"><a class="block w-full px-4 py-4 text-center text-lg font-semibold text-black hover:text-white border border-black hover:bg-black rounded-full transition duration-200" href="directory.html">View Store Directory</a></div>
+    </nav>
+  </div>
+</section>
+
+<!-- Google Translate (hidden, driven by MallI18n) -->
+<div id="google_translate_element" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;"></div>
+<style id="mall-i18n-gt-css">
+  .goog-te-banner-frame.skiptranslate,.goog-te-gadget,.goog-logo-link,.goog-te-gadget-icon{display:none !important;}
+  body{top:0 !important;position:static !important;}
+  .goog-tooltip,.goog-tooltip:hover{display:none !important;}
+  .goog-text-highlight{background:transparent !important;box-shadow:none !important;}
+  html[data-mall-lang="fa"] body{direction:rtl;}
+</style>
+<script>
+(function () {
+  if (window.MallI18n) return;
+  var LANGS = [
+    { code: 'en',    label: 'EN',    native: 'English'  },
+    { code: 'zh-CN', label: 'ZH',    native: '中文 (简体)' },
+    { code: 'zh-TW', label: 'ZH-TW', native: '中文 (繁體)' },
+    { code: 'fa',    label: 'FA',    native: 'فارسی', rtl: true },
+    { code: 'es',    label: 'ES',    native: 'Español' },
+    { code: 'ko',    label: 'KO',    native: '한국어'  },
+    { code: 'ja',    label: 'JA',    native: '日本語'  },
+    { code: 'tl',    label: 'TL',    native: 'Tagalog' },
+    { code: 'ru',    label: 'RU',    native: 'Русский' },
+    { code: 'fr',    label: 'FR',    native: 'Français' }
+  ];
+  var byCode = {};
+  LANGS.forEach(function (l) { byCode[l.code] = l; });
+  function readCookie(name) {
+    var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return m ? decodeURIComponent(m[1]) : null;
+  }
+  function writeCookie(name, value) {
+    document.cookie = name + '=' + value + '; path=/; max-age=' + 60 * 60 * 24 * 365;
+    var host = location.hostname.replace(/^www\./, '');
+    if (host) document.cookie = name + '=' + value + '; path=/; domain=.' + host + '; max-age=' + 60 * 60 * 24 * 365;
+  }
+  function parseLang() {
+    var c = readCookie('googtrans');
+    if (c) {
+      var parts = c.split('/');
+      var t = parts[parts.length - 1];
+      if (byCode[t]) return t;
+    }
+    var stored = localStorage.getItem('mallLang');
+    return stored && byCode[stored] ? stored : 'en';
+  }
+  var currentBootLang = parseLang();
+  function setLang(code) {
+    if (!byCode[code]) return;
+    localStorage.setItem('mallLang', code);
+    var value = code === 'en' ? '/en/en' : '/en/' + code;
+    writeCookie('googtrans', value);
+    document.documentElement.setAttribute('data-mall-lang', code);
+    document.documentElement.setAttribute('lang', code === 'en' ? 'en' : code);
+    if (byCode[code].rtl) document.documentElement.setAttribute('dir', 'rtl'); else document.documentElement.removeAttribute('dir');
+    var detail = { code: code, label: byCode[code].label, native: byCode[code].native };
+    window.dispatchEvent(new CustomEvent('mall-lang-change', { detail: detail }));
+    var select = document.querySelector('.goog-te-combo');
+    if (select) {
+      select.value = code === 'en' ? '' : code;
+      select.dispatchEvent(new Event('change'));
+    } else if (code !== currentBootLang) {
+      location.reload();
+    }
+  }
+  function currentLabel() {
+    var c = parseLang();
+    return (byCode[c] || byCode.en).label;
+  }
+  document.documentElement.setAttribute('data-mall-lang', currentBootLang);
+  if (byCode[currentBootLang] && byCode[currentBootLang].rtl) document.documentElement.setAttribute('dir', 'rtl');
+  window.MallI18n = { options: LANGS, set: setLang, current: function () { return parseLang(); }, currentLabel: currentLabel };
+  window.googleTranslateElementInit = function () {
+    new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: LANGS.filter(function (l) { return l.code !== 'en'; }).map(function (l) { return l.code; }).join(','), autoDisplay: false, layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+  };
+  function loadGT() {
+    if (document.getElementById('mall-gt-script')) return;
+    var s = document.createElement('script');
+    s.id = 'mall-gt-script';
+    s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  if (document.readyState === 'complete') loadGT();
+  else window.addEventListener('load', loadGT);
+})();
+</script>
+<!--/PARTIAL:nav-->
 <main id="main-content">
      
 <section class="py-12 md:py-24 bg-coolGray-50" x-data="{ showContent: false }">
@@ -269,119 +474,124 @@
         </div>
       </section>     
      </main>
+<!--PARTIAL:footer-->
 <section class="py-12 md:py-20 bg-black">
-        <div class="container mx-auto px-4">
-          <div class="flex flex-wrap -mx-4 mb-20">
-            <div class="w-full xl:w-4/12 px-4 mb-12 xl:mb-0">
-              <img class="inline-block block h-10 mb-3" src="assets/images/denman-mall-logo.webp" alt="Denman Place Mall logo">
-               <div class="border border-coolGray-500 rounded text-coolGray-300 text-lg mt-4 p-3" id="hours-section">
-  <p class="font-medium mb-3 text-xl">Hours of Operation</p>
-  <div data-hours-list="">
-    <p class="mb-2 font-bold text-white">Monday: 8:00 AM – 10:00 PM</p>
-    <p class="mb-2">Tuesday: 8:00 AM – 10:00 PM</p>
-    <p class="mb-2">Wednesday: 8:00 AM – 10:00 PM</p>
-    <p class="mb-2">Thursday: 8:00 AM – 10:00 PM</p>
-    <p class="mb-2">Friday: 8:00 AM – 10:00 PM</p>
-    <p class="mb-2">Saturday: 8:00 AM – 10:00 PM</p>
-    <p class="mb-3">Sunday: 8:00 AM – 10:00 PM</p>
-  </div>
-  <p class="text-sm leading-relaxed">
-    <b>Note:</b> Some stores open earlier/later than shopping centre hours. Please check directly with stores for their hours.
-  </p>
-</div>
-            </div>
-            <div class="w-1/2 md:w-1/4 xl:w-2/12 px-4 mb-8 md:mb-0">
-              <h5 class="text-lg text-white mb-4 font-medium">Visitor Info</h5>
-              <ul class="text-lg text-coolGray-400">
-                <li class="mb-4"><a class="inline-block hover:text-white hover:underline" href="directory.html">Store Directory</a></li>
-                <li class="mb-4"><a class="inline-block hover:text-white hover:underline" href="events.html">Events</a></li>
-                <li class="mb-4"><a class="inline-block hover:text-white hover:underline" href="safety-updates.html">Safety &amp; Emergency Information</a></li>
-                <li><a class="inline-block hover:text-white hover:underline" href="index.html#faq">FAQs</a></li>
-              </ul>
-            </div>
-            <div class="w-1/2 md:w-1/4 xl:w-2/12 px-4 mb-8 md:mb-0">
-              <h5 class="text-lg text-white mb-4 font-medium">About the Mall</h5>
-              <ul class="text-lg text-coolGray-400">
-                <li class="mb-4"><a class="inline-block hover:text-white hover:underline" href="about.html">About Us</a></li>
-                <li class="mb-4"><a class="inline-block hover:text-white hover:underline" href="contact.html">Contact Us</a></li>
-                <li><a class="inline-block hover:text-white hover:underline" href="index.html#customer_testimonials">Customer Testimonials</a></li>
-              </ul>
-            </div>
-            <div class="w-1/2 md:w-1/4 xl:w-2/12 px-4">
-              <h5 class="text-lg text-white mb-4 font-medium">Social Media</h5>
-              <ul>
-                <li class="mb-4">
-                  <a class="inline-flex items-center text-coolGray-400 hover:text-white hover:underline" href="https://www.facebook.com/thedenmanplacemall" target="_blank" rel="noopener noreferrer">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M22.675 0h-21.35C.599 0 0 .6 0 1.341v21.317C0 23.4.599 24 1.325 24H12.82v-9.294H9.692V11.27h3.128V8.414c0-3.1 1.894-4.788 4.66-4.788 1.325 0 2.464.099 2.796.143v3.24l-1.919.001c-1.504 0-1.794.715-1.794 1.763v2.31h3.587l-.467 3.436h-3.12V24h6.116c.728 0 1.324-.6 1.324-1.342V1.341C24 .6 23.403 0 22.675 0z" fill="currentColor"></path>
-                    </svg>
-                    <span class="ml-3">Facebook</span>
-                  </a>
-                </li>
-                <li class="mb-4">
-                  <a class="inline-flex items-center text-coolGray-400 hover:text-white hover:underline" href="https://www.instagram.com/thedenmanmall/" target="_blank" rel="noopener noreferrer">
-                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M10.0018 4.8916C7.73315 4.8916 5.89648 6.73027 5.89648 8.99694C5.89648 11.2656 7.73515 13.1023 10.0018 13.1023C12.2705 13.1023 14.1072 11.2636 14.1072 8.99694C14.1072 6.72827 12.2685 4.8916 10.0018 4.8916ZM10.0018 11.6616C8.52915 11.6616 7.33715 10.4689 7.33715 8.99694C7.33715 7.52494 8.52982 6.33227 10.0018 6.33227C11.4738 6.33227 12.6665 7.52494 12.6665 8.99694C12.6672 10.4689 11.4745 11.6616 10.0018 11.6616Z" fill="currentColor"></path>
-                      <path d="M13.2988 1.05026C11.8268 0.981591 8.18082 0.984924 6.70749 1.05026C5.41282 1.11092 4.27082 1.42359 3.35015 2.34426C1.81148 3.88292 2.00815 5.95626 2.00815 8.99692C2.00815 12.1089 1.83482 14.1343 3.35015 15.6496C4.89482 17.1936 6.99815 16.9916 10.0028 16.9916C13.0855 16.9916 14.1495 16.9936 15.2395 16.5716C16.7215 15.9963 17.8402 14.6716 17.9495 12.2923C18.0188 10.8196 18.0148 7.17426 17.9495 5.70092C17.8175 2.89226 16.3102 1.18892 13.2988 1.05026ZM15.6288 14.6316C14.6202 15.6403 13.2208 15.5503 9.98349 15.5503C6.65015 15.5503 5.31348 15.5996 4.33815 14.6216C3.21482 13.5036 3.41815 11.7083 3.41815 8.98626C3.41815 5.30292 3.04015 2.65026 6.73682 2.46092C7.58615 2.43092 7.83615 2.42092 9.97415 2.42092L10.0042 2.44092C13.5568 2.44092 16.3442 2.06892 16.5115 5.76492C16.5495 6.60826 16.5582 6.86159 16.5582 8.99626C16.5575 12.2909 16.6202 13.6356 15.6288 14.6316Z" fill="currentColor"></path>
-                      <path d="M14.2718 5.68869C14.8017 5.68869 15.2312 5.25918 15.2312 4.72935C15.2312 4.19953 14.8017 3.77002 14.2718 3.77002C13.742 3.77002 13.3125 4.19953 13.3125 4.72935C13.3125 5.25918 13.742 5.68869 14.2718 5.68869Z" fill="currentColor"></path>
-                    </svg>
-                    <span class="ml-3">Instagram</span>
-                  </a>
-                </li>
-                <li class="mb-4">
-                  <a class="inline-flex items-center text-coolGray-400 hover:text-white hover:underline" href="https://www.linkedin.com/company/denmanplacemall" target="_blank" rel="noopener noreferrer">
-                    <svg width="19" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M13.1004 13.0993V8.30161C13.1004 5.94368 12.5928 4.14249 9.84186 4.14249C8.51552 4.14249 7.6313 4.86297 7.27106 5.55069H7.23831V4.35536H4.63477V13.0993H7.35294V8.7601C7.35294 7.61388 7.5658 6.51679 8.97401 6.51679C10.3658 6.51679 10.3822 7.81038 10.3822 8.8256V13.083H13.1004V13.0993Z" fill="currentColor"></path>
-                      <path d="M0.212891 4.35538H2.93106V13.0994H0.212891V4.35538Z" fill="currentColor"></path>
-                      <path d="M1.57195 0C0.704104 0 0 0.704012 0 1.57186C0 2.43971 0.704104 3.16019 1.57195 3.16019C2.4398 3.16019 3.14391 2.43971 3.14391 1.57186C3.14391 0.704012 2.4398 0 1.57195 0Z" fill="currentColor"></path>
-                    </svg>
-                    <span class="ml-3">LinkedIn</span>
-                  </a>
-                </li>
-                <li>
-                  <a class="inline-flex items-center text-coolGray-400 hover:text-white hover:underline" href="https://x.com/thedenmanmall" target="_blank" rel="noopener noreferrer">
-                    <svg width="19" height="13" viewBox="0 0 17 13" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M16.0809 1.78777C15.5109 2.03477 14.9219 2.20577 14.2949 2.28177C14.9409 1.90177 15.4349 1.29377 15.6629 0.552768C15.0549 0.913768 14.3899 1.16077 13.6869 1.31277C13.1169 0.704768 12.2999 0.324768 11.4069 0.324768C9.67786 0.324768 8.29086 1.73077 8.29086 3.44077C8.29086 3.68777 8.30986 3.91577 8.36686 4.14377C5.78286 4.02977 3.50286 2.77577 1.96386 0.894768C0.861859 2.87077 2.09686 4.50477 2.91386 5.05577C2.41986 5.05577 1.92586 4.90377 1.50786 4.67577C1.50786 6.21477 2.59086 7.48777 3.99686 7.77277C3.69286 7.86777 3.00886 7.92477 2.59086 7.82977C2.98986 9.06477 4.14886 9.97677 5.49786 9.99577C4.43386 10.8318 2.87586 11.4968 0.880859 11.2878C2.26786 12.1808 3.90186 12.6938 5.66886 12.6938C11.4069 12.6938 14.5229 7.94377 14.5229 3.83977C14.5229 3.70677 14.5229 3.57377 14.5039 3.44077C15.1499 2.96577 15.6819 2.41477 16.0809 1.78777Z" fill="currentColor"></path>
-                    </svg>
-                    <span class="ml-3">Twitter</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="w-1/2 md:w-1/4 xl:w-2/12 px-4">
-              <h5 class="text-lg text-white mb-4 font-medium">Address</h5>
-              <ul>
-                <li class="mb-2 text-lg text-coolGray-400">
-                  <p class="inline-block">
-                    1030 Denman St.
-                    <br>
-                    Vancouver, BC
-                    <br>
-                    V6G 2M6
-                  </p>
-                  <br>
-                  <br>
-                  <a href="https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6" target="_blank" rel="noopener noreferrer" class="inline-block text-lg underline hover:text-coolGray-400">See on Google Maps</a>
-                </li>
-              </ul>
-            </div>
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap -mx-4 mb-20">
+      <div class="w-full xl:w-4/12 px-4 mb-12 xl:mb-0">
+        <img class="inline-block block h-10 mb-3 notranslate" translate="no" src="assets/images/denman-mall-logo.webp" alt="Denman Place Mall logo">
+        <div class="border border-coolGray-700 rounded text-coolGray-300 text-lg mt-4 p-3" id="hours-section">
+          <p class="font-medium mb-3 text-xl">Hours of Operation</p>
+          <div data-hours-list="">
+            <p class="mb-2 font-bold text-white">Monday: 8:00 AM &ndash; 10:00 PM</p>
+            <p class="mb-2">Tuesday: 8:00 AM &ndash; 10:00 PM</p>
+            <p class="mb-2">Wednesday: 8:00 AM &ndash; 10:00 PM</p>
+            <p class="mb-2">Thursday: 8:00 AM &ndash; 10:00 PM</p>
+            <p class="mb-2">Friday: 8:00 AM &ndash; 10:00 PM</p>
+            <p class="mb-2">Saturday: 8:00 AM &ndash; 10:00 PM</p>
+            <p class="mb-3">Sunday: 8:00 AM &ndash; 10:00 PM</p>
           </div>
-          <div class="mt-8 border-t border-coolGray-800 pt-8 px-4 max-w-screen-xl mx-auto">
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
-              <div class="text-center lg:text-left">
-                <span class="text-base font-medium text-coolGray-400">
-           © <script>document.write(new Date().getFullYear())</script>  Denman Place Mall. All Rights Reserved.
-                  <span class="hidden lg:inline"><a href="terms.html" class="hover:underline">Terms of Use</a> | <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> | <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
-                  <br>
-                  <span class="lg:hidden"><a href="terms.html" class="hover:underline">Terms of Use</a> • <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> &bull; <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
-                 
-                </span>
-              </div>
-              <div class="text-center lg:text-right">
-                <span class="text-base font-medium text-coolGray-400 lg:flex lg:items-center lg:justify-end">Website sustainably crafted by<a href="https://oasisofchange.com" target="_blank" rel="noopener noreferrer" class="underline text-green-600 hover:text-green-800 ml-1">Oasis of Change, Inc.</a></span>
-              </div>
-            </div> </div>
-      </div></section>
+          <p class="text-sm leading-relaxed">
+            <b>Note:</b> Some stores open earlier/later than shopping centre hours. Please check directly with stores for their hours.
+          </p>
+        </div>
+      </div>
+      <div class="w-1/2 md:w-1/4 xl:w-2/12 px-4 mb-8 md:mb-0">
+        <h5 class="text-lg text-white mb-4 font-medium">Visitor Info</h5>
+        <ul class="text-lg text-coolGray-400">
+          <li class="mb-4"><a class="inline-block hover:text-white hover:underline" href="directory.html">Store Directory</a></li>
+          <li class="mb-4"><a class="inline-block hover:text-white hover:underline" href="map.html">Mall Map</a></li>
+          <li class="mb-4"><a class="inline-block hover:text-white hover:underline" href="parking-transit.html">Parking &amp; Transit</a></li>
+          <li class="mb-4"><a class="inline-block hover:text-white hover:underline" href="events.html">Events</a></li>
+          <li class="mb-4"><a class="inline-block hover:text-white hover:underline" href="safety-updates.html">Safety &amp; Emergency Information</a></li>
+          <li><a class="inline-block hover:text-white hover:underline" href="index.html#faq">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="w-1/2 md:w-1/4 xl:w-2/12 px-4 mb-8 md:mb-0">
+        <h5 class="text-lg text-white mb-4 font-medium">About the Mall</h5>
+        <ul class="text-lg text-coolGray-400">
+          <li class="mb-4"><a class="inline-block hover:text-white hover:underline" href="about.html">About Us</a></li>
+          <li class="mb-4"><a class="inline-block hover:text-white hover:underline" href="contact.html">Contact Us</a></li>
+          <li><a class="inline-block hover:text-white hover:underline" href="index.html#customer_testimonials">Customer Testimonials</a></li>
+        </ul>
+      </div>
+      <div class="w-1/2 md:w-1/4 xl:w-2/12 px-4">
+        <h5 class="text-lg text-white mb-4 font-medium">Social Media</h5>
+        <ul>
+          <li class="mb-4">
+            <a class="inline-flex items-center text-coolGray-400 hover:text-white hover:underline" href="https://www.facebook.com/thedenmanplacemall" target="_blank" rel="noopener noreferrer">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.675 0h-21.35C.599 0 0 .6 0 1.341v21.317C0 23.4.599 24 1.325 24H12.82v-9.294H9.692V11.27h3.128V8.414c0-3.1 1.894-4.788 4.66-4.788 1.325 0 2.464.099 2.796.143v3.24l-1.919.001c-1.504 0-1.794.715-1.794 1.763v2.31h3.587l-.467 3.436h-3.12V24h6.116c.728 0 1.324-.6 1.324-1.342V1.341C24 .6 23.403 0 22.675 0z" fill="currentColor"></path>
+              </svg>
+              <span class="ml-3">Facebook</span>
+            </a>
+          </li>
+          <li class="mb-4">
+            <a class="inline-flex items-center text-coolGray-400 hover:text-white hover:underline" href="https://www.instagram.com/thedenmanmall/" target="_blank" rel="noopener noreferrer">
+              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.0018 4.8916C7.73315 4.8916 5.89648 6.73027 5.89648 8.99694C5.89648 11.2656 7.73515 13.1023 10.0018 13.1023C12.2705 13.1023 14.1072 11.2636 14.1072 8.99694C14.1072 6.72827 12.2685 4.8916 10.0018 4.8916ZM10.0018 11.6616C8.52915 11.6616 7.33715 10.4689 7.33715 8.99694C7.33715 7.52494 8.52982 6.33227 10.0018 6.33227C11.4738 6.33227 12.6665 7.52494 12.6665 8.99694C12.6672 10.4689 11.4745 11.6616 10.0018 11.6616Z" fill="currentColor"></path>
+                <path d="M13.2988 1.05026C11.8268 0.981591 8.18082 0.984924 6.70749 1.05026C5.41282 1.11092 4.27082 1.42359 3.35015 2.34426C1.81148 3.88292 2.00815 5.95626 2.00815 8.99692C2.00815 12.1089 1.83482 14.1343 3.35015 15.6496C4.89482 17.1936 6.99815 16.9916 10.0028 16.9916C13.0855 16.9916 14.1495 16.9936 15.2395 16.5716C16.7215 15.9963 17.8402 14.6716 17.9495 12.2923C18.0188 10.8196 18.0148 7.17426 17.9495 5.70092C17.8175 2.89226 16.3102 1.18892 13.2988 1.05026ZM15.6288 14.6316C14.6202 15.6403 13.2208 15.5503 9.98349 15.5503C6.65015 15.5503 5.31348 15.5996 4.33815 14.6216C3.21482 13.5036 3.41815 11.7083 3.41815 8.98626C3.41815 5.30292 3.04015 2.65026 6.73682 2.46092C7.58615 2.43092 7.83615 2.42092 9.97415 2.42092L10.0042 2.44092C13.5568 2.44092 16.3442 2.06892 16.5115 5.76492C16.5495 6.60826 16.5582 6.86159 16.5582 8.99626C16.5575 12.2909 16.6202 13.6356 15.6288 14.6316Z" fill="currentColor"></path>
+                <path d="M14.2718 5.68869C14.8017 5.68869 15.2312 5.25918 15.2312 4.72935C15.2312 4.19953 14.8017 3.77002 14.2718 3.77002C13.742 3.77002 13.3125 4.19953 13.3125 4.72935C13.3125 5.25918 13.742 5.68869 14.2718 5.68869Z" fill="currentColor"></path>
+              </svg>
+              <span class="ml-3">Instagram</span>
+            </a>
+          </li>
+          <li class="mb-4">
+            <a class="inline-flex items-center text-coolGray-400 hover:text-white hover:underline" href="https://www.linkedin.com/company/denmanplacemall" target="_blank" rel="noopener noreferrer">
+              <svg width="19" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.1004 13.0993V8.30161C13.1004 5.94368 12.5928 4.14249 9.84186 4.14249C8.51552 4.14249 7.6313 4.86297 7.27106 5.55069H7.23831V4.35536H4.63477V13.0993H7.35294V8.7601C7.35294 7.61388 7.5658 6.51679 8.97401 6.51679C10.3658 6.51679 10.3822 7.81038 10.3822 8.8256V13.083H13.1004V13.0993Z" fill="currentColor"></path>
+                <path d="M0.212891 4.35538H2.93106V13.0994H0.212891V4.35538Z" fill="currentColor"></path>
+                <path d="M1.57195 0C0.704104 0 0 0.704012 0 1.57186C0 2.43971 0.704104 3.16019 1.57195 3.16019C2.4398 3.16019 3.14391 2.43971 3.14391 1.57186C3.14391 0.704012 2.4398 0 1.57195 0Z" fill="currentColor"></path>
+              </svg>
+              <span class="ml-3">LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a class="inline-flex items-center text-coolGray-400 hover:text-white hover:underline" href="https://x.com/thedenmanmall" target="_blank" rel="noopener noreferrer">
+              <svg width="19" height="13" viewBox="0 0 17 13" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.0809 1.78777C15.5109 2.03477 14.9219 2.20577 14.2949 2.28177C14.9409 1.90177 15.4349 1.29377 15.6629 0.552768C15.0549 0.913768 14.3899 1.16077 13.6869 1.31277C13.1169 0.704768 12.2999 0.324768 11.4069 0.324768C9.67786 0.324768 8.29086 1.73077 8.29086 3.44077C8.29086 3.68777 8.30986 3.91577 8.36686 4.14377C5.78286 4.02977 3.50286 2.77577 1.96386 0.894768C0.861859 2.87077 2.09686 4.50477 2.91386 5.05577C2.41986 5.05577 1.92586 4.90377 1.50786 4.67577C1.50786 6.21477 2.59086 7.48777 3.99686 7.77277C3.69286 7.86777 3.00886 7.92477 2.59086 7.82977C2.98986 9.06477 4.14886 9.97677 5.49786 9.99577C4.43386 10.8318 2.87586 11.4968 0.880859 11.2878C2.26786 12.1808 3.90186 12.6938 5.66886 12.6938C11.4069 12.6938 14.5229 7.94377 14.5229 3.83977C14.5229 3.70677 14.5229 3.57377 14.5039 3.44077C15.1499 2.96577 15.6819 2.41477 16.0809 1.78777Z" fill="currentColor"></path>
+              </svg>
+              <span class="ml-3">Twitter</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="w-1/2 md:w-1/4 xl:w-2/12 px-4">
+        <h5 class="text-lg text-white mb-4 font-medium">Address</h5>
+        <ul>
+          <li class="mb-2 text-lg text-coolGray-400">
+            <p class="inline-block notranslate" translate="no">
+              1030 Denman St.
+              <br>
+              Vancouver, BC
+              <br>
+              V6G 2M6
+            </p>
+            <br>
+            <br>
+            <a href="https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6" target="_blank" rel="noopener noreferrer" class="inline-block text-lg underline hover:text-coolGray-400">See on Google Maps</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-8 border-t border-coolGray-800 pt-8 px-4 max-w-screen-xl mx-auto">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+        <div class="text-center lg:text-left">
+          <span class="text-base font-medium text-coolGray-400">
+            &copy; <script>document.write(new Date().getFullYear())</script> <span class="notranslate" translate="no">Denman Place Mall</span>. All Rights Reserved.
+            <span class="hidden lg:inline"><a href="terms.html" class="hover:underline">Terms of Use</a> | <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> | <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
+            <br>
+            <span class="lg:hidden"><a href="terms.html" class="hover:underline">Terms of Use</a> &bull; <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> &bull; <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
+          </span>
+        </div>
+        <div class="text-center lg:text-right">
+          <span class="text-base font-medium text-coolGray-400 lg:flex lg:items-center lg:justify-end">Website sustainably crafted by<a href="https://oasisofchange.com" target="_blank" rel="noopener noreferrer" class="underline text-green-600 hover:text-green-800 ml-1 notranslate" translate="no">Oasis of Change, Inc.</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/PARTIAL:footer-->
     </div>
 
 </body>

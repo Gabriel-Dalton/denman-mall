@@ -1,0 +1,197 @@
+<section x-data="{ mobileNavOpen: false }" class="">
+  <style id="mall-i18n-css">
+    .mall-lang-wrap{position:relative;display:inline-flex;align-items:center;}
+    .mall-lang-btn{position:relative;display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .7rem;color:#000;font-weight:500;border:1px solid #000;border-radius:9999px;background:transparent;font-size:.875rem;line-height:1;cursor:pointer;transition:background .15s,color .15s;font-family:inherit;}
+    .mall-lang-btn:hover,.mall-lang-btn[aria-expanded="true"]{background:#000;color:#fff;}
+    .mall-lang-btn .mall-lang-code{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600;}
+    .mall-lang-btn .mall-lang-chev{transition:transform .2s ease;}
+    .mall-lang-btn[aria-expanded="true"] .mall-lang-chev{transform:rotate(180deg);}
+    .mall-lang-btn--compact{padding:.4rem;border-radius:9999px;}
+    .mall-lang-btn--compact .mall-lang-code{margin-left:.25rem;}
+    .mall-lang-menu{position:absolute;right:0;top:calc(100% + .5rem);min-width:14rem;background:#fff;border:1px solid #e5e7eb;border-radius:.5rem;box-shadow:0 10px 25px -3px rgba(0,0,0,.12),0 4px 6px -2px rgba(0,0,0,.05);padding:.5rem 0;z-index:60;}
+    .mall-lang-menu[data-align="left"]{right:auto;left:0;}
+    .mall-lang-menu button{display:flex;width:100%;text-align:left;padding:.55rem 1rem;align-items:center;justify-content:space-between;background:transparent;border:0;font-size:1rem;cursor:pointer;color:#000;font-family:inherit;}
+    .mall-lang-menu button:hover,.mall-lang-menu button:focus-visible{background:#f3f4f6;outline:none;}
+    .mall-lang-menu button[aria-selected="true"]{font-weight:600;}
+    .mall-lang-menu .mall-lang-code{font-size:.7rem;color:#6b7280;text-transform:uppercase;margin-left:.75rem;letter-spacing:.05em;}
+    .mall-lang-mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
+    .mall-lang-mobile-grid button{text-align:left;padding:.625rem .75rem;border:1px solid #e5e7eb;border-radius:.375rem;background:#fff;font-size:1rem;cursor:pointer;font-family:inherit;color:#000;}
+    .mall-lang-mobile-grid button:hover,.mall-lang-mobile-grid button:focus-visible{background:#f3f4f6;outline:none;}
+    .mall-lang-mobile-grid .mall-lang-code{display:block;font-size:.7rem;color:#6b7280;text-transform:uppercase;margin-top:.15rem;letter-spacing:.05em;}
+    .mall-lang-mobile-section{margin-top:2rem;padding-top:1.5rem;border-top:1px solid #e5e7eb;}
+    .mall-lang-mobile-section p{font-size:.75rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem;}
+  </style>
+  <nav aria-label="Main navigation">
+    <div class="container mx-auto px-4">
+      <div class="relative flex h-24 items-center">
+        <div class="hidden xl:flex items-center"><a class="inline-block text-black font-medium hover:underline mr-10" href="index.html">Home</a><a class="inline-block text-black font-medium hover:underline mr-10" href="directory.html">Store Directory</a></div>
+        <div class="hidden xl:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div class="flex-grow text-center">
+            <a href="index.html"><span translate="no" class="notranslate block text-3xl tracking-tighter mb-1">Denman Place Mall</span></a>
+            <p class="text-lg text-coolGray-900">Open Today | 8:00 AM to 10:00 PM</p>
+          </div>
+        </div>
+        <div class="xl:hidden inline-block">
+          <div class="flex-grow text-center">
+            <a href="index.html"><span translate="no" class="notranslate block tracking-tighter text-2xl sm:text-3xl md:text-4xl xl:text-5xl mb-2">Denman Place Mall</span></a>
+            <p class="text-sm text-coolGray-800">Open Today | 8:00 AM to 10:00 PM</p>
+          </div>
+        </div>
+
+        <div class="ml-auto flex items-center" x-data="{ langOpen: false, current: 'EN' }" x-init="current = (window.MallI18n && MallI18n.currentLabel()) || 'EN'" @mall-lang-change.window="current = $event.detail.label">
+          <!-- Language switcher: visible at all breakpoints -->
+          <div class="mall-lang-wrap notranslate" translate="no" @click.outside="langOpen = false" @keydown.escape.window="langOpen = false">
+            <button type="button" @click="langOpen = !langOpen" :aria-expanded="langOpen.toString()" aria-haspopup="listbox" aria-label="Change language" class="mall-lang-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span class="mall-lang-code" x-text="current">EN</span>
+              <svg width="10" height="10" viewBox="0 0 10 10" class="mall-lang-chev" aria-hidden="true" focusable="false"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <ul x-show="langOpen" x-cloak x-transition.opacity role="listbox" aria-label="Select language" class="mall-lang-menu">
+              <template x-for="opt in (window.MallI18n ? MallI18n.options : [])" :key="opt.code">
+                <li>
+                  <button type="button" role="option" :aria-selected="(current === opt.label).toString()" @click="MallI18n.set(opt.code); langOpen = false" :dir="opt.rtl ? 'rtl' : 'ltr'">
+                    <span x-text="opt.native"></span>
+                    <span class="mall-lang-code" x-text="opt.label"></span>
+                  </button>
+                </li>
+              </template>
+            </ul>
+          </div>
+
+          <div class="hidden xl:flex items-center" style="margin-left:2rem"><a class="inline-block text-black font-medium hover:underline mr-10" href="about.html">About Us</a><a class="inline-block text-black font-medium hover:underline" href="contact.html">Contact Us</a></div>
+
+          <button x-on:click="mobileNavOpen = !mobileNavOpen" :aria-expanded="mobileNavOpen.toString()" aria-expanded="false" aria-label="Open menu" aria-controls="mobile-nav" class="xl:hidden py-1" style="margin-left:1rem">
+            <svg width="44" height="16" viewBox="0 0 44 16" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect width="44" height="2" rx="1" fill="black"></rect><rect y="14" width="44" height="2" rx="1" fill="black"></rect></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div id="mobile-nav" x-cloak="" x-show="mobileNavOpen" x-transition="" class="fixed top-0 left-0 bottom-0 w-5/6 max-w-md z-50">
+    <div x-on:click="mobileNavOpen = false" class="fixed inset-0 bg-gray-800 opacity-50"></div>
+    <nav class="relative flex flex-col py-8 px-8 w-full h-full bg-white overflow-y-auto" aria-label="Mobile navigation">
+      <div class="flex items-center mb-8">
+        <div class="mr-auto">
+          <a href="index.html"><span translate="no" class="notranslate block text-2xl tracking-tighter mb-2">Denman Place Mall</span></a>
+          <p class="text-sm text-coolGray-700">Open Today | 8:00 AM to 10:00 PM</p>
+        </div>
+        <button x-on:click="mobileNavOpen = false" aria-label="Close menu">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 18L18 6M6 6L18 18" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="py-10">
+        <ul class="flex flex-col space-y-12 text-xl sm:text-2xl font-medium text-black">
+          <li><a class="hover:underline" href="index.html">Home</a></li>
+          <li><a class="hover:underline" href="directory.html">Store Directory</a></li>
+          <li><a class="hover:underline" href="about.html">About Us</a></li>
+          <li><a class="hover:underline" href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="mall-lang-mobile-section notranslate" translate="no" x-data>
+        <p>Language / 语言 / زبان</p>
+        <div class="mall-lang-mobile-grid">
+          <template x-for="opt in (window.MallI18n ? MallI18n.options : [])" :key="opt.code">
+            <button type="button" @click="MallI18n.set(opt.code); mobileNavOpen = false" :dir="opt.rtl ? 'rtl' : 'ltr'">
+              <span x-text="opt.native"></span>
+              <span class="mall-lang-code" x-text="opt.label"></span>
+            </button>
+          </template>
+        </div>
+      </div>
+      <div class="mt-auto pt-8"><a class="block w-full px-4 py-4 text-center text-lg font-semibold text-black hover:text-white border border-black hover:bg-black rounded-full transition duration-200" href="directory.html">View Store Directory</a></div>
+    </nav>
+  </div>
+</section>
+
+<!-- Google Translate (hidden, driven by MallI18n) -->
+<div id="google_translate_element" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;"></div>
+<style id="mall-i18n-gt-css">
+  .goog-te-banner-frame.skiptranslate,.goog-te-gadget,.goog-logo-link,.goog-te-gadget-icon{display:none !important;}
+  body{top:0 !important;position:static !important;}
+  .goog-tooltip,.goog-tooltip:hover{display:none !important;}
+  .goog-text-highlight{background:transparent !important;box-shadow:none !important;}
+  html[data-mall-lang="fa"] body{direction:rtl;}
+</style>
+<script>
+(function () {
+  if (window.MallI18n) return;
+  var LANGS = [
+    { code: 'en',    label: 'EN',    native: 'English'  },
+    { code: 'zh-CN', label: 'ZH',    native: '中文 (简体)' },
+    { code: 'zh-TW', label: 'ZH-TW', native: '中文 (繁體)' },
+    { code: 'fa',    label: 'FA',    native: 'فارسی', rtl: true },
+    { code: 'es',    label: 'ES',    native: 'Español' },
+    { code: 'ko',    label: 'KO',    native: '한국어'  },
+    { code: 'ja',    label: 'JA',    native: '日本語'  },
+    { code: 'tl',    label: 'TL',    native: 'Tagalog' },
+    { code: 'ru',    label: 'RU',    native: 'Русский' },
+    { code: 'fr',    label: 'FR',    native: 'Français' }
+  ];
+  var byCode = {};
+  LANGS.forEach(function (l) { byCode[l.code] = l; });
+  function readCookie(name) {
+    var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return m ? decodeURIComponent(m[1]) : null;
+  }
+  function writeCookie(name, value) {
+    document.cookie = name + '=' + value + '; path=/; max-age=' + 60 * 60 * 24 * 365;
+    var host = location.hostname.replace(/^www\./, '');
+    if (host) document.cookie = name + '=' + value + '; path=/; domain=.' + host + '; max-age=' + 60 * 60 * 24 * 365;
+  }
+  function parseLang() {
+    var c = readCookie('googtrans');
+    if (c) {
+      var parts = c.split('/');
+      var t = parts[parts.length - 1];
+      if (byCode[t]) return t;
+    }
+    var stored = localStorage.getItem('mallLang');
+    return stored && byCode[stored] ? stored : 'en';
+  }
+  var currentBootLang = parseLang();
+  function setLang(code) {
+    if (!byCode[code]) return;
+    localStorage.setItem('mallLang', code);
+    var value = code === 'en' ? '/en/en' : '/en/' + code;
+    writeCookie('googtrans', value);
+    document.documentElement.setAttribute('data-mall-lang', code);
+    document.documentElement.setAttribute('lang', code === 'en' ? 'en' : code);
+    if (byCode[code].rtl) document.documentElement.setAttribute('dir', 'rtl'); else document.documentElement.removeAttribute('dir');
+    var detail = { code: code, label: byCode[code].label, native: byCode[code].native };
+    window.dispatchEvent(new CustomEvent('mall-lang-change', { detail: detail }));
+    var select = document.querySelector('.goog-te-combo');
+    if (select) {
+      select.value = code === 'en' ? '' : code;
+      select.dispatchEvent(new Event('change'));
+    } else if (code !== currentBootLang) {
+      location.reload();
+    }
+  }
+  function currentLabel() {
+    var c = parseLang();
+    return (byCode[c] || byCode.en).label;
+  }
+  document.documentElement.setAttribute('data-mall-lang', currentBootLang);
+  if (byCode[currentBootLang] && byCode[currentBootLang].rtl) document.documentElement.setAttribute('dir', 'rtl');
+  window.MallI18n = { options: LANGS, set: setLang, current: function () { return parseLang(); }, currentLabel: currentLabel };
+  window.googleTranslateElementInit = function () {
+    new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: LANGS.filter(function (l) { return l.code !== 'en'; }).map(function (l) { return l.code; }).join(','), autoDisplay: false, layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+  };
+  function loadGT() {
+    if (document.getElementById('mall-gt-script')) return;
+    var s = document.createElement('script');
+    s.id = 'mall-gt-script';
+    s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  if (document.readyState === 'complete') loadGT();
+  else window.addEventListener('load', loadGT);
+})();
+</script>

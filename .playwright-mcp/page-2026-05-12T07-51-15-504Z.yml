@@ -1,0 +1,102 @@
+- generic [ref=e2]:
+  - navigation [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e8]:
+        - link "Denman Place Mall" [ref=e9] [cursor=pointer]:
+          - /url: /home
+          - heading "Denman Place Mall" [level=1] [ref=e10]
+        - paragraph [ref=e11]: Open Today | 8:00 AM to 10:00 PM
+      - button [ref=e12] [cursor=pointer]:
+        - img [ref=e13]
+  - generic [ref=e18]:
+    - heading "404 — Not Found" [level=2] [ref=e19]
+    - paragraph [ref=e20]: You might’ve been headed to No Frills but somehow landed at 93 Coffee instead. Happens to the best of us!
+    - link "Back to the homepage" [ref=e21] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e22]: Back to the homepage
+      - img [ref=e24]
+  - generic [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - img "Denman Place Mall Logo" [ref=e31]
+        - generic [ref=e32]:
+          - paragraph [ref=e33]: Hours of Operation
+          - generic [ref=e34]:
+            - paragraph [ref=e35]: "Monday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e36]: "Tuesday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e37]: "Wednesday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e38]: "Thursday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e39]: "Friday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e40]: "Saturday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e41]: "Sunday: 8:00 AM – 10:00 PM"
+          - paragraph [ref=e42]: "Note: Some stores open earlier/later than shopping centre hours. Please check directly with stores for their hours."
+      - generic [ref=e43]:
+        - heading "Visitor Info" [level=5] [ref=e44]
+        - list [ref=e45]:
+          - listitem [ref=e46]:
+            - link "Store Directory" [ref=e47] [cursor=pointer]:
+              - /url: /directory
+          - listitem [ref=e48]:
+            - link "Events" [ref=e49] [cursor=pointer]:
+              - /url: /events
+          - listitem [ref=e50]:
+            - link "FAQs" [ref=e51] [cursor=pointer]:
+              - /url: /home#faq
+      - generic [ref=e52]:
+        - heading "About the Mall" [level=5] [ref=e53]
+        - list [ref=e54]:
+          - listitem [ref=e55]:
+            - link "About Us" [ref=e56] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e57]:
+            - link "Contact Us" [ref=e58] [cursor=pointer]:
+              - /url: /contact
+          - listitem [ref=e59]:
+            - link "Customer Testimonials" [ref=e60] [cursor=pointer]:
+              - /url: /home#customer_testimonials
+      - generic [ref=e61]:
+        - heading "Social Media" [level=5] [ref=e62]
+        - list [ref=e63]:
+          - listitem [ref=e64]:
+            - link "Facebook" [ref=e65] [cursor=pointer]:
+              - /url: https://www.facebook.com/thedenmanplacemall
+              - img [ref=e66]
+              - generic [ref=e68]: Facebook
+          - listitem [ref=e69]:
+            - link "Instagram" [ref=e70] [cursor=pointer]:
+              - /url: https://www.instagram.com/thedenmanmall/
+              - img [ref=e71]
+              - generic [ref=e75]: Instagram
+          - listitem [ref=e76]:
+            - link "LinkedIn" [ref=e77] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/denmanplacemall
+              - img [ref=e78]
+              - generic [ref=e82]: LinkedIn
+          - listitem [ref=e83]:
+            - link "Twitter" [ref=e84] [cursor=pointer]:
+              - /url: https://x.com/thedenmanmall
+              - img [ref=e85]
+              - generic [ref=e87]: Twitter
+      - generic [ref=e88]:
+        - heading "Address" [level=5] [ref=e89]
+        - list [ref=e90]:
+          - listitem [ref=e91]:
+            - paragraph [ref=e92]:
+              - text: 1030 Denman St.
+              - text: Vancouver, BC
+              - text: V6G 2M6
+            - link "See on Google Maps" [ref=e93] [cursor=pointer]:
+              - /url: https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6
+    - generic [ref=e95]:
+      - generic [ref=e97]:
+        - text: © 2026 Denman Place Mall. All Rights Reserved.
+        - generic [ref=e98]:
+          - link "Terms of Use" [ref=e99] [cursor=pointer]:
+            - /url: /terms
+          - text: "|"
+          - link "Privacy Policy" [ref=e100] [cursor=pointer]:
+            - /url: /privacy-policy
+      - generic [ref=e102]:
+        - text: Website sustainably crafted by
+        - link "Web-Ready" [ref=e103] [cursor=pointer]:
+          - /url: https://web-ready.org

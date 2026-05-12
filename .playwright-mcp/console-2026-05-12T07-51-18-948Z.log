@@ -1,0 +1,6 @@
+[     297ms] [ERROR] [AC Fixes Client] Initialization failed: Error: Failed to load manifest after 3 attempts: Failed to fetch
+    at ACFixesClient.loadManifest (https://www.accessibilitychecker.org/ai-script/ac-fixes-client.min.js?v=1778572274632:2:1947)
+    at async ACFixesClient.init (https://www.accessibilitychecker.org/ai-script/ac-fixes-client.min.js?v=1778572274632:2:683) @ https://www.accessibilitychecker.org/ai-script/ac-fixes-client.min.js?v=1778572274632:1
+[     317ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ https://assets.denmanmall.com/scripts/hours-of-operation.js:23
+[    1259ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://storage.accessibilitychecker.org/ai-fixes/fc96cd7fde88a55675a2411f70144c3c/fixes.json:0
+[    2437ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://storage.accessibilitychecker.org/ai-fixes/fc96cd7fde88a55675a2411f70144c3c/fixes.json:0
