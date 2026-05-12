@@ -108,26 +108,40 @@
       <!--PARTIAL:nav-->
 <section x-data="{ mobileNavOpen: false }" class="">
   <style id="mall-i18n-css">
-    .mall-lang-wrap{position:relative;display:inline-flex;align-items:center;}
+    /* Language switcher: stays LTR even when page is RTL so globe/code/chevron keep order. */
+    .mall-lang-wrap{position:relative;display:inline-flex;align-items:center;direction:ltr;}
     .mall-lang-btn{position:relative;display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .7rem;color:#000;font-weight:500;border:1px solid #000;border-radius:9999px;background:transparent;font-size:.875rem;line-height:1;cursor:pointer;transition:background .15s,color .15s;font-family:inherit;}
     .mall-lang-btn:hover,.mall-lang-btn[aria-expanded="true"]{background:#000;color:#fff;}
     .mall-lang-btn .mall-lang-code{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600;}
     .mall-lang-btn .mall-lang-chev{transition:transform .2s ease;}
     .mall-lang-btn[aria-expanded="true"] .mall-lang-chev{transform:rotate(180deg);}
     .mall-lang-btn--compact{padding:.4rem;border-radius:9999px;}
-    .mall-lang-btn--compact .mall-lang-code{margin-left:.25rem;}
-    .mall-lang-menu{position:absolute;right:0;top:calc(100% + .5rem);min-width:14rem;background:#fff;border:1px solid #e5e7eb;border-radius:.5rem;box-shadow:0 10px 25px -3px rgba(0,0,0,.12),0 4px 6px -2px rgba(0,0,0,.05);padding:.5rem 0;z-index:60;}
-    .mall-lang-menu[data-align="left"]{right:auto;left:0;}
-    .mall-lang-menu button{display:flex;width:100%;text-align:left;padding:.55rem 1rem;align-items:center;justify-content:space-between;background:transparent;border:0;font-size:1rem;cursor:pointer;color:#000;font-family:inherit;}
+    .mall-lang-btn--compact .mall-lang-code{margin-inline-start:.25rem;}
+    /* Logical-property positioning so the menu flips correctly under direction:rtl. */
+    .mall-lang-menu{position:absolute;inset-inline-end:0;top:calc(100% + .5rem);min-width:14rem;background:#fff;border:1px solid #e5e7eb;border-radius:.5rem;box-shadow:0 10px 25px -3px rgba(0,0,0,.12),0 4px 6px -2px rgba(0,0,0,.05);padding:.5rem 0;z-index:60;}
+    .mall-lang-menu[data-align="left"]{inset-inline-end:auto;inset-inline-start:0;}
+    .mall-lang-menu button{display:flex;width:100%;text-align:start;padding:.55rem 1rem;align-items:center;justify-content:space-between;background:transparent;border:0;font-size:1rem;cursor:pointer;color:#000;font-family:inherit;}
     .mall-lang-menu button:hover,.mall-lang-menu button:focus-visible{background:#f3f4f6;outline:none;}
     .mall-lang-menu button[aria-selected="true"]{font-weight:600;}
-    .mall-lang-menu .mall-lang-code{font-size:.7rem;color:#6b7280;text-transform:uppercase;margin-left:.75rem;letter-spacing:.05em;}
+    .mall-lang-menu .mall-lang-code{font-size:.7rem;color:#6b7280;text-transform:uppercase;margin-inline-start:.75rem;letter-spacing:.05em;}
     .mall-lang-mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
-    .mall-lang-mobile-grid button{text-align:left;padding:.625rem .75rem;border:1px solid #e5e7eb;border-radius:.375rem;background:#fff;font-size:1rem;cursor:pointer;font-family:inherit;color:#000;}
+    .mall-lang-mobile-grid button{text-align:start;padding:.625rem .75rem;border:1px solid #e5e7eb;border-radius:.375rem;background:#fff;font-size:1rem;cursor:pointer;font-family:inherit;color:#000;}
     .mall-lang-mobile-grid button:hover,.mall-lang-mobile-grid button:focus-visible{background:#f3f4f6;outline:none;}
     .mall-lang-mobile-grid .mall-lang-code{display:block;font-size:.7rem;color:#6b7280;text-transform:uppercase;margin-top:.15rem;letter-spacing:.05em;}
     .mall-lang-mobile-section{margin-top:2rem;padding-top:1.5rem;border-top:1px solid #e5e7eb;}
     .mall-lang-mobile-section p{font-size:.75rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem;}
+
+    /* RTL overrides for the bundled Tailwind utilities used in the nav.
+       The build ships physical margins (ml-auto, mr-10, ml-3) that don't
+       auto-flip under direction:rtl, so map them to logical equivalents.
+       Also clamp body overflow-x to prevent rogue horizontal scroll from any
+       element that hasn't been migrated to logical properties yet. */
+    html[dir="rtl"] body{overflow-x:hidden;}
+    html[dir="rtl"] .ml-auto{margin-left:0 !important;margin-inline-start:auto;}
+    html[dir="rtl"] .mr-10{margin-right:0 !important;margin-inline-end:2.5rem;}
+    html[dir="rtl"] .mr-12{margin-right:0 !important;margin-inline-end:3rem;}
+    html[dir="rtl"] .ml-3{margin-left:0 !important;margin-inline-start:.75rem;}
+    html[dir="rtl"] .mall-rtl-ms{margin-left:0 !important;margin-inline-start:var(--mall-rtl-ms,0);}
   </style>
   <nav aria-label="Main navigation">
     <div class="container mx-auto px-4">
@@ -170,9 +184,9 @@
             </ul>
           </div>
 
-          <div class="hidden xl:flex items-center" style="margin-left:2rem"><a class="inline-block text-black font-medium hover:underline mr-10" href="about.html">About Us</a><a class="inline-block text-black font-medium hover:underline" href="contact.html">Contact Us</a></div>
+          <div class="hidden xl:flex items-center" style="margin-inline-start:2rem"><a class="inline-block text-black font-medium hover:underline mr-10" href="about.html">About Us</a><a class="inline-block text-black font-medium hover:underline" href="contact.html">Contact Us</a></div>
 
-          <button x-on:click="mobileNavOpen = !mobileNavOpen" :aria-expanded="mobileNavOpen.toString()" aria-expanded="false" aria-label="Open menu" aria-controls="mobile-nav" class="xl:hidden py-1" style="margin-left:1rem">
+          <button x-on:click="mobileNavOpen = !mobileNavOpen" :aria-expanded="mobileNavOpen.toString()" aria-expanded="false" aria-label="Open menu" aria-controls="mobile-nav" class="xl:hidden py-1" style="margin-inline-start:1rem">
             <svg width="44" height="16" viewBox="0 0 44 16" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect width="44" height="2" rx="1" fill="black"></rect><rect y="14" width="44" height="2" rx="1" fill="black"></rect></svg>
           </button>
         </div>
