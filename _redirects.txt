@@ -1,0 +1,10 @@
+# Redirects from DashNex (8 total)
+# Format: source destination code
+/maps	https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6	301
+/instagram	https://www.instagram.com/thedenmanmall/	301
+/facebook	https://www.facebook.com/thedenmanplacemall/	301
+/x	https://x.com/thedenmanmall	301
+/terms-of-use	https://denmanmall.com/terms/	301
+/twitter	https://x.com/thedenmanmall	301
+/nofrills	https://denmanmall.com/no-frills	301
+/safety	https://denmanmall.com/safety-updates/	301

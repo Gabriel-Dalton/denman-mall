@@ -1,0 +1,400 @@
+{
+  "extractedAt": "2026-05-11T21:58:21.198Z",
+  "site": "denmanmall.com",
+  "source": "DashNex PowerTech",
+  "pageCount": 41,
+  "redirectCount": 8,
+  "pages": [
+    {
+      "id": "140987",
+      "name": "Home",
+      "urlLink": "home",
+      "filename": "index.html",
+      "lang": "en",
+      "bodyLen": 33650
+    },
+    {
+      "id": "140988",
+      "name": "About",
+      "urlLink": "about",
+      "filename": "about.html",
+      "lang": "en",
+      "bodyLen": 19005
+    },
+    {
+      "id": "141026",
+      "name": "Directory",
+      "urlLink": "directory",
+      "filename": "directory.html",
+      "lang": "en",
+      "bodyLen": 23347
+    },
+    {
+      "id": "141027",
+      "name": "Events",
+      "urlLink": "events-1",
+      "filename": "events-1.html",
+      "lang": "en",
+      "bodyLen": 14599
+    },
+    {
+      "id": "141028",
+      "name": "Contact",
+      "urlLink": "contact",
+      "filename": "contact.html",
+      "lang": "en",
+      "bodyLen": 13870
+    },
+    {
+      "id": "141029",
+      "name": "Update in Progress",
+      "urlLink": "update-in-progress",
+      "filename": "update-in-progress.html",
+      "lang": "en",
+      "bodyLen": 930
+    },
+    {
+      "id": "141030",
+      "name": "404",
+      "urlLink": "404",
+      "filename": "404.html",
+      "lang": "en",
+      "bodyLen": 15000
+    },
+    {
+      "id": "141031",
+      "name": "Terms of Use",
+      "urlLink": "terms",
+      "filename": "terms.html",
+      "lang": "en",
+      "bodyLen": 20917
+    },
+    {
+      "id": "141032",
+      "name": "Privacy Policy",
+      "urlLink": "privacy-policy",
+      "filename": "privacy-policy.html",
+      "lang": "en",
+      "bodyLen": 24507
+    },
+    {
+      "id": "141033",
+      "name": "Event Example",
+      "urlLink": "event-example",
+      "filename": "event-example.html",
+      "lang": "en",
+      "bodyLen": 15530
+    },
+    {
+      "id": "141034",
+      "name": "Stanley Park Dental",
+      "urlLink": "stanley-park-dental",
+      "filename": "stanley-park-dental.html",
+      "lang": "en",
+      "bodyLen": 16450
+    },
+    {
+      "id": "141035",
+      "name": "Specsavers",
+      "urlLink": "specsavers",
+      "filename": "specsavers.html",
+      "lang": "en",
+      "bodyLen": 15489
+    },
+    {
+      "id": "141036",
+      "name": "Kay's Place (WESN)",
+      "urlLink": "wesn",
+      "filename": "wesn.html",
+      "lang": "en",
+      "bodyLen": 15339
+    },
+    {
+      "id": "141067",
+      "name": "Clothes & Collectibles",
+      "urlLink": "clothes-collectibles",
+      "filename": "clothes-collectibles.html",
+      "lang": "en",
+      "bodyLen": 15319
+    },
+    {
+      "id": "141068",
+      "name": "Denman Place Dental Centre",
+      "urlLink": "denman-place-dental",
+      "filename": "denman-place-dental.html",
+      "lang": "en",
+      "bodyLen": 16201
+    },
+    {
+      "id": "141069",
+      "name": "Denman Liquor Store",
+      "urlLink": "denman-liquor-store",
+      "filename": "denman-liquor-store.html",
+      "lang": "en",
+      "bodyLen": 16332
+    },
+    {
+      "id": "141070",
+      "name": "Devak Key Lock",
+      "urlLink": "devak-key-lock",
+      "filename": "devak-key-lock.html",
+      "lang": "en",
+      "bodyLen": 16181
+    },
+    {
+      "id": "141071",
+      "name": "Murrick Insurance",
+      "urlLink": "murrick-insurance",
+      "filename": "murrick-insurance.html",
+      "lang": "en",
+      "bodyLen": 16163
+    },
+    {
+      "id": "141072",
+      "name": "Scissors & Comb Barbershop",
+      "urlLink": "scissors-comb-barbershop",
+      "filename": "scissors-comb-barbershop.html",
+      "lang": "en",
+      "bodyLen": 16185
+    },
+    {
+      "id": "141074",
+      "name": "Hedy Fry",
+      "urlLink": "hedy-fry",
+      "filename": "hedy-fry.html",
+      "lang": "en",
+      "bodyLen": 16425
+    },
+    {
+      "id": "141075",
+      "name": "Ice Cream Parlour Glasses",
+      "urlLink": "the-ice-cream-parlour",
+      "filename": "the-ice-cream-parlour.html",
+      "lang": "en",
+      "bodyLen": 15361
+    },
+    {
+      "id": "141076",
+      "name": "No Frills",
+      "urlLink": "no-frills",
+      "filename": "no-frills.html",
+      "lang": "en",
+      "bodyLen": 15254
+    },
+    {
+      "id": "141077",
+      "name": "Open Door Law",
+      "urlLink": "open-door-law",
+      "filename": "open-door-law.html",
+      "lang": "en",
+      "bodyLen": 16261
+    },
+    {
+      "id": "141078",
+      "name": "Lost Lagoon Frames",
+      "urlLink": "lost-lagoon-frames",
+      "filename": "lost-lagoon-frames.html",
+      "lang": "en",
+      "bodyLen": 15498
+    },
+    {
+      "id": "141079",
+      "name": "Dollarama",
+      "urlLink": "dollarama",
+      "filename": "dollarama.html",
+      "lang": "en",
+      "bodyLen": 15318
+    },
+    {
+      "id": "141080",
+      "name": "English Bay Jewellers",
+      "urlLink": "english-bay-jewellers",
+      "filename": "english-bay-jewellers.html",
+      "lang": "en",
+      "bodyLen": 15293
+    },
+    {
+      "id": "141081",
+      "name": "Minit Foto",
+      "urlLink": "minit-foto",
+      "filename": "minit-foto.html",
+      "lang": "en",
+      "bodyLen": 16246
+    },
+    {
+      "id": "141082",
+      "name": "93 Coffee",
+      "urlLink": "93-coffee",
+      "filename": "93-coffee.html",
+      "lang": "en",
+      "bodyLen": 15245
+    },
+    {
+      "id": "141083",
+      "name": "Accountax",
+      "urlLink": "accountax",
+      "filename": "accountax.html",
+      "lang": "en",
+      "bodyLen": 16078
+    },
+    {
+      "id": "141084",
+      "name": "BCLC Lotto ",
+      "urlLink": "bclc-lotto",
+      "filename": "bclc-lotto.html",
+      "lang": "en",
+      "bodyLen": 15546
+    },
+    {
+      "id": "141085",
+      "name": "Burger King",
+      "urlLink": "burger-king",
+      "filename": "burger-king.html",
+      "lang": "en",
+      "bodyLen": 15221
+    },
+    {
+      "id": "141086",
+      "name": "Denman Chiropractic",
+      "urlLink": "denman-chiropractic",
+      "filename": "denman-chiropractic.html",
+      "lang": "en",
+      "bodyLen": 16317
+    },
+    {
+      "id": "141087",
+      "name": "Canada Post",
+      "urlLink": "canada-post",
+      "filename": "canada-post.html",
+      "lang": "en",
+      "bodyLen": 15309
+    },
+    {
+      "id": "141088",
+      "name": "Rose Stitch",
+      "urlLink": "rose-stitching",
+      "filename": "rose-stitching.html",
+      "lang": "en",
+      "bodyLen": 16186
+    },
+    {
+      "id": "141089",
+      "name": "TE.A.TE Clinic",
+      "urlLink": "teate-clinic",
+      "filename": "teate-clinic.html",
+      "lang": "en",
+      "bodyLen": 15207
+    },
+    {
+      "id": "141090",
+      "name": "Shoppers Drug Mart",
+      "urlLink": "shoppers-drug-mart",
+      "filename": "shoppers-drug-mart.html",
+      "lang": "en",
+      "bodyLen": 15294
+    },
+    {
+      "id": "141093",
+      "name": "UPS",
+      "urlLink": "ups",
+      "filename": "ups.html",
+      "lang": "en",
+      "bodyLen": 15246
+    },
+    {
+      "id": "141094",
+      "name": "YVR Travel Service",
+      "urlLink": "yvr-travel",
+      "filename": "yvr-travel.html",
+      "lang": "en",
+      "bodyLen": 16215
+    },
+    {
+      "id": "149208",
+      "name": "Events",
+      "urlLink": "events",
+      "filename": "events.html",
+      "lang": "en",
+      "bodyLen": 26924
+    },
+    {
+      "id": "149209",
+      "name": "Halloween Trick-or-Treating",
+      "urlLink": "halloween",
+      "filename": "halloween.html",
+      "lang": "en",
+      "bodyLen": 19924
+    },
+    {
+      "id": "156178",
+      "name": "Safety Updates",
+      "urlLink": "safety-updates",
+      "filename": "safety-updates.html",
+      "lang": "en",
+      "bodyLen": 4154
+    }
+  ],
+  "redirects": [
+    {
+      "name": "Google Maps Directions",
+      "permalink": "maps",
+      "destination": "https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6",
+      "type": "server",
+      "code": "301"
+    },
+    {
+      "name": "Instagram",
+      "permalink": "instagram",
+      "destination": "https://www.instagram.com/thedenmanmall/",
+      "type": "server",
+      "code": "301"
+    },
+    {
+      "name": "Facebook",
+      "permalink": "facebook",
+      "destination": "https://www.facebook.com/thedenmanplacemall/",
+      "type": "server",
+      "code": "301"
+    },
+    {
+      "name": "X",
+      "permalink": "x",
+      "destination": "https://x.com/thedenmanmall",
+      "type": "server",
+      "code": "301"
+    },
+    {
+      "name": "Terms of Use ",
+      "permalink": "terms-of-use",
+      "destination": "https://denmanmall.com/terms/",
+      "type": "server",
+      "code": "301"
+    },
+    {
+      "name": "Twitter",
+      "permalink": "twitter",
+      "destination": "https://x.com/thedenmanmall",
+      "code": "301",
+      "type": "server"
+    },
+    {
+      "name": "No Frills Redirect",
+      "permalink": "nofrills",
+      "destination": "https://denmanmall.com/no-frills",
+      "type": "server",
+      "code": "301"
+    },
+    {
+      "name": "Safety",
+      "permalink": "safety",
+      "destination": "https://denmanmall.com/safety-updates/",
+      "type": "server",
+      "code": "301"
+    }
+  ],
+  "globalScripts": {
+    "header": "<!-- Google tag (gtag.js) -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=AW-17441759850\">\n</script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'AW-17441759850');\n</script><!-- Event snippet for Get directions conversion page --> <script> gtag('event', 'conversion', { 'send_to': 'AW-17441759850/zF3PCKfYp6gbEOrE8PxA', 'value': 1.0, 'currency': 'USD' }); </script>\n\n<!-- Accessibility AI Remediation powered by AccessibilityChecker.org -->\n<script>\n window.ac_ai_js_client_settings = {\n  domain_hash: \"fc96cd7fde88a55675a2411f70144c3c\",\n };\n \n (function() {\n  var script = document.createElement(\"script\");\n  script.src = \"https://www.accessibilitychecker.org/ai-script/ac-fixes-client.min.js?v=\" + Date.now();\n  script.async = true;\n  document.head.appendChild(script);\n })();\n</script>",
+    "footer": ""
+  },
+  "robotsTxt": "User-agent: *\nAllow: *\nSitemap: {domain}/sitemap.xml\n"
+}

@@ -1,0 +1,44 @@
+{
+  "redirects": [
+    {
+      "source": "/maps",
+      "destination": "https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6",
+      "permanent": true
+    },
+    {
+      "source": "/instagram",
+      "destination": "https://www.instagram.com/thedenmanmall/",
+      "permanent": true
+    },
+    {
+      "source": "/facebook",
+      "destination": "https://www.facebook.com/thedenmanplacemall/",
+      "permanent": true
+    },
+    {
+      "source": "/x",
+      "destination": "https://x.com/thedenmanmall",
+      "permanent": true
+    },
+    {
+      "source": "/terms-of-use",
+      "destination": "https://denmanmall.com/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/twitter",
+      "destination": "https://x.com/thedenmanmall",
+      "permanent": true
+    },
+    {
+      "source": "/nofrills",
+      "destination": "https://denmanmall.com/no-frills",
+      "permanent": true
+    },
+    {
+      "source": "/safety",
+      "destination": "https://denmanmall.com/safety-updates/",
+      "permanent": true
+    }
+  ]
+}
