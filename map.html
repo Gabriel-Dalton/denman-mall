@@ -429,49 +429,176 @@
 
           <hr class="pg-divider" aria-hidden="true">
 
-          <!-- Two Levels -->
-          <section aria-labelledby="map-levels" class="mb-12">
+          <!-- Interactive Floor Plan -->
+          <section aria-labelledby="map-floorplan" class="mb-12" x-data="floorPlan()">
             <div class="pg-section-head">
               <span class="pg-icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="3" width="16" height="18" rx="1"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
               </span>
-              <h2 id="map-levels" class="text-2xl font-semibold text-white m-0">Two Levels</h2>
+              <h2 id="map-floorplan" class="text-2xl font-semibold text-white m-0">Interactive Floor Plan</h2>
             </div>
-            <p class="mb-6 text-coolGray-200">The mall is laid out across two floors connected by stairs and an elevator near the main concourse.</p>
-            <div class="pg-grid pg-grid-2">
-              <article class="pg-card">
-                <div class="pg-section-head">
-                  <span class="pg-icon" aria-hidden="true">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="18 15 12 9 6 15"/></svg>
-                  </span>
-                  <h3 class="text-xl font-semibold text-white m-0">Ground Floor</h3>
-                </div>
-                <p class="text-coolGray-300 mb-3">Most stores and services, including:</p>
-                <ul class="pg-list pg-list-tight">
-                  <li>No Frills (groceries)</li>
-                  <li>Shoppers Drug Mart (pharmacy)</li>
-                  <li>Burger King &amp; 93 Coffee</li>
-                  <li>Specsavers, dental and health clinics</li>
-                  <li>Canada Post, UPS Store and professional services</li>
-                  <li>Kiosks and specialty retail</li>
-                </ul>
-              </article>
-              <article class="pg-card">
-                <div class="pg-section-head">
-                  <span class="pg-icon" aria-hidden="true">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="6 9 12 15 18 9"/></svg>
-                  </span>
-                  <h3 class="text-xl font-semibold text-white m-0">Lower Level</h3>
-                </div>
-                <p class="text-coolGray-300 mb-3">Accessible via stairs and elevator:</p>
-                <ul class="pg-list pg-list-tight">
-                  <li>Dollarama</li>
-                  <li>Additional retail and community spaces</li>
-                </ul>
-              </article>
+            <p class="mb-6 text-coolGray-200">Tap or click a unit to see the store, its suite number, and a link to its page. Use the buttons below to switch between the ground floor and the lower level.</p>
+
+            <div class="fp-tabs" role="tablist" aria-label="Floor selector">
+              <button role="tab" :aria-selected="floor === 'ground'" @click="setFloor('ground')" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="18 15 12 9 6 15"/></svg>
+                Ground Floor
+              </button>
+              <button role="tab" :aria-selected="floor === 'lower'" @click="setFloor('lower')" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="6 9 12 15 18 9"/></svg>
+                Lower Level
+              </button>
             </div>
-            <p class="text-sm text-coolGray-400 mt-6"><em>For the exact location of a specific store, please check the directory signage at the main entrance or ask staff &mdash; tenant locations occasionally change.</em></p>
+
+            <ul class="fp-legend" aria-label="Category colour legend">
+              <li><span class="sw cat-groceries" aria-hidden="true"></span> Groceries</li>
+              <li><span class="sw cat-food" aria-hidden="true"></span> Food &amp; Drink</li>
+              <li><span class="sw cat-health" aria-hidden="true"></span> Health &amp; Wellness</li>
+              <li><span class="sw cat-services" aria-hidden="true"></span> Services &amp; Tech</li>
+              <li><span class="sw cat-retail" aria-hidden="true"></span> Retail &amp; Specialty</li>
+              <li><span class="sw cat-community" aria-hidden="true"></span> Community</li>
+              <li><span class="sw cat-kiosks" aria-hidden="true"></span> Kiosks</li>
+            </ul>
+
+            <div class="fp-layout">
+              <div class="fp-svg-wrap" role="tabpanel" :aria-label="floor === 'ground' ? 'Ground floor map' : 'Lower level map'">
+                <svg class="fp-svg" viewBox="0 0 1400 700" role="img" aria-labelledby="fp-title fp-desc">
+                  <title id="fp-title" x-text="floor === 'ground' ? 'Ground floor schematic of Denman Place Mall' : 'Lower level schematic of Denman Place Mall'">Floor plan</title>
+                  <desc id="fp-desc">Schematic, not to scale. Each rectangle represents a tenant unit. Activate a unit to see details.</desc>
+
+                  <rect class="fp-outline" x="20" y="20" width="1360" height="660" rx="8"/>
+
+                  <template x-if="floor === 'ground'">
+                    <g>
+                      <rect class="fp-concourse" x="280" y="330" width="860" height="40"/>
+                      <text class="fp-concourse-label" x="710" y="352">Main Concourse</text>
+                      <rect class="fp-fixture" x="1024" y="380" width="60" height="60" rx="4"/>
+                      <text class="fp-fixture-text" x="1054" y="408">ELEV</text>
+                      <rect class="fp-fixture" x="1090" y="380" width="50" height="60" rx="4"/>
+                      <text class="fp-fixture-text" x="1115" y="408">WC</text>
+                    </g>
+                  </template>
+                  <template x-if="floor === 'lower'">
+                    <g>
+                      <rect class="fp-concourse" x="820" y="330" width="320" height="40"/>
+                      <text class="fp-concourse-label" x="980" y="352">Lower Concourse</text>
+                      <rect class="fp-fixture" x="40" y="300" width="140" height="80" rx="6"/>
+                      <text class="fp-fixture-text" x="110" y="338">ELEVATOR</text>
+                      <text class="fp-fixture-text" x="110" y="358">&amp; STAIRS</text>
+                    </g>
+                  </template>
+
+                  <template x-for="store in visibleStores" :key="store.name">
+                    <g class="fp-unit" :class="selected &amp;&amp; selected.name === store.name ? 'is-selected' : ''" @mouseenter="hover(store)" @focusin="hover(store)">
+                      <a :href="store.url || '#'" :aria-label="store.name + ', Suite ' + store.suite + ', ' + catLabel(store.cat)" @click.prevent="select(store)" @keydown.enter.prevent="select(store)" @keydown.space.prevent="select(store)">
+                        <rect class="body" :class="'cat-' + store.cat" :x="store.x" :y="store.y" :width="store.w" :height="store.h" :rx="store.anchor ? 6 : 3"></rect>
+                        <text :class="store.anchor ? 'name anchor-name' : 'suite'" :x="store.x + store.w/2" :y="store.y + (store.anchor ? store.h/2 - 8 : 18)" x-text="store.anchor ? store.name : store.suite"></text>
+                        <text class="name" :x="store.x + store.w/2" :y="store.y + (store.anchor ? store.h/2 + 18 : store.h/2 + 6)" x-text="store.anchor ? ('Suite ' + store.suite) : truncate(store.name, store.w)"></text>
+                      </a>
+                    </g>
+                  </template>
+                </svg>
+              </div>
+
+              <aside class="fp-panel" aria-live="polite" aria-atomic="true">
+                <template x-if="selected">
+                  <div>
+                    <span class="cat-tag" :class="'cat-' + selected.cat" x-text="catLabel(selected.cat)"></span>
+                    <h3 x-text="selected.name"></h3>
+                    <p class="suite-no">Suite <span x-text="selected.suite"></span> &middot; <span x-text="selected.floor === 'ground' ? 'Ground Floor' : 'Lower Level'"></span></p>
+                    <template x-if="selected.url">
+                      <a class="detail-link" :href="selected.url">
+                        <span>View store page</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                      </a>
+                    </template>
+                    <template x-if="!selected.url">
+                      <p class="suite-no" x-html="selected.desc || 'Kiosk &mdash; visit in person.'"></p>
+                    </template>
+                  </div>
+                </template>
+                <template x-if="!selected">
+                  <p class="placeholder">Hover, tap, or keyboard-focus a unit on the map to see store details here.</p>
+                </template>
+              </aside>
+            </div>
+
+            <p class="fp-note">Schematic only &mdash; unit positions and suite numbers shown here are placeholders for layout purposes and may not match the mall&rsquo;s actual floor plan. For the exact location of a specific store, please check the directory signage at the main entrance or ask staff.</p>
           </section>
+
+          <script>
+          function floorPlan(){
+            const TOP = (i) =&gt; ({ x: 280 + i * 68, y: 60,  w: 64, h: 260 });
+            const BOT = (i) =&gt; ({ x: 280 + i * 68, y: 380, w: 64, h: 260 });
+            const LOWR = (i) =&gt; ({ x: 820 + (i%2)*170, y: 60 + Math.floor(i/2)*330, w: 160, h: 260 });
+
+            const stores = [
+              { name: 'No Frills',                       suite: '101', cat: 'groceries', floor: 'ground', anchor: true,  url: 'no-frills.html',              x: 40,   y: 60,  w: 220, h: 580 },
+              { name: 'Shoppers Drug Mart',              suite: '128', cat: 'health',    floor: 'ground', anchor: true,  url: 'shoppers-drug-mart.html',     x: 1140, y: 60,  w: 220, h: 580 },
+              Object.assign({ name: 'Burger King',                       suite: '102', cat: 'food',     floor: 'ground', url: 'burger-king.html' },              TOP(0)),
+              Object.assign({ name: '93 Coffee',                         suite: '103', cat: 'food',     floor: 'ground', url: '93-coffee.html' },                TOP(1)),
+              Object.assign({ name: 'Denman Beer Wine & Spirits',   suite: '104', cat: 'food',     floor: 'ground', url: 'denman-liquor-store.html' },      TOP(2)),
+              Object.assign({ name: 'Specsavers',                        suite: '105', cat: 'health',   floor: 'ground', url: 'specsavers.html' },               TOP(3)),
+              Object.assign({ name: 'Denman Place Dental Centre',        suite: '106', cat: 'health',   floor: 'ground', url: 'denman-place-dental.html' },      TOP(4)),
+              Object.assign({ name: 'Stanley Park Dental Centre',        suite: '107', cat: 'health',   floor: 'ground', url: 'stanley-park-dental.html' },      TOP(5)),
+              Object.assign({ name: 'Denman Chiropractic & Massage',suite: '108', cat: 'health',   floor: 'ground', url: 'denman-chiropractic.html' },      TOP(6)),
+              Object.assign({ name: 'TE.A.TE Clinic',                    suite: '109', cat: 'health',   floor: 'ground', url: 'teate-clinic.html' },             TOP(7)),
+              Object.assign({ name: 'The Ice Cream Parlour',             suite: '110', cat: 'health',   floor: 'ground', url: 'the-ice-cream-parlour.html' },    TOP(8)),
+              Object.assign({ name: 'Rose Stitching & Healing',     suite: '111', cat: 'retail',   floor: 'ground', url: 'rose-stitching.html' },           TOP(9)),
+              Object.assign({ name: 'English Bay Jewellers',             suite: '112', cat: 'retail',   floor: 'ground', url: 'english-bay-jewellers.html' },    TOP(10)),
+              Object.assign({ name: 'Lost Lagoon Frames',                suite: '113', cat: 'retail',   floor: 'ground', url: 'lost-lagoon-frames.html' },       TOP(11)),
+              Object.assign({ name: 'BCLC Lotto',                        suite: '114', cat: 'retail',   floor: 'ground', url: 'bclc-lotto.html' },               TOP(12)),
+              Object.assign({ name: 'Accountax Financial',               suite: '115', cat: 'services', floor: 'ground', url: 'accountax.html' },                BOT(0)),
+              Object.assign({ name: 'Open Door Law',                     suite: '116', cat: 'services', floor: 'ground', url: 'open-door-law.html' },            BOT(1)),
+              Object.assign({ name: 'Murrick Insurance',                 suite: '117', cat: 'services', floor: 'ground', url: 'murrick-insurance.html' },        BOT(2)),
+              Object.assign({ name: 'UPS Store',                         suite: '118', cat: 'services', floor: 'ground', url: 'ups.html' },                      BOT(3)),
+              Object.assign({ name: 'Canada Post Outlet',                suite: '119', cat: 'services', floor: 'ground', url: 'canada-post.html' },              BOT(4)),
+              Object.assign({ name: 'Devak Lock & Key',             suite: '120', cat: 'services', floor: 'ground', url: 'devak-key-lock.html' },           BOT(5)),
+              Object.assign({ name: 'Scissors & Comb Barbers',      suite: '121', cat: 'services', floor: 'ground', url: 'scissors-comb-barbershop.html' }, BOT(6)),
+              Object.assign({ name: 'YVR Travel Service',                suite: '122', cat: 'services', floor: 'ground', url: 'yvr-travel.html' },               BOT(7)),
+              Object.assign({ name: 'Minit Foto',                        suite: '123', cat: 'services', floor: 'ground', url: 'minit-foto.html' },               BOT(8)),
+              Object.assign({ name: 'MP Hedy Fry Vancouver Centre',      suite: '124', cat: 'community',floor: 'ground', url: 'hedy-fry.html' },                 BOT(9)),
+              { name: 'Express Stop',  suite: 'K1', cat: 'kiosks', floor: 'ground', desc: 'Cell phone repair kiosk &middot; <a class="detail-link" href="tel:7783236209">778-323-6209</a>', x: 430, y: 333, w: 80, h: 34 },
+              { name: 'Cell Universe', suite: 'K2', cat: 'kiosks', floor: 'ground', desc: 'Phone accessories kiosk &middot; <a class="detail-link" href="tel:7789195500">778-919-5500</a>', x: 880, y: 333, w: 80, h: 34 },
+              { name: 'Dollarama',                            suite: 'L1', cat: 'retail',    floor: 'lower', anchor: true, url: 'dollarama.html',           x: 200, y: 60, w: 600, h: 580 },
+              Object.assign({ name: 'Key’s Place (WESN)',            suite: 'L2', cat: 'community', floor: 'lower', url: 'wesn.html' },                LOWR(0)),
+              Object.assign({ name: 'Clothes & Collectables (WESN)', suite: 'L3', cat: 'community', floor: 'lower', url: 'clothes-collectibles.html' }, LOWR(2))
+            ];
+
+            const CAT_LABELS = {
+              groceries: 'Groceries',
+              food:      'Food & Drink',
+              health:    'Health & Wellness',
+              services:  'Services & Tech',
+              retail:    'Retail & Specialty',
+              community: 'Community',
+              kiosks:    'Kiosks'
+            };
+
+            return {
+              stores,
+              floor: 'ground',
+              selected: null,
+              get visibleStores(){ return this.stores.filter(s =&gt; s.floor === this.floor); },
+              setFloor(f){ this.floor = f; this.selected = null; },
+              hover(s){ this.selected = s; },
+              select(s){
+                // First activation: lock the panel. Second activation on the same store: navigate.
+                if (this.selected &amp;&amp; this.selected.name === s.name &amp;&amp; s.url){
+                  window.location.href = s.url;
+                  return;
+                }
+                this.selected = s;
+              },
+              catLabel(c){ return CAT_LABELS[c] || c; },
+              truncate(name, w){
+                const plain = String(name).replace(/&amp;amp;/g,'&amp;').replace(/&amp;rsquo;/g,'’');
+                const maxChars = Math.max(4, Math.floor(w / 6));
+                return plain.length &gt; maxChars ? plain.slice(0, maxChars - 1) + '…' : plain;
+              }
+            };
+          }
+          </script>
 
           <hr class="pg-divider" aria-hidden="true">
 
