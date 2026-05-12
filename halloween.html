@@ -289,7 +289,7 @@
   .mall-star-btn svg{width:1.1rem;height:1.1rem;}
 </style>
 <div class="notranslate" translate="no" x-data x-init="$store.mall && $store.mall.load && $store.mall.load()">
-  <button type="button" x-show="$store.mall && !$store.mall.hidden" @click="$store.mall.open = true" class="mall-list-fab" aria-label="Open my saved stores list">
+  <button type="button" x-show="$store.mall && (!$store.mall.dismissed || $store.mall.items.length > 0)" @click="$store.mall.open = true" class="mall-list-fab" aria-label="Open my saved stores list">
     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
     <span class="mall-list-fab-count" x-show="$store.mall && $store.mall.items.length" x-text="$store.mall && $store.mall.items.length"></span>
   </button>
@@ -325,7 +325,7 @@
           <div class="mall-list-footer-row" x-show="$store.mall.items.length">
             <button type="button" class="mall-list-clear" @click="$store.mall.clear()">Clear all</button>
           </div>
-          <button type="button" class="mall-list-hide" @click="$store.mall.hide()">Hide this widget</button>
+          <button type="button" class="mall-list-hide" x-show="!$store.mall.items.length" @click="$store.mall.dismiss()">Hide this widget</button>
         </footer>
       </aside>
     </div>
@@ -336,28 +336,42 @@ document.addEventListener('alpine:init', function () {
   Alpine.store('mall', {
     items: [],
     open: false,
-    hidden: false,
+    dismissed: false,
     load: function () {
       try { this.items = JSON.parse(localStorage.getItem('mallList') || '[]'); }
       catch (e) { this.items = []; }
-      try { this.hidden = localStorage.getItem('mallListHidden') === '1'; }
-      catch (e) { this.hidden = false; }
+      // Migrate legacy key 'mallListHidden' to 'mallListDismissed' if present
+      try {
+        var legacy = localStorage.getItem('mallListHidden');
+        if (legacy === '1') {
+          localStorage.setItem('mallListDismissed', '1');
+          localStorage.removeItem('mallListHidden');
+        }
+        this.dismissed = localStorage.getItem('mallListDismissed') === '1';
+      } catch (e) { this.dismissed = false; }
     },
-    hide: function () {
-      this.hidden = true;
+    dismiss: function () {
+      // Only persist dismissal when list is empty — having items overrides this anyway.
+      this.dismissed = true;
       this.open = false;
-      try { localStorage.setItem('mallListHidden', '1'); } catch (e) {}
+      try { localStorage.setItem('mallListDismissed', '1'); } catch (e) {}
     },
-    show: function () {
-      this.hidden = false;
-      try { localStorage.removeItem('mallListHidden'); } catch (e) {}
+    restore: function () {
+      this.dismissed = false;
+      try { localStorage.removeItem('mallListDismissed'); } catch (e) {}
     },
     save: function () { localStorage.setItem('mallList', JSON.stringify(this.items)); },
     has: function (id) { return this.items.some(function (i) { return i.id === id; }); },
     toggle: function (store) {
       var idx = this.items.findIndex(function (i) { return i.id === store.id; });
-      if (idx >= 0) this.items.splice(idx, 1);
-      else this.items.push({ id: store.id, name: store.name, url: store.url });
+      if (idx >= 0) {
+        this.items.splice(idx, 1);
+      } else {
+        this.items.push({ id: store.id, name: store.name, url: store.url });
+        // Adding a store while dismissed means the user is using the feature again —
+        // clear the dismissal so the FAB stays visible after they remove items later.
+        if (this.dismissed) this.restore();
+      }
       this.save();
     },
     remove: function (id) {
@@ -689,9 +703,9 @@ document.addEventListener('alpine:init', function () {
         <div class="text-center lg:text-left">
           <span class="text-base font-medium text-coolGray-400">
             &copy; <script>document.write(new Date().getFullYear())</script> <span class="notranslate" translate="no">Denman Place Mall</span>. All Rights Reserved.
-            <span class="hidden lg:inline"><a href="terms.html" class="hover:underline">Terms of Use</a> | <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> | <a href="accessibility.html" class="hover:underline">Accessibility</a> | <button type="button" x-data x-show="$store.mall && $store.mall.hidden" @click="$store.mall.show()" class="hover:underline notranslate" translate="no" style="background:transparent;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;">Show My List</button></span>
+            <span class="hidden lg:inline"><a href="terms.html" class="hover:underline">Terms of Use</a> | <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> | <a href="accessibility.html" class="hover:underline">Accessibility</a> <span x-data x-show="$store.mall && $store.mall.dismissed && !$store.mall.items.length">| <button type="button" @click="$store.mall.restore()" class="hover:underline notranslate" translate="no" style="background:transparent;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;">Show My List</button></span></span>
             <br>
-            <span class="lg:hidden"><a href="terms.html" class="hover:underline">Terms of Use</a> &bull; <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> &bull; <a href="accessibility.html" class="hover:underline">Accessibility</a> <span x-data x-show="$store.mall && $store.mall.hidden">&bull; <button type="button" @click="$store.mall.show()" class="hover:underline notranslate" translate="no" style="background:transparent;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;">Show My List</button></span></span>
+            <span class="lg:hidden"><a href="terms.html" class="hover:underline">Terms of Use</a> &bull; <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> &bull; <a href="accessibility.html" class="hover:underline">Accessibility</a> <span x-data x-show="$store.mall && $store.mall.dismissed && !$store.mall.items.length">&bull; <button type="button" @click="$store.mall.restore()" class="hover:underline notranslate" translate="no" style="background:transparent;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;">Show My List</button></span></span>
           </span>
         </div>
         <div class="text-center lg:text-right">
