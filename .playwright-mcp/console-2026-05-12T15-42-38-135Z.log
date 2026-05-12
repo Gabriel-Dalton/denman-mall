@@ -1,0 +1,68 @@
+[    1157ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ http://127.0.0.1:3000/assets/scripts/hours-of-operation.js:23
+[    1158ms] [WARNING] You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/ @ https://unpkg.com/@babel/standalone/babel.min.js:2
+[    1555ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ http://127.0.0.1:3000/assets/scripts/hours-of-operation.js:23
+[    1562ms] [WARNING] You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/ @ https://unpkg.com/@babel/standalone/babel.min.js:2
+[    2700ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ http://127.0.0.1:3000/assets/scripts/hours-of-operation.js:23
+[    2702ms] [WARNING] You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/ @ https://unpkg.com/@babel/standalone/babel.min.js:2
+[   22113ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ http://127.0.0.1:3000/assets/scripts/hours-of-operation.js:23
+[   22113ms] [WARNING] You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/ @ https://unpkg.com/@babel/standalone/babel.min.js:2
+[  152907ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ http://127.0.0.1:3000/assets/scripts/hours-of-operation.js:23
+[  152908ms] [WARNING] You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/ @ https://unpkg.com/@babel/standalone/babel.min.js:2
+[  159697ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ http://127.0.0.1:3000/assets/scripts/hours-of-operation.js:23
+[  159701ms] [WARNING] You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/ @ https://unpkg.com/@babel/standalone/babel.min.js:2
+[  176340ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ http://127.0.0.1:3000/assets/scripts/hours-of-operation.js:23
+[  176341ms] [WARNING] You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/ @ https://unpkg.com/@babel/standalone/babel.min.js:2
+[  188255ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ http://127.0.0.1:3000/assets/scripts/hours-of-operation.js:23
+[  188256ms] [WARNING] You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/ @ https://unpkg.com/@babel/standalone/babel.min.js:2
+[  209255ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ http://127.0.0.1:3000/assets/scripts/hours-of-operation.js:23
+[  209255ms] [WARNING] You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/ @ https://unpkg.com/@babel/standalone/babel.min.js:2
+[  217062ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ http://127.0.0.1:3000/assets/scripts/hours-of-operation.js:23
+[  217063ms] [WARNING] You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/ @ https://unpkg.com/@babel/standalone/babel.min.js:2
+[  217236ms] [ERROR] ReferenceError: useCallback is not defined
+    at FloorPlan (<anonymous>:445:18)
+    at mf (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:105:412)
+    at Qk (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:250:214)
+    at Ri (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:195:185)
+    at Ok (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:195:116)
+    at Nd (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:194:492)
+    at Qf (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:187:439)
+    at Ni (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:185:400)
+    at S (https://unpkg.com/react@18/umd/react.production.min.js:17:25)
+    at MessagePort.U (https://unpkg.com/react@18/umd/react.production.min.js:21:229) @ https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:120
+[  217240ms] ReferenceError: useCallback is not defined
+    at FloorPlan (<anonymous>:445:18)
+    at mf (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:105:412)
+    at Qk (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:250:214)
+    at Ri (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:195:185)
+    at Ok (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:195:116)
+    at Nd (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:194:492)
+    at Qf (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:187:439)
+    at Ni (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:185:400)
+    at S (https://unpkg.com/react@18/umd/react.production.min.js:17:25)
+    at MessagePort.U (https://unpkg.com/react@18/umd/react.production.min.js:21:229)
+[  233855ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ http://127.0.0.1:3000/assets/scripts/hours-of-operation.js:23
+[  233862ms] [WARNING] You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/ @ https://unpkg.com/@babel/standalone/babel.min.js:2
+[  234095ms] [ERROR] ReferenceError: vb is not defined
+    at FloorPlan (<anonymous>:652:17)
+    at mf (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:105:412)
+    at Qk (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:250:214)
+    at Ri (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:195:185)
+    at Ok (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:195:116)
+    at Nd (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:194:492)
+    at Qf (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:187:439)
+    at Ni (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:185:400)
+    at S (https://unpkg.com/react@18/umd/react.production.min.js:17:25)
+    at MessagePort.U (https://unpkg.com/react@18/umd/react.production.min.js:21:229) @ https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:120
+[  234100ms] ReferenceError: vb is not defined
+    at FloorPlan (<anonymous>:652:17)
+    at mf (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:105:412)
+    at Qk (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:250:214)
+    at Ri (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:195:185)
+    at Ok (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:195:116)
+    at Nd (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:194:492)
+    at Qf (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:187:439)
+    at Ni (https://unpkg.com/react-dom@18/umd/react-dom.production.min.js:185:400)
+    at S (https://unpkg.com/react@18/umd/react.production.min.js:17:25)
+    at MessagePort.U (https://unpkg.com/react@18/umd/react.production.min.js:21:229)
+[  253119ms] [INFO] [HoursOfOperation] Active day highlighted: Tuesday @ http://127.0.0.1:3000/assets/scripts/hours-of-operation.js:23
+[  253119ms] [WARNING] You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/ @ https://unpkg.com/@babel/standalone/babel.min.js:2
