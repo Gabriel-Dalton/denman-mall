@@ -236,36 +236,40 @@
 <!-- Google Translate (hidden, driven by MallI18n) -->
 <div id="google_translate_element" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;"></div>
 <style id="mall-i18n-gt-css">
-  /* === White-label Google Translate: kill all Google-branded UI === */
-
-  /* 1. Top banner iframe (the "This page has been translated…" bar) */
+  /* Blanket-hide every Google Translate chrome element with stacked suppressors
+     so a single property collision can't expose the banner. */
+  #google_translate_element,
+  .skiptranslate,
   .goog-te-banner-frame,
   .goog-te-banner-frame.skiptranslate,
-  iframe.goog-te-banner-frame { display: none !important; visibility: hidden !important; }
-
-  /* 2. Reset the body offset Google sets when it shows its banner */
-  body { top: 0 !important; position: static !important; }
-  html { margin-top: 0 !important; }
-
-  /* 3. Gadget chrome (we don't render the gadget visibly, but be safe) */
+  iframe.goog-te-banner-frame,
+  iframe.goog-te-menu-frame,
+  .goog-te-balloon-frame,
+  #goog-gt-tt,
+  .goog-tooltip,
+  .goog-tooltip:hover,
+  .goog-tooltip-container,
   .goog-te-gadget,
   .goog-te-gadget-simple,
   .goog-te-gadget-icon,
   .goog-logo-link,
-  .goog-te-gadget img { display: none !important; }
-  .goog-te-gadget .goog-te-combo { /* keep the <select> reachable for programmatic clicks but invisible */
+  .goog-te-gadget img {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Reset the body offset Google forces at runtime when it shows the banner. */
+  body { top: 0 !important; position: static !important; }
+  html { margin-top: 0 !important; }
+
+  /* Keep the hidden <select> reachable so programmatic dispatch still works. */
+  .goog-te-combo {
     position: absolute !important; left: -9999px !important; top: -9999px !important;
   }
 
-  /* 4. Hover tooltip / "View original" balloon on translated text */
-  .goog-tooltip,
-  .goog-tooltip:hover,
-  .goog-tooltip-container,
-  #goog-gt-tt,
-  .goog-te-balloon-frame,
-  iframe.goog-te-menu-frame { display: none !important; }
-
-  /* 5. Yellow highlight rectangle that flashes around translated phrases */
+  /* Suppress the yellow hover highlight on translated text. */
   .goog-text-highlight {
     background: transparent !important;
     box-shadow: none !important;
@@ -273,8 +277,7 @@
     box-decoration-break: clone;
   }
 
-  /* 6. Google wraps translated runs in <font style="vertical-align:inherit">.
-        Normalise so they don't shift baselines or inherit unexpected sizes. */
+  /* Normalise Google's <font> wrappers so they don't shift baselines. */
   font[style*="vertical-align"] {
     vertical-align: inherit !important;
     font-size: inherit !important;
@@ -282,7 +285,7 @@
     color: inherit !important;
   }
 
-  /* 7. RTL when Persian is active */
+  /* RTL when Persian is active. */
   html[data-mall-lang="fa"] body { direction: rtl; }
 </style>
 <script>
@@ -324,21 +327,19 @@
   var currentBootLang = parseLang();
   function setLang(code) {
     if (!byCode[code]) return;
+    if (code === currentBootLang) return; // no-op
     localStorage.setItem('mallLang', code);
-    var value = code === 'en' ? '/en/en' : '/en/' + code;
-    writeCookie('googtrans', value);
-    document.documentElement.setAttribute('data-mall-lang', code);
-    document.documentElement.setAttribute('lang', code === 'en' ? 'en' : code);
-    if (byCode[code].rtl) document.documentElement.setAttribute('dir', 'rtl'); else document.documentElement.removeAttribute('dir');
-    var detail = { code: code, label: byCode[code].label, native: byCode[code].native };
-    window.dispatchEvent(new CustomEvent('mall-lang-change', { detail: detail }));
-    var select = document.querySelector('.goog-te-combo');
-    if (select) {
-      select.value = code === 'en' ? '' : code;
-      select.dispatchEvent(new Event('change'));
-    } else if (code !== currentBootLang) {
-      location.reload();
+    // For 'en', clear the cookie by setting an expired one + null value
+    if (code === 'en') {
+      document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+      var host = location.hostname.replace(/^www\./, '');
+      if (host) document.cookie = 'googtrans=; path=/; domain=.' + host + '; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+    } else {
+      writeCookie('googtrans', '/en/' + code);
     }
+    // Always reload: lets Google read the cookie on next paint and render translated
+    // without ever injecting its banner mid-page.
+    location.reload();
   }
   function currentLabel() {
     var c = parseLang();
