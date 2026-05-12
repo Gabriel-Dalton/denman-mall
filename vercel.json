@@ -18,13 +18,18 @@
       "permanent": true
     },
     {
+      "source": "/linkedin",
+      "destination": "https://www.linkedin.com/company/denmanplacemall",
+      "permanent": true
+    },
+    {
       "source": "/x",
       "destination": "https://x.com/thedenmanmall",
       "permanent": true
     },
     {
       "source": "/terms-of-use",
-      "destination": "https://denmanmall.com/terms/",
+      "destination": "https://denmanmall.com/terms",
       "permanent": true
     },
     {
