@@ -29,7 +29,27 @@
 <link rel="stylesheet" href="assets/css/tailwind/min.css">
 
 <script src="assets/scripts/alpine.min.js" defer></script>
-<style>[x-cloak]{display:none!important}</style>
+<style>
+[x-cloak]{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.dir-search-wrap{width:100%;max-width:36rem;margin:0 auto 2rem;padding:0 1rem;}
+@media(min-width:768px){.dir-search-wrap{max-width:42rem;padding:0;}}
+@media(min-width:1280px){.dir-search-wrap{max-width:48rem;}}
+.dir-search-field{position:relative;display:block;width:100%;}
+.dir-search-input{display:block;width:100%;box-sizing:border-box;font:inherit;font-size:1rem;line-height:1.5;color:#111;background:#fff;border:2px solid #d1d5db;border-radius:9999px;padding:0.75rem 3rem 0.75rem 3rem;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none;appearance:none;}
+.dir-search-input::placeholder{color:#9ca3af;}
+.dir-search-input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;}
+.dir-search-input:focus{outline:none;border-color:#000;box-shadow:0 0 0 4px rgba(0,0,0,.06);}
+@media(min-width:640px){.dir-search-input{font-size:1.0625rem;padding:0.875rem 3.25rem;}}
+@media(min-width:1024px){.dir-search-input{font-size:1.125rem;padding:1rem 3.5rem;}}
+.dir-search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);width:1.25rem;height:1.25rem;color:#9ca3af;pointer-events:none;}
+@media(min-width:1024px){.dir-search-icon{left:1.25rem;width:1.375rem;height:1.375rem;}}
+.dir-search-clear{position:absolute;right:0.5rem;top:50%;transform:translateY(-50%);width:1.875rem;height:1.875rem;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:9999px;background:#e5e7eb;color:#374151;cursor:pointer;padding:0;transition:background .15s;}
+.dir-search-clear:hover{background:#d1d5db;}
+.dir-search-clear:focus-visible{outline:2px solid #000;outline-offset:2px;}
+.dir-search-clear svg{width:0.95rem;height:0.95rem;}
+@media(min-width:1024px){.dir-search-clear{right:0.625rem;width:2rem;height:2rem;}}
+</style>
 
 <script src="assets/scripts/hours-of-operation.js" defer></script>
 
@@ -387,11 +407,54 @@
 <!-- Google Translate (hidden, driven by MallI18n) -->
 <div id="google_translate_element" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;"></div>
 <style id="mall-i18n-gt-css">
-  .goog-te-banner-frame.skiptranslate,.goog-te-gadget,.goog-logo-link,.goog-te-gadget-icon{display:none !important;}
-  body{top:0 !important;position:static !important;}
-  .goog-tooltip,.goog-tooltip:hover{display:none !important;}
-  .goog-text-highlight{background:transparent !important;box-shadow:none !important;}
-  html[data-mall-lang="fa"] body{direction:rtl;}
+  /* === White-label Google Translate: kill all Google-branded UI === */
+
+  /* 1. Top banner iframe (the "This page has been translated…" bar) */
+  .goog-te-banner-frame,
+  .goog-te-banner-frame.skiptranslate,
+  iframe.goog-te-banner-frame { display: none !important; visibility: hidden !important; }
+
+  /* 2. Reset the body offset Google sets when it shows its banner */
+  body { top: 0 !important; position: static !important; }
+  html { margin-top: 0 !important; }
+
+  /* 3. Gadget chrome (we don't render the gadget visibly, but be safe) */
+  .goog-te-gadget,
+  .goog-te-gadget-simple,
+  .goog-te-gadget-icon,
+  .goog-logo-link,
+  .goog-te-gadget img { display: none !important; }
+  .goog-te-gadget .goog-te-combo { /* keep the <select> reachable for programmatic clicks but invisible */
+    position: absolute !important; left: -9999px !important; top: -9999px !important;
+  }
+
+  /* 4. Hover tooltip / "View original" balloon on translated text */
+  .goog-tooltip,
+  .goog-tooltip:hover,
+  .goog-tooltip-container,
+  #goog-gt-tt,
+  .goog-te-balloon-frame,
+  iframe.goog-te-menu-frame { display: none !important; }
+
+  /* 5. Yellow highlight rectangle that flashes around translated phrases */
+  .goog-text-highlight {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    box-decoration-break: clone;
+  }
+
+  /* 6. Google wraps translated runs in <font style="vertical-align:inherit">.
+        Normalise so they don't shift baselines or inherit unexpected sizes. */
+  font[style*="vertical-align"] {
+    vertical-align: inherit !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    color: inherit !important;
+  }
+
+  /* 7. RTL when Persian is active */
+  html[data-mall-lang="fa"] body { direction: rtl; }
 </style>
 <script>
 (function () {
@@ -581,13 +644,13 @@
                 (30)
               </span>
             </div>
-            <div class="max-w-xl mx-auto mb-8">
+            <div class="dir-search-wrap">
               <label for="store-search" class="sr-only">Search stores</label>
-              <div class="relative">
-                <svg aria-hidden="true" focusable="false" class="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-coolGray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
-                <input id="store-search" type="search" x-model.debounce.150ms="search" placeholder="Search stores by name or category..." aria-label="Search stores by name or category" class="w-full pl-12 pr-10 py-3 rounded-full border-2 border-coolGray-300 bg-white text-black placeholder-coolGray-500 focus:outline-none focus:border-black">
-                <button type="button" x-show="search" @click="search = ''" aria-label="Clear search" class="absolute right-3 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full bg-coolGray-200 hover:bg-coolGray-300 text-coolGray-700 flex items-center justify-center">
-                  <svg aria-hidden="true" focusable="false" class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+              <div class="dir-search-field">
+                <svg class="dir-search-icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+                <input id="store-search" type="search" x-model.debounce.150ms="search" placeholder="Search stores by name or category..." aria-label="Search stores by name or category" class="dir-search-input">
+                <button type="button" x-show="search" x-cloak @click="search = ''" aria-label="Clear search" class="dir-search-clear">
+                  <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
               </div>
             </div>

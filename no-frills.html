@@ -236,11 +236,54 @@
 <!-- Google Translate (hidden, driven by MallI18n) -->
 <div id="google_translate_element" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;"></div>
 <style id="mall-i18n-gt-css">
-  .goog-te-banner-frame.skiptranslate,.goog-te-gadget,.goog-logo-link,.goog-te-gadget-icon{display:none !important;}
-  body{top:0 !important;position:static !important;}
-  .goog-tooltip,.goog-tooltip:hover{display:none !important;}
-  .goog-text-highlight{background:transparent !important;box-shadow:none !important;}
-  html[data-mall-lang="fa"] body{direction:rtl;}
+  /* === White-label Google Translate: kill all Google-branded UI === */
+
+  /* 1. Top banner iframe (the "This page has been translated…" bar) */
+  .goog-te-banner-frame,
+  .goog-te-banner-frame.skiptranslate,
+  iframe.goog-te-banner-frame { display: none !important; visibility: hidden !important; }
+
+  /* 2. Reset the body offset Google sets when it shows its banner */
+  body { top: 0 !important; position: static !important; }
+  html { margin-top: 0 !important; }
+
+  /* 3. Gadget chrome (we don't render the gadget visibly, but be safe) */
+  .goog-te-gadget,
+  .goog-te-gadget-simple,
+  .goog-te-gadget-icon,
+  .goog-logo-link,
+  .goog-te-gadget img { display: none !important; }
+  .goog-te-gadget .goog-te-combo { /* keep the <select> reachable for programmatic clicks but invisible */
+    position: absolute !important; left: -9999px !important; top: -9999px !important;
+  }
+
+  /* 4. Hover tooltip / "View original" balloon on translated text */
+  .goog-tooltip,
+  .goog-tooltip:hover,
+  .goog-tooltip-container,
+  #goog-gt-tt,
+  .goog-te-balloon-frame,
+  iframe.goog-te-menu-frame { display: none !important; }
+
+  /* 5. Yellow highlight rectangle that flashes around translated phrases */
+  .goog-text-highlight {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    box-decoration-break: clone;
+  }
+
+  /* 6. Google wraps translated runs in <font style="vertical-align:inherit">.
+        Normalise so they don't shift baselines or inherit unexpected sizes. */
+  font[style*="vertical-align"] {
+    vertical-align: inherit !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    color: inherit !important;
+  }
+
+  /* 7. RTL when Persian is active */
+  html[data-mall-lang="fa"] body { direction: rtl; }
 </style>
 <script>
 (function () {
