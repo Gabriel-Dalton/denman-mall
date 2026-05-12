@@ -1,4 +1,4 @@
-# Redirects from DashNex (8 total)
+# Redirects
 # Format: source destination code
 /maps	https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6	301
 /instagram	https://www.instagram.com/thedenmanmall/	301
