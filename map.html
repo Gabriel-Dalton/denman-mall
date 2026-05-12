@@ -34,6 +34,14 @@
 
 <script src="assets/scripts/hours-of-operation.js" defer></script>
 
+<!-- React + Babel for the interactive floor plan.
+     Note: Babel-standalone is heavy (~3MB) and compiles in-browser on every load.
+     For production you should pre-compile the JSX with a build step (Vite/Webpack/etc.)
+     and remove the babel-standalone script. -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
 <style id="a11y-styles">
   .skip-link{position:absolute;left:-9999px;top:0;background:#000;color:#fff;padding:.75rem 1rem;z-index:1000;font-weight:600;text-decoration:underline;}
   .skip-link:focus{left:1rem;top:1rem;outline:3px solid #fff;outline-offset:2px;}
@@ -111,6 +119,27 @@
   rect.body.cat-community{fill:#06b6d4;}
   rect.body.cat-kiosks{fill:#9ca3af;}
   .fp-note{font-size:.85rem;color:#9ca3af;margin-top:1rem;font-style:italic;}
+  /* Zoom / pan controls + routing */
+  .fp-svg-wrap{position:relative;}
+  .fp-controls{position:absolute;top:.85rem;right:.85rem;display:flex;flex-direction:column;gap:.35rem;z-index:2;}
+  .fp-ctrl-btn{appearance:none;width:2.25rem;height:2.25rem;border-radius:.5rem;background:rgba(17,24,39,.92);border:1px solid #4b5563;color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font:inherit;transition:background .15s;}
+  .fp-ctrl-btn:hover,.fp-ctrl-btn:focus-visible{background:#374151;}
+  .fp-ctrl-btn[disabled]{opacity:.4;cursor:not-allowed;}
+  .fp-svg{touch-action:none;cursor:grab;}
+  .fp-svg.is-panning{cursor:grabbing;}
+  .fp-route{fill:none;stroke:#fde047;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:10 6;animation:fp-dash 0.8s linear infinite;pointer-events:none;}
+  @keyframes fp-dash{to{stroke-dashoffset:-32;}}
+  .fp-route-marker{fill:#fde047;stroke:#000;stroke-width:1.5;pointer-events:none;}
+  .fp-route-marker-text{fill:#000;font-size:11px;font-weight:700;text-anchor:middle;dominant-baseline:central;pointer-events:none;font-family:inherit;}
+  .fp-panel-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem;}
+  .fp-action{appearance:none;display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;background:#fff;color:#000;border:0;border-radius:9999px;cursor:pointer;font:inherit;font-weight:500;font-size:.875rem;transition:background .15s;}
+  .fp-action:hover,.fp-action:focus-visible{background:#d1d5db;}
+  .fp-action.is-secondary{background:transparent;color:#fff;border:1px solid #6b7280;}
+  .fp-action.is-secondary:hover,.fp-action.is-secondary:focus-visible{background:#1f2937;}
+  .fp-route-banner{display:flex;align-items:center;gap:.6rem;padding:.65rem .85rem;background:rgba(253,224,71,.12);border:1px solid rgba(253,224,71,.5);border-radius:.5rem;color:#fde68a;margin-bottom:.85rem;font-size:.9rem;}
+  .fp-route-banner button{appearance:none;margin-left:auto;background:transparent;border:0;color:inherit;cursor:pointer;padding:.15rem;font:inherit;}
+  .fp-route-banner button:hover{color:#fff;}
+  .fp-crossfloor{padding:.6rem .8rem;background:#1f2937;border:1px solid #4b5563;border-radius:.5rem;color:#d1d5db;font-size:.85rem;margin-top:.75rem;}
 </style>
 </head>
 <body class="antialiased bg-body text-body font-body">
@@ -156,24 +185,23 @@
   </style>
   <nav aria-label="Main navigation">
     <div class="container mx-auto px-4">
-      <div class="relative flex h-24 items-center">
-        <div class="hidden xl:flex items-center"><a class="inline-block text-black font-medium hover:underline mr-10" href="index.html">Home</a><a class="inline-block text-black font-medium hover:underline mr-10" href="directory.html">Store Directory</a></div>
-        <div class="hidden xl:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div class="flex-grow text-center">
-            <a href="index.html"><span translate="no" class="notranslate block text-3xl tracking-tighter mb-1">Denman Place Mall</span></a>
-            <p class="text-lg text-coolGray-900">Open Today | 8:00 AM to 10:00 PM</p>
-          </div>
-        </div>
-        <div class="xl:hidden inline-block">
-          <div class="flex-grow text-center">
-            <a href="index.html"><span translate="no" class="notranslate block tracking-tighter text-2xl sm:text-3xl md:text-4xl xl:text-5xl mb-2">Denman Place Mall</span></a>
-            <p class="text-sm text-coolGray-800">Open Today | 8:00 AM to 10:00 PM</p>
-          </div>
-        </div>
 
-        <div class="ml-auto flex items-center" x-data="{ langOpen: false, current: 'EN' }" x-init="current = (window.MallI18n && MallI18n.currentLabel()) || 'EN'" @mall-lang-change.window="current = $event.detail.label">
-          <!-- Language switcher: visible at all breakpoints -->
-          <div class="mall-lang-wrap notranslate" translate="no" @click.outside="langOpen = false" @keydown.escape.window="langOpen = false">
+      <!-- Desktop (xl+): three-section flex — brand sits at true horizontal centre,
+           side groups fill equal-width flex columns so the page stays balanced
+           regardless of how many items each side has. -->
+      <div class="hidden xl:flex h-24 items-center">
+        <div style="flex:1;display:flex;justify-content:flex-start;align-items:center;gap:2.5rem;padding-inline-start:1rem;">
+          <a class="inline-block text-black font-medium hover:underline" href="index.html">Home</a>
+          <a class="inline-block text-black font-medium hover:underline" href="directory.html">Store Directory</a>
+        </div>
+        <div class="text-center" style="flex:0 0 auto;margin:0 1.5rem">
+          <a href="index.html"><span translate="no" class="notranslate block text-3xl tracking-tighter mb-1">Denman Place Mall</span></a>
+          <p class="text-lg text-coolGray-900">Open Today | 8:00 AM to 10:00 PM</p>
+        </div>
+        <div style="flex:1;display:flex;justify-content:flex-end;align-items:center;gap:2.5rem;padding-inline-end:1rem;">
+          <a class="inline-block text-black font-medium hover:underline" href="about.html">About Us</a>
+          <a class="inline-block text-black font-medium hover:underline" href="contact.html">Contact Us</a>
+          <div class="mall-lang-wrap notranslate" translate="no" x-data="{ langOpen: false, current: 'EN' }" x-init="current = (window.MallI18n && MallI18n.currentLabel()) || 'EN'" @mall-lang-change.window="current = $event.detail.label" @click.outside="langOpen = false" @keydown.escape.window="langOpen = false">
             <button type="button" @click="langOpen = !langOpen" :aria-expanded="langOpen.toString()" aria-haspopup="listbox" aria-label="Change language" class="mall-lang-btn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                 <circle cx="12" cy="12" r="10"></circle>
@@ -194,14 +222,40 @@
               </template>
             </ul>
           </div>
-
-          <div class="hidden xl:flex items-center" style="margin-inline-start:2rem"><a class="inline-block text-black font-medium hover:underline mr-10" href="about.html">About Us</a><a class="inline-block text-black font-medium hover:underline" href="contact.html">Contact Us</a></div>
-
-          <button x-on:click="mobileNavOpen = !mobileNavOpen" :aria-expanded="mobileNavOpen.toString()" aria-expanded="false" aria-label="Open menu" aria-controls="mobile-nav" class="xl:hidden py-1" style="margin-inline-start:1rem">
-            <svg width="44" height="16" viewBox="0 0 44 16" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect width="44" height="2" rx="1" fill="black"></rect><rect y="14" width="44" height="2" rx="1" fill="black"></rect></svg>
-          </button>
         </div>
       </div>
+
+      <!-- Mobile (<xl): brand centred via absolute positioning; language switcher + hamburger flush to the inline-end. -->
+      <div class="xl:hidden relative flex h-24 items-center">
+        <div class="absolute" style="top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;">
+          <a href="index.html" style="pointer-events:auto;"><span translate="no" class="notranslate block tracking-tighter text-2xl sm:text-3xl md:text-4xl mb-1">Denman Place Mall</span></a>
+          <p class="text-sm text-coolGray-800">Open Today | 8:00 AM to 10:00 PM</p>
+        </div>
+        <div class="mall-lang-wrap notranslate" translate="no" x-data="{ langOpen: false, current: 'EN' }" x-init="current = (window.MallI18n && MallI18n.currentLabel()) || 'EN'" @mall-lang-change.window="current = $event.detail.label" @click.outside="langOpen = false" @keydown.escape.window="langOpen = false" style="margin-inline-start:auto;position:relative;z-index:1;">
+          <button type="button" @click="langOpen = !langOpen" :aria-expanded="langOpen.toString()" aria-haspopup="listbox" aria-label="Change language" class="mall-lang-btn mall-lang-btn--compact">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span class="mall-lang-code" x-text="current">EN</span>
+          </button>
+          <ul x-show="langOpen" x-cloak x-transition.opacity role="listbox" aria-label="Select language" class="mall-lang-menu">
+            <template x-for="opt in (window.MallI18n ? MallI18n.options : [])" :key="opt.code">
+              <li>
+                <button type="button" role="option" :aria-selected="(current === opt.label).toString()" @click="MallI18n.set(opt.code); langOpen = false" :dir="opt.rtl ? 'rtl' : 'ltr'">
+                  <span x-text="opt.native"></span>
+                  <span class="mall-lang-code" x-text="opt.label"></span>
+                </button>
+              </li>
+            </template>
+          </ul>
+        </div>
+        <button x-on:click="mobileNavOpen = !mobileNavOpen" :aria-expanded="mobileNavOpen.toString()" aria-expanded="false" aria-label="Open menu" aria-controls="mobile-nav" class="py-1" style="margin-inline-start:0.75rem;position:relative;z-index:1;">
+          <svg width="44" height="16" viewBox="0 0 44 16" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect width="44" height="2" rx="1" fill="black"></rect><rect y="14" width="44" height="2" rx="1" fill="black"></rect></svg>
+        </button>
+      </div>
+
     </div>
   </nav>
   <div id="mobile-nav" x-cloak="" x-show="mobileNavOpen" x-transition="" class="fixed top-0 left-0 bottom-0 w-5/6 max-w-md z-50">
@@ -241,6 +295,120 @@
     </nav>
   </div>
 </section>
+
+<!-- My List: floating button + drawer (global, persists across pages) -->
+<style id="mall-list-css">
+  .mall-list-fab{position:fixed;bottom:1.25rem;right:1.25rem;z-index:55;display:inline-flex;align-items:center;justify-content:center;width:3.25rem;height:3.25rem;border-radius:9999px;background:#000;color:#fff;border:0;cursor:pointer;box-shadow:0 6px 18px -4px rgba(0,0,0,.35);transition:transform .15s,background .15s;}
+  .mall-list-fab:hover,.mall-list-fab:focus-visible{background:#1f2937;transform:translateY(-2px);outline:none;}
+  .mall-list-fab-count{position:absolute;top:-.25rem;right:-.25rem;min-width:1.25rem;height:1.25rem;padding:0 .35rem;border-radius:9999px;background:#dc2626;color:#fff;font-size:.7rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;border:2px solid #fff;}
+  .mall-list-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;}
+  .mall-list-drawer{position:fixed;top:0;right:0;bottom:0;width:90vw;max-width:24rem;background:#fff;z-index:61;display:flex;flex-direction:column;box-shadow:-10px 0 30px -10px rgba(0,0,0,.2);}
+  html[dir="rtl"] .mall-list-drawer{right:auto;left:0;box-shadow:10px 0 30px -10px rgba(0,0,0,.2);}
+  html[dir="rtl"] .mall-list-fab{right:auto;left:1.25rem;}
+  .mall-list-drawer header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid #e5e7eb;}
+  .mall-list-drawer h2{font-size:1.25rem;font-weight:600;margin:0;}
+  .mall-list-drawer .mall-list-close{background:transparent;border:0;cursor:pointer;padding:.25rem;color:#374151;}
+  .mall-list-drawer .mall-list-body{flex:1;overflow-y:auto;padding:1rem 1.5rem;}
+  .mall-list-empty{color:#6b7280;font-size:.95rem;line-height:1.5;text-align:center;padding:2rem 1rem;}
+  .mall-list-empty svg{width:2.5rem;height:2.5rem;color:#d1d5db;margin:0 auto .75rem;display:block;}
+  .mall-list-items{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem;}
+  .mall-list-items li{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.625rem .75rem;border:1px solid #e5e7eb;border-radius:.5rem;}
+  .mall-list-items a{color:#000;font-weight:500;text-decoration:none;flex:1;}
+  .mall-list-items a:hover{text-decoration:underline;}
+  .mall-list-items .mall-list-remove{background:transparent;border:0;cursor:pointer;color:#6b7280;padding:.25rem;line-height:0;}
+  .mall-list-items .mall-list-remove:hover{color:#dc2626;}
+  .mall-list-drawer footer{padding:1rem 1.5rem;border-top:1px solid #e5e7eb;display:flex;flex-direction:column;gap:.5rem;}
+  .mall-list-drawer .mall-list-footer-row{display:flex;gap:.5rem;}
+  .mall-list-drawer .mall-list-clear{flex:1;background:transparent;border:1px solid #e5e7eb;border-radius:.375rem;padding:.5rem;cursor:pointer;font-size:.875rem;color:#374151;}
+  .mall-list-drawer .mall-list-clear:hover{background:#f3f4f6;}
+  .mall-list-drawer .mall-list-hide{background:transparent;border:0;cursor:pointer;font-size:.8125rem;color:#6b7280;text-decoration:underline;padding:.25rem;align-self:center;}
+  .mall-list-drawer .mall-list-hide:hover{color:#111;}
+  /* Star button used by directory cards and store pages */
+  .mall-star-btn{position:absolute;top:.5rem;right:.5rem;z-index:5;background:rgba(255,255,255,.92);border:1px solid #e5e7eb;border-radius:9999px;width:2.25rem;height:2.25rem;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:#6b7280;transition:color .15s,background .15s,transform .15s;}
+  .mall-star-btn:hover,.mall-star-btn:focus-visible{background:#fff;color:#111;outline:none;transform:scale(1.05);}
+  .mall-star-btn[aria-pressed="true"]{color:#f59e0b;}
+  .mall-star-btn svg{width:1.1rem;height:1.1rem;}
+</style>
+<div class="notranslate" translate="no" x-data x-init="$store.mall && $store.mall.load && $store.mall.load()">
+  <button type="button" x-show="$store.mall && !$store.mall.hidden" @click="$store.mall.open = true" class="mall-list-fab" aria-label="Open my saved stores list">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    <span class="mall-list-fab-count" x-show="$store.mall && $store.mall.items.length" x-text="$store.mall && $store.mall.items.length"></span>
+  </button>
+  <template x-if="$store.mall && $store.mall.open">
+    <div>
+      <div class="mall-list-overlay" @click="$store.mall.open = false"></div>
+      <aside class="mall-list-drawer" role="dialog" aria-label="My saved stores" x-transition>
+        <header>
+          <h2>My List</h2>
+          <button type="button" class="mall-list-close" @click="$store.mall.open = false" aria-label="Close my list">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </header>
+        <div class="mall-list-body">
+          <template x-if="!$store.mall.items.length">
+            <div class="mall-list-empty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <p>No stores saved yet.<br>Tap the <strong>★</strong> on any store card to add it here.</p>
+            </div>
+          </template>
+          <ul class="mall-list-items">
+            <template x-for="item in $store.mall.items" :key="item.id">
+              <li>
+                <a :href="item.url" x-text="item.name"></a>
+                <button type="button" class="mall-list-remove" @click="$store.mall.remove(item.id)" :aria-label="'Remove ' + item.name + ' from my list'">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+              </li>
+            </template>
+          </ul>
+        </div>
+        <footer>
+          <div class="mall-list-footer-row" x-show="$store.mall.items.length">
+            <button type="button" class="mall-list-clear" @click="$store.mall.clear()">Clear all</button>
+          </div>
+          <button type="button" class="mall-list-hide" @click="$store.mall.hide()">Hide this widget</button>
+        </footer>
+      </aside>
+    </div>
+  </template>
+</div>
+<script>
+document.addEventListener('alpine:init', function () {
+  Alpine.store('mall', {
+    items: [],
+    open: false,
+    hidden: false,
+    load: function () {
+      try { this.items = JSON.parse(localStorage.getItem('mallList') || '[]'); }
+      catch (e) { this.items = []; }
+      try { this.hidden = localStorage.getItem('mallListHidden') === '1'; }
+      catch (e) { this.hidden = false; }
+    },
+    hide: function () {
+      this.hidden = true;
+      this.open = false;
+      try { localStorage.setItem('mallListHidden', '1'); } catch (e) {}
+    },
+    show: function () {
+      this.hidden = false;
+      try { localStorage.removeItem('mallListHidden'); } catch (e) {}
+    },
+    save: function () { localStorage.setItem('mallList', JSON.stringify(this.items)); },
+    has: function (id) { return this.items.some(function (i) { return i.id === id; }); },
+    toggle: function (store) {
+      var idx = this.items.findIndex(function (i) { return i.id === store.id; });
+      if (idx >= 0) this.items.splice(idx, 1);
+      else this.items.push({ id: store.id, name: store.name, url: store.url });
+      this.save();
+    },
+    remove: function (id) {
+      this.items = this.items.filter(function (i) { return i.id !== id; });
+      this.save();
+    },
+    clear: function () { this.items = []; this.save(); }
+  });
+});
+</script>
 
 <!-- Google Translate (hidden, driven by MallI18n) -->
 <div id="google_translate_element" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;"></div>
@@ -444,175 +612,380 @@
           <hr class="pg-divider" aria-hidden="true">
 
           <!-- Interactive Floor Plan -->
-          <section aria-labelledby="map-floorplan" class="mb-12" x-data="floorPlan()">
+          <section aria-labelledby="map-floorplan" class="mb-12">
             <div class="pg-section-head">
               <span class="pg-icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="3" width="16" height="18" rx="1"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
               </span>
               <h2 id="map-floorplan" class="text-2xl font-semibold text-white m-0">Interactive Floor Plan</h2>
             </div>
-            <p class="mb-6 text-coolGray-200">Tap or click a unit to see the store, its suite number, and a link to its page. Use the buttons below to switch between the ground floor and the lower level.</p>
-
-            <div class="fp-tabs" role="tablist" aria-label="Floor selector">
-              <button role="tab" :aria-selected="floor === 'ground'" @click="setFloor('ground')" type="button">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="18 15 12 9 6 15"/></svg>
-                Ground Floor
-              </button>
-              <button role="tab" :aria-selected="floor === 'lower'" @click="setFloor('lower')" type="button">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="6 9 12 15 18 9"/></svg>
-                Lower Level
-              </button>
-            </div>
-
-            <ul class="fp-legend" aria-label="Category colour legend">
-              <li><span class="sw cat-groceries" aria-hidden="true"></span> Groceries</li>
-              <li><span class="sw cat-food" aria-hidden="true"></span> Food & Drink</li>
-              <li><span class="sw cat-health" aria-hidden="true"></span> Health & Wellness</li>
-              <li><span class="sw cat-services" aria-hidden="true"></span> Services & Tech</li>
-              <li><span class="sw cat-retail" aria-hidden="true"></span> Retail & Specialty</li>
-              <li><span class="sw cat-community" aria-hidden="true"></span> Community</li>
-              <li><span class="sw cat-kiosks" aria-hidden="true"></span> Kiosks</li>
-            </ul>
-
-            <div class="fp-layout">
-              <div class="fp-svg-wrap" role="tabpanel" :aria-label="floor === 'ground' ? 'Ground floor map' : 'Lower level map'">
-                <svg class="fp-svg" viewBox="0 0 1400 700" role="img" aria-labelledby="fp-title fp-desc">
-                  <title id="fp-title" x-text="floor === 'ground' ? 'Ground floor schematic of Denman Place Mall' : 'Lower level schematic of Denman Place Mall'">Floor plan</title>
-                  <desc id="fp-desc">Schematic, not to scale. Each rectangle represents a tenant unit. Activate a unit to see details.</desc>
-
-                  <rect class="fp-outline" x="20" y="20" width="1360" height="660" rx="8"/>
-
-                  <template x-if="floor === 'ground'">
-                    <g>
-                      <rect class="fp-concourse" x="280" y="330" width="860" height="40"/>
-                      <text class="fp-concourse-label" x="710" y="352">Main Concourse</text>
-                      <rect class="fp-fixture" x="1024" y="380" width="60" height="60" rx="4"/>
-                      <text class="fp-fixture-text" x="1054" y="408">ELEV</text>
-                      <rect class="fp-fixture" x="1090" y="380" width="50" height="60" rx="4"/>
-                      <text class="fp-fixture-text" x="1115" y="408">WC</text>
-                    </g>
-                  </template>
-                  <template x-if="floor === 'lower'">
-                    <g>
-                      <rect class="fp-concourse" x="820" y="330" width="320" height="40"/>
-                      <text class="fp-concourse-label" x="980" y="352">Lower Concourse</text>
-                      <rect class="fp-fixture" x="40" y="300" width="140" height="80" rx="6"/>
-                      <text class="fp-fixture-text" x="110" y="338">ELEVATOR</text>
-                      <text class="fp-fixture-text" x="110" y="358">& STAIRS</text>
-                    </g>
-                  </template>
-
-                  <template x-for="store in visibleStores" :key="store.name">
-                    <g class="fp-unit" :class="selected && selected.name === store.name ? 'is-selected' : ''" @mouseenter="hover(store)" @focusin="hover(store)">
-                      <a :href="store.url || '#'" :aria-label="store.name + ', Suite ' + store.suite + ', ' + catLabel(store.cat)" @click.prevent="select(store)" @keydown.enter.prevent="select(store)" @keydown.space.prevent="select(store)">
-                        <rect class="body" :class="'cat-' + store.cat" :x="store.x" :y="store.y" :width="store.w" :height="store.h" :rx="store.anchor ? 6 : 3"></rect>
-                        <text :class="store.anchor ? 'name anchor-name' : 'suite'" :x="store.x + store.w/2" :y="store.y + (store.anchor ? store.h/2 - 8 : 18)" x-text="store.anchor ? store.name : store.suite"></text>
-                        <text class="name" :x="store.x + store.w/2" :y="store.y + (store.anchor ? store.h/2 + 18 : store.h/2 + 6)" x-text="store.anchor ? ('Suite ' + store.suite) : truncate(store.name, store.w)"></text>
-                      </a>
-                    </g>
-                  </template>
-                </svg>
-              </div>
-
-              <aside class="fp-panel" aria-live="polite" aria-atomic="true">
-                <template x-if="selected">
-                  <div>
-                    <span class="cat-tag" :class="'cat-' + selected.cat" x-text="catLabel(selected.cat)"></span>
-                    <h3 x-text="selected.name"></h3>
-                    <p class="suite-no">Suite <span x-text="selected.suite"></span> &middot; <span x-text="selected.floor === 'ground' ? 'Ground Floor' : 'Lower Level'"></span></p>
-                    <template x-if="selected.url">
-                      <a class="detail-link" :href="selected.url">
-                        <span>View store page</span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                      </a>
-                    </template>
-                    <template x-if="!selected.url">
-                      <p class="suite-no" x-html="selected.desc || 'Kiosk &mdash; visit in person.'"></p>
-                    </template>
-                  </div>
-                </template>
-                <template x-if="!selected">
-                  <p class="placeholder">Hover, tap, or keyboard-focus a unit on the map to see store details here.</p>
-                </template>
-              </aside>
-            </div>
-
+            <p class="mb-6 text-coolGray-200">Use the zoom and pan controls to explore the mall. Tap any unit to see store details, then choose &ldquo;Route from here&rdquo; and tap a destination to draw a path.</p>
+            <div id="react-floorplan"><p class="text-coolGray-400">Loading interactive map&hellip;</p></div>
             <p class="fp-note">Schematic only &mdash; unit positions and suite numbers shown here are placeholders for layout purposes and may not match the mall&rsquo;s actual floor plan. For the exact location of a specific store, please check the directory signage at the main entrance or ask staff.</p>
           </section>
 
-          <script>
-          function floorPlan(){
-            const TOP = (i) => ({ x: 280 + i * 68, y: 60,  w: 64, h: 260 });
-            const BOT = (i) => ({ x: 280 + i * 68, y: 380, w: 64, h: 260 });
-            const LOWR = (i) => ({ x: 820 + (i%2)*170, y: 60 + Math.floor(i/2)*330, w: 160, h: 260 });
+          <script type="text/babel" data-presets="react">
+          /* Interactive floor plan — React 18 + Babel-standalone (CDN).
+             For production: pre-compile this JSX (Vite/esbuild) and drop @babel/standalone. */
+          (function(){
+            const { useState, useRef, useMemo, useCallback } = React;
 
-            const stores = [
-              { name: 'No Frills',                       suite: '101', cat: 'groceries', floor: 'ground', anchor: true,  url: 'no-frills.html',              x: 40,   y: 60,  w: 220, h: 580 },
-              { name: 'Shoppers Drug Mart',              suite: '128', cat: 'health',    floor: 'ground', anchor: true,  url: 'shoppers-drug-mart.html',     x: 1140, y: 60,  w: 220, h: 580 },
-              Object.assign({ name: 'Burger King',                       suite: '102', cat: 'food',     floor: 'ground', url: 'burger-king.html' },              TOP(0)),
-              Object.assign({ name: '93 Coffee',                         suite: '103', cat: 'food',     floor: 'ground', url: '93-coffee.html' },                TOP(1)),
-              Object.assign({ name: 'Denman Beer Wine & Spirits',   suite: '104', cat: 'food',     floor: 'ground', url: 'denman-liquor-store.html' },      TOP(2)),
-              Object.assign({ name: 'Specsavers',                        suite: '105', cat: 'health',   floor: 'ground', url: 'specsavers.html' },               TOP(3)),
-              Object.assign({ name: 'Denman Place Dental Centre',        suite: '106', cat: 'health',   floor: 'ground', url: 'denman-place-dental.html' },      TOP(4)),
-              Object.assign({ name: 'Stanley Park Dental Centre',        suite: '107', cat: 'health',   floor: 'ground', url: 'stanley-park-dental.html' },      TOP(5)),
-              Object.assign({ name: 'Denman Chiropractic & Massage',suite: '108', cat: 'health',   floor: 'ground', url: 'denman-chiropractic.html' },      TOP(6)),
-              Object.assign({ name: 'TE.A.TE Clinic',                    suite: '109', cat: 'health',   floor: 'ground', url: 'teate-clinic.html' },             TOP(7)),
-              Object.assign({ name: 'The Ice Cream Parlour',             suite: '110', cat: 'health',   floor: 'ground', url: 'the-ice-cream-parlour.html' },    TOP(8)),
-              Object.assign({ name: 'Rose Stitching & Healing',     suite: '111', cat: 'retail',   floor: 'ground', url: 'rose-stitching.html' },           TOP(9)),
-              Object.assign({ name: 'English Bay Jewellers',             suite: '112', cat: 'retail',   floor: 'ground', url: 'english-bay-jewellers.html' },    TOP(10)),
-              Object.assign({ name: 'Lost Lagoon Frames',                suite: '113', cat: 'retail',   floor: 'ground', url: 'lost-lagoon-frames.html' },       TOP(11)),
-              Object.assign({ name: 'BCLC Lotto',                        suite: '114', cat: 'retail',   floor: 'ground', url: 'bclc-lotto.html' },               TOP(12)),
-              Object.assign({ name: 'Accountax Financial',               suite: '115', cat: 'services', floor: 'ground', url: 'accountax.html' },                BOT(0)),
-              Object.assign({ name: 'Open Door Law',                     suite: '116', cat: 'services', floor: 'ground', url: 'open-door-law.html' },            BOT(1)),
-              Object.assign({ name: 'Murrick Insurance',                 suite: '117', cat: 'services', floor: 'ground', url: 'murrick-insurance.html' },        BOT(2)),
-              Object.assign({ name: 'UPS Store',                         suite: '118', cat: 'services', floor: 'ground', url: 'ups.html' },                      BOT(3)),
-              Object.assign({ name: 'Canada Post Outlet',                suite: '119', cat: 'services', floor: 'ground', url: 'canada-post.html' },              BOT(4)),
-              Object.assign({ name: 'Devak Lock & Key',             suite: '120', cat: 'services', floor: 'ground', url: 'devak-key-lock.html' },           BOT(5)),
-              Object.assign({ name: 'Scissors & Comb Barbers',      suite: '121', cat: 'services', floor: 'ground', url: 'scissors-comb-barbershop.html' }, BOT(6)),
-              Object.assign({ name: 'YVR Travel Service',                suite: '122', cat: 'services', floor: 'ground', url: 'yvr-travel.html' },               BOT(7)),
-              Object.assign({ name: 'Minit Foto',                        suite: '123', cat: 'services', floor: 'ground', url: 'minit-foto.html' },               BOT(8)),
-              Object.assign({ name: 'MP Hedy Fry Vancouver Centre',      suite: '124', cat: 'community',floor: 'ground', url: 'hedy-fry.html' },                 BOT(9)),
-              { name: 'Express Stop',  suite: 'K1', cat: 'kiosks', floor: 'ground', desc: 'Cell phone repair kiosk &middot; <a class="detail-link" href="tel:7783236209">778-323-6209</a>', x: 430, y: 333, w: 80, h: 34 },
-              { name: 'Cell Universe', suite: 'K2', cat: 'kiosks', floor: 'ground', desc: 'Phone accessories kiosk &middot; <a class="detail-link" href="tel:7789195500">778-919-5500</a>', x: 880, y: 333, w: 80, h: 34 },
-              { name: 'Dollarama',                            suite: 'L1', cat: 'retail',    floor: 'lower', anchor: true, url: 'dollarama.html',           x: 200, y: 60, w: 600, h: 580 },
-              Object.assign({ name: 'Key’s Place (WESN)',            suite: 'L2', cat: 'community', floor: 'lower', url: 'wesn.html' },                LOWR(0)),
-              Object.assign({ name: 'Clothes & Collectables (WESN)', suite: 'L3', cat: 'community', floor: 'lower', url: 'clothes-collectibles.html' }, LOWR(2))
+            const T = (i) => ({ x: 280 + i*68, y: 60,  w: 64, h: 260 });
+            const B = (i) => ({ x: 280 + i*68, y: 380, w: 64, h: 260 });
+            const L = (i) => ({ x: 820 + (i%2)*170, y: 60 + Math.floor(i/2)*330, w: 160, h: 260 });
+
+            const STORES = [
+              { name:'No Frills',                   suite:'101', cat:'groceries', floor:'ground', anchor:true, url:'no-frills.html',          x:40,   y:60, w:220, h:580 },
+              { name:'Shoppers Drug Mart',          suite:'128', cat:'health',    floor:'ground', anchor:true, url:'shoppers-drug-mart.html', x:1140, y:60, w:220, h:580 },
+              { name:'Burger King',                       suite:'102', cat:'food',     floor:'ground', url:'burger-king.html',               ...T(0)  },
+              { name:'93 Coffee',                         suite:'103', cat:'food',     floor:'ground', url:'93-coffee.html',                 ...T(1)  },
+              { name:'Denman Beer Wine & Spirits',        suite:'104', cat:'food',     floor:'ground', url:'denman-liquor-store.html',       ...T(2)  },
+              { name:'Specsavers',                        suite:'105', cat:'health',   floor:'ground', url:'specsavers.html',                ...T(3)  },
+              { name:'Denman Place Dental Centre',        suite:'106', cat:'health',   floor:'ground', url:'denman-place-dental.html',       ...T(4)  },
+              { name:'Stanley Park Dental Centre',        suite:'107', cat:'health',   floor:'ground', url:'stanley-park-dental.html',       ...T(5)  },
+              { name:'Denman Chiropractic & Massage',     suite:'108', cat:'health',   floor:'ground', url:'denman-chiropractic.html',       ...T(6)  },
+              { name:'TE.A.TE Clinic',                    suite:'109', cat:'health',   floor:'ground', url:'teate-clinic.html',              ...T(7)  },
+              { name:'The Ice Cream Parlour',             suite:'110', cat:'health',   floor:'ground', url:'the-ice-cream-parlour.html',     ...T(8)  },
+              { name:'Rose Stitching & Healing',          suite:'111', cat:'retail',   floor:'ground', url:'rose-stitching.html',            ...T(9)  },
+              { name:'English Bay Jewellers',             suite:'112', cat:'retail',   floor:'ground', url:'english-bay-jewellers.html',     ...T(10) },
+              { name:'Lost Lagoon Frames',                suite:'113', cat:'retail',   floor:'ground', url:'lost-lagoon-frames.html',        ...T(11) },
+              { name:'BCLC Lotto',                        suite:'114', cat:'retail',   floor:'ground', url:'bclc-lotto.html',                ...T(12) },
+              { name:'Accountax Financial',               suite:'115', cat:'services', floor:'ground', url:'accountax.html',                 ...B(0)  },
+              { name:'Open Door Law',                     suite:'116', cat:'services', floor:'ground', url:'open-door-law.html',             ...B(1)  },
+              { name:'Murrick Insurance',                 suite:'117', cat:'services', floor:'ground', url:'murrick-insurance.html',         ...B(2)  },
+              { name:'UPS Store',                         suite:'118', cat:'services', floor:'ground', url:'ups.html',                       ...B(3)  },
+              { name:'Canada Post Outlet',                suite:'119', cat:'services', floor:'ground', url:'canada-post.html',               ...B(4)  },
+              { name:'Devak Lock & Key',                  suite:'120', cat:'services', floor:'ground', url:'devak-key-lock.html',            ...B(5)  },
+              { name:'Scissors & Comb Barbers',           suite:'121', cat:'services', floor:'ground', url:'scissors-comb-barbershop.html',  ...B(6)  },
+              { name:'YVR Travel Service',                suite:'122', cat:'services', floor:'ground', url:'yvr-travel.html',                ...B(7)  },
+              { name:'Minit Foto',                        suite:'123', cat:'services', floor:'ground', url:'minit-foto.html',                ...B(8)  },
+              { name:'MP Hedy Fry Vancouver Centre',      suite:'124', cat:'community',floor:'ground', url:'hedy-fry.html',                  ...B(9)  },
+              { name:'Express Stop',  suite:'K1', cat:'kiosks', floor:'ground', desc:'Cell-phone repair kiosk', phone:'778-323-6209', x:430, y:333, w:80, h:34 },
+              { name:'Cell Universe', suite:'K2', cat:'kiosks', floor:'ground', desc:'Phone-accessories kiosk', phone:'778-919-5500', x:880, y:333, w:80, h:34 },
+              { name:'Dollarama',                         suite:'L1', cat:'retail',    floor:'lower', anchor:true, url:'dollarama.html', x:200, y:60, w:600, h:580 },
+              { name:'Key’s Place (WESN)',           suite:'L2', cat:'community', floor:'lower', url:'wesn.html',                  ...L(0) },
+              { name:'Clothes & Collectables (WESN)',     suite:'L3', cat:'community', floor:'lower', url:'clothes-collectibles.html',  ...L(2) }
             ];
 
-            const CAT_LABELS = {
-              groceries: 'Groceries',
-              food:      'Food & Drink',
-              health:    'Health & Wellness',
-              services:  'Services & Tech',
-              retail:    'Retail & Specialty',
-              community: 'Community',
-              kiosks:    'Kiosks'
+            const CAT_LABELS = { groceries:'Groceries', food:'Food & Drink', health:'Health & Wellness', services:'Services & Tech', retail:'Retail & Specialty', community:'Community', kiosks:'Kiosks' };
+            const BASE_VB = { x:0, y:0, w:1400, h:700 };
+            const ASPECT = 1400/700;
+            const CY = 350;
+            const ELEVATORS = { ground:{x:1054, y:410}, lower:{x:110, y:340} };
+
+            const center = (s) => ({ x: s.x + s.w/2, y: s.y + s.h/2 });
+            const exit = (s) => {
+              if (s.h >= 400) return { x: s.x < 700 ? s.x + s.w : s.x, y: CY };
+              if (s.y + s.h <= CY) return { x: s.x + s.w/2, y: s.y + s.h };
+              if (s.y >= CY)       return { x: s.x + s.w/2, y: s.y };
+              return center(s);
+            };
+            const pathBetween = (a, b) => {
+              const aC = center(a), bC = center(b), aE = exit(a), bE = exit(b);
+              return 'M ' + aC.x + ' ' + aC.y + ' L ' + aE.x + ' ' + aE.y + ' L ' + aE.x + ' ' + CY + ' L ' + bE.x + ' ' + CY + ' L ' + bE.x + ' ' + bE.y + ' L ' + bC.x + ' ' + bC.y;
+            };
+            const pathToElev = (a, fl) => {
+              const aC = center(a), aE = exit(a), e = ELEVATORS[fl];
+              return 'M ' + aC.x + ' ' + aC.y + ' L ' + aE.x + ' ' + aE.y + ' L ' + aE.x + ' ' + CY + ' L ' + e.x + ' ' + CY + ' L ' + e.x + ' ' + e.y;
+            };
+            const truncate = (name, w) => {
+              const max = Math.max(4, Math.floor(w / 6));
+              return name.length > max ? name.slice(0, max - 1) + '…' : name;
             };
 
-            return {
-              stores,
-              floor: 'ground',
-              selected: null,
-              get visibleStores(){ return this.stores.filter(s => s.floor === this.floor); },
-              setFloor(f){ this.floor = f; this.selected = null; },
-              hover(s){ this.selected = s; },
-              select(s){
-                // First activation: lock the panel. Second activation on the same store: navigate.
-                if (this.selected && this.selected.name === s.name && s.url){
+            function Unit({ store, isSelected, isOrigin, isDestination, onHover, onActivate }){
+              const cls = 'fp-unit' + (isSelected ? ' is-selected' : '');
+              const aria = store.name + ', Suite ' + store.suite + ', ' + CAT_LABELS[store.cat] +
+                (isOrigin ? ', starting point' : '') + (isDestination ? ', destination' : '');
+              return (
+                <g className={cls} onMouseEnter={() => onHover(store)} onFocus={() => onHover(store)}>
+                  <a href={store.url || '#'} aria-label={aria}
+                     onClick={(e)=>{e.preventDefault(); onActivate(store);}}
+                     onKeyDown={(e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); onActivate(store);} }}>
+                    <rect className={'body cat-' + store.cat} x={store.x} y={store.y} width={store.w} height={store.h} rx={store.anchor ? 6 : 3}/>
+                    <text className={store.anchor ? 'name anchor-name' : 'suite'} x={store.x + store.w/2} y={store.y + (store.anchor ? store.h/2 - 8 : 18)}>
+                      {store.anchor ? store.name : store.suite}
+                    </text>
+                    <text className="name" x={store.x + store.w/2} y={store.y + (store.anchor ? store.h/2 + 18 : store.h/2 + 6)}>
+                      {store.anchor ? ('Suite ' + store.suite) : truncate(store.name, store.w)}
+                    </text>
+                  </a>
+                </g>
+              );
+            }
+
+            function FloorPlan(){
+              const [floor, setFloor] = useState('ground');
+              const [selected, setSelected] = useState(null);
+              const [origin, setOrigin] = useState(null);
+              const [destination, setDestination] = useState(null);
+              const [vb, setVB] = useState(BASE_VB);
+              const [isPanning, setIsPanning] = useState(false);
+              const svgRef = useRef(null);
+              const panRef = useRef({ dragging:false, x:0, y:0 });
+
+              const visible = useMemo(() => STORES.filter(s => s.floor === floor), [floor]);
+
+              const zoom = useCallback((factor, ax, ay) => {
+                if (ax === undefined) ax = 0.5;
+                if (ay === undefined) ay = 0.5;
+                setVB(v => {
+                  const nw = Math.max(280, Math.min(1400, v.w * factor));
+                  const nh = nw / ASPECT;
+                  const px = v.x + v.w * ax, py = v.y + v.h * ay;
+                  return { x: px - nw*ax, y: py - nh*ay, w:nw, h:nh };
+                });
+              }, []);
+
+              const reset = () => setVB(BASE_VB);
+
+              const onWheel = (e) => {
+                e.preventDefault();
+                const r = svgRef.current.getBoundingClientRect();
+                zoom(e.deltaY > 0 ? 1.18 : 0.85,
+                     (e.clientX - r.left) / r.width,
+                     (e.clientY - r.top) / r.height);
+              };
+              const onPointerDown = (e) => {
+                if (e.target.closest('a')) return;
+                panRef.current = { dragging:true, x:e.clientX, y:e.clientY };
+                setIsPanning(true);
+                try { svgRef.current.setPointerCapture(e.pointerId); } catch(_){}
+              };
+              const onPointerMove = (e) => {
+                if (!panRef.current.dragging) return;
+                const r = svgRef.current.getBoundingClientRect();
+                setVB(v => {
+                  const dx = ((e.clientX - panRef.current.x)/r.width)  * v.w;
+                  const dy = ((e.clientY - panRef.current.y)/r.height) * v.h;
+                  return { ...v, x: v.x - dx, y: v.y - dy };
+                });
+                panRef.current.x = e.clientX;
+                panRef.current.y = e.clientY;
+              };
+              const onPointerUp = (e) => {
+                panRef.current.dragging = false;
+                setIsPanning(false);
+                try { svgRef.current.releasePointerCapture(e.pointerId); } catch(_){}
+              };
+
+              const handleFloor = (f) => { setFloor(f); setSelected(null); };
+              const handleHover  = (s) => setSelected(s);
+              const handleActivate = (s) => {
+                if (origin && origin.name !== s.name){
+                  setDestination(s);
+                  setSelected(s);
+                  if (s.floor !== floor) setFloor(s.floor);
+                  return;
+                }
+                if (selected && selected.name === s.name && s.url && !origin){
                   window.location.href = s.url;
                   return;
                 }
-                this.selected = s;
-              },
-              catLabel(c){ return CAT_LABELS[c] || c; },
-              truncate(name, w){
-                const plain = String(name).replace(/&amp;/g,'&').replace(/&rsquo;/g,'’');
-                const maxChars = Math.max(4, Math.floor(w / 6));
-                return plain.length > maxChars ? plain.slice(0, maxChars - 1) + '…' : plain;
-              }
-            };
-          }
+                setSelected(s);
+              };
+              const startRouting = () => { if (selected){ setOrigin(selected); setDestination(null); } };
+              const clearRouting = () => { setOrigin(null); setDestination(null); };
+
+              const route = useMemo(() => {
+                if (!origin || !destination) return null;
+                if (origin.floor === destination.floor){
+                  if (floor !== origin.floor) return null;
+                  return { d: pathBetween(origin, destination), kind:'direct' };
+                }
+                if (floor === origin.floor)      return { d: pathToElev(origin, origin.floor),         kind:'to-elev' };
+                if (floor === destination.floor) return { d: pathToElev(destination, destination.floor), kind:'from-elev' };
+                return null;
+              }, [origin, destination, floor]);
+
+              const otherFloor = floor === 'ground' ? 'Lower Level' : 'Ground Floor';
+              const otherFloorKey = floor === 'ground' ? 'lower' : 'ground';
+
+              return (
+                <div>
+                  <div className="fp-tabs" role="tablist" aria-label="Floor selector">
+                    <button role="tab" aria-selected={floor==='ground'} onClick={()=>handleFloor('ground')} type="button">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><polyline points="18 15 12 9 6 15"/></svg>
+                      Ground Floor
+                    </button>
+                    <button role="tab" aria-selected={floor==='lower'} onClick={()=>handleFloor('lower')} type="button">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><polyline points="6 9 12 15 18 9"/></svg>
+                      Lower Level
+                    </button>
+                  </div>
+
+                  <ul className="fp-legend" aria-label="Category colour legend">
+                    <li><span className="sw cat-groceries" aria-hidden="true"></span> Groceries</li>
+                    <li><span className="sw cat-food" aria-hidden="true"></span> Food & Drink</li>
+                    <li><span className="sw cat-health" aria-hidden="true"></span> Health & Wellness</li>
+                    <li><span className="sw cat-services" aria-hidden="true"></span> Services & Tech</li>
+                    <li><span className="sw cat-retail" aria-hidden="true"></span> Retail & Specialty</li>
+                    <li><span className="sw cat-community" aria-hidden="true"></span> Community</li>
+                    <li><span className="sw cat-kiosks" aria-hidden="true"></span> Kiosks</li>
+                  </ul>
+
+                  {origin && (
+                    <div className="fp-route-banner" role="status">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <span><strong>Routing from:</strong> {origin.name} (Suite {origin.suite}{origin.floor !== floor ? ', ' + (origin.floor === 'ground' ? 'Ground Floor' : 'Lower Level') : ''}). Tap any other unit to set it as the destination.</span>
+                      <button type="button" onClick={clearRouting} aria-label="Cancel routing">×</button>
+                    </div>
+                  )}
+
+                  <div className="fp-layout">
+                    <div className="fp-svg-wrap" role="tabpanel" aria-label={floor==='ground' ? 'Ground floor map' : 'Lower level map'}>
+                      <div className="fp-controls" role="group" aria-label="Map controls">
+                        <button type="button" className="fp-ctrl-btn" onClick={()=>zoom(0.78)} aria-label="Zoom in">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                        </button>
+                        <button type="button" className="fp-ctrl-btn" onClick={()=>zoom(1.28)} disabled={vb.w >= 1400} aria-label="Zoom out">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                        </button>
+                        <button type="button" className="fp-ctrl-btn" onClick={reset} aria-label="Reset view">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                        </button>
+                      </div>
+
+                      <svg ref={svgRef}
+                           className={'fp-svg' + (isPanning ? ' is-panning' : '')}
+                           viewBox={vb.x + ' ' + vb.y + ' ' + vb.w + ' ' + vb.h}
+                           role="img" aria-labelledby="fp-title fp-desc"
+                           onWheel={onWheel}
+                           onPointerDown={onPointerDown}
+                           onPointerMove={onPointerMove}
+                           onPointerUp={onPointerUp}
+                           onPointerCancel={onPointerUp}>
+                        <title id="fp-title">{floor==='ground' ? 'Ground floor schematic of Denman Place Mall' : 'Lower level schematic of Denman Place Mall'}</title>
+                        <desc id="fp-desc">Schematic, not to scale. Use the mouse wheel or buttons to zoom, drag to pan. Activate a unit to see details and set routing endpoints.</desc>
+
+                        <rect className="fp-outline" x="20" y="20" width="1360" height="660" rx="8"/>
+
+                        {floor === 'ground' && (
+                          <g>
+                            <rect className="fp-concourse" x="280" y="330" width="860" height="40"/>
+                            <text className="fp-concourse-label" x="710" y="352">Main Concourse</text>
+                            <rect className="fp-fixture" x="1024" y="380" width="60" height="60" rx="4"/>
+                            <text className="fp-fixture-text" x="1054" y="408">ELEV</text>
+                            <rect className="fp-fixture" x="1090" y="380" width="50" height="60" rx="4"/>
+                            <text className="fp-fixture-text" x="1115" y="408">WC</text>
+                          </g>
+                        )}
+                        {floor === 'lower' && (
+                          <g>
+                            <rect className="fp-concourse" x="820" y="330" width="320" height="40"/>
+                            <text className="fp-concourse-label" x="980" y="352">Lower Concourse</text>
+                            <rect className="fp-fixture" x="40" y="300" width="140" height="80" rx="6"/>
+                            <text className="fp-fixture-text" x="110" y="338">ELEVATOR</text>
+                            <text className="fp-fixture-text" x="110" y="358">& STAIRS</text>
+                          </g>
+                        )}
+
+                        {visible.map(s => (
+                          <Unit key={s.name}
+                                store={s}
+                                isSelected={selected && selected.name === s.name}
+                                isOrigin={origin && origin.name === s.name}
+                                isDestination={destination && destination.name === s.name}
+                                onHover={handleHover}
+                                onActivate={handleActivate}/>
+                        ))}
+
+                        {route && (() => {
+                          let markers = null;
+                          if (route.kind === 'direct'){
+                            const o = center(origin), d = center(destination);
+                            markers = (<g>
+                              <circle className="fp-route-marker" cx={o.x} cy={o.y} r="14"/>
+                              <text className="fp-route-marker-text" x={o.x} y={o.y}>A</text>
+                              <circle className="fp-route-marker" cx={d.x} cy={d.y} r="14"/>
+                              <text className="fp-route-marker-text" x={d.x} y={d.y}>B</text>
+                            </g>);
+                          } else if (route.kind === 'to-elev'){
+                            const o = center(origin), e = ELEVATORS[origin.floor];
+                            markers = (<g>
+                              <circle className="fp-route-marker" cx={o.x} cy={o.y} r="14"/>
+                              <text className="fp-route-marker-text" x={o.x} y={o.y}>A</text>
+                              <circle className="fp-route-marker" cx={e.x} cy={e.y} r="14"/>
+                              <text className="fp-route-marker-text" x={e.x} y={e.y}>{'⇅'}</text>
+                            </g>);
+                          } else {
+                            const d = center(destination), e = ELEVATORS[destination.floor];
+                            markers = (<g>
+                              <circle className="fp-route-marker" cx={e.x} cy={e.y} r="14"/>
+                              <text className="fp-route-marker-text" x={e.x} y={e.y}>{'⇅'}</text>
+                              <circle className="fp-route-marker" cx={d.x} cy={d.y} r="14"/>
+                              <text className="fp-route-marker-text" x={d.x} y={d.y}>B</text>
+                            </g>);
+                          }
+                          return (<g aria-hidden="true">
+                            <path className="fp-route" d={route.d}/>
+                            {markers}
+                          </g>);
+                        })()}
+                      </svg>
+                    </div>
+
+                    <aside className="fp-panel" aria-live="polite" aria-atomic="true">
+                      {selected ? (
+                        <div>
+                          <span className={'cat-tag cat-' + selected.cat}>{CAT_LABELS[selected.cat]}</span>
+                          <h3>{selected.name}</h3>
+                          <p className="suite-no">Suite {selected.suite} · {selected.floor === 'ground' ? 'Ground Floor' : 'Lower Level'}</p>
+                          {selected.url ? (
+                            <a className="detail-link" href={selected.url}>
+                              <span>View store page</span>
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                          ) : (
+                            <p className="suite-no">
+                              {selected.desc}
+                              {selected.phone && (<React.Fragment>{' · '}<a className="detail-link" href={'tel:' + selected.phone.replace(/[^0-9]/g,'')}>{selected.phone}</a></React.Fragment>)}
+                            </p>
+                          )}
+                          <div className="fp-panel-actions">
+                            {!origin && (
+                              <button type="button" className="fp-action" onClick={startRouting}>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                                Route from here
+                              </button>
+                            )}
+                            {origin && origin.name === selected.name && (
+                              <button type="button" className="fp-action is-secondary" onClick={clearRouting}>Clear starting point</button>
+                            )}
+                            {origin && origin.name !== selected.name && (
+                              <button type="button" className="fp-action is-secondary" onClick={()=>{ setOrigin(selected); setDestination(null); }}>Use this as start instead</button>
+                            )}
+                          </div>
+                          {route && route.kind === 'to-elev' && (
+                            <div className="fp-crossfloor">
+                              Take the elevator/stairs to the <strong>{otherFloor}</strong> to continue.
+                              <div style={{marginTop:'.5rem'}}>
+                                <button type="button" className="fp-action" onClick={()=>handleFloor(otherFloorKey)}>Switch to {otherFloor}</button>
+                              </div>
+                            </div>
+                          )}
+                          {route && route.kind === 'from-elev' && (
+                            <div className="fp-crossfloor">
+                              Continuing from the <strong>{otherFloor} elevator</strong> to <strong>{destination.name}</strong>.
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <p className="placeholder">Hover, tap, or keyboard-focus a unit on the map to see store details here.</p>
+                      )}
+                    </aside>
+                  </div>
+                </div>
+              );
+            }
+
+            const mount = document.getElementById('react-floorplan');
+            if (mount && window.React && window.ReactDOM){
+              ReactDOM.createRoot(mount).render(<FloorPlan />);
+            }
+          })();
           </script>
+
 
           <hr class="pg-divider" aria-hidden="true">
 
@@ -771,9 +1144,9 @@
         <div class="text-center lg:text-left">
           <span class="text-base font-medium text-coolGray-400">
             &copy; <script>document.write(new Date().getFullYear())</script> <span class="notranslate" translate="no">Denman Place Mall</span>. All Rights Reserved.
-            <span class="hidden lg:inline"><a href="terms.html" class="hover:underline">Terms of Use</a> | <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> | <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
+            <span class="hidden lg:inline"><a href="terms.html" class="hover:underline">Terms of Use</a> | <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> | <a href="accessibility.html" class="hover:underline">Accessibility</a> | <button type="button" x-data x-show="$store.mall && $store.mall.hidden" @click="$store.mall.show()" class="hover:underline notranslate" translate="no" style="background:transparent;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;">Show My List</button></span>
             <br>
-            <span class="lg:hidden"><a href="terms.html" class="hover:underline">Terms of Use</a> &bull; <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> &bull; <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
+            <span class="lg:hidden"><a href="terms.html" class="hover:underline">Terms of Use</a> &bull; <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> &bull; <a href="accessibility.html" class="hover:underline">Accessibility</a> <span x-data x-show="$store.mall && $store.mall.hidden">&bull; <button type="button" @click="$store.mall.show()" class="hover:underline notranslate" translate="no" style="background:transparent;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;">Show My List</button></span></span>
           </span>
         </div>
         <div class="text-center lg:text-right">
