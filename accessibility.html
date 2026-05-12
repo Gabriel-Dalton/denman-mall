@@ -5,25 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
 
-<title>Terms of Use | Denman Place Mall, Vancouver, BC</title>
-<link rel="canonical" href="https://denmanmall.com/terms">
+<title>Accessibility Statement | Denman Place Mall, Vancouver, BC</title>
+<link rel="canonical" href="https://denmanmall.com/accessibility">
 
-<meta name="title" content="Terms of Use | Denman Place Mall, Vancouver, BC">
-<meta name="description" content="Review the terms and conditions for using the Denman Place Mall website, including acceptable use, intellectual property and limitation of liability.">
+<meta name="title" content="Accessibility Statement | Denman Place Mall, Vancouver, BC">
+<meta name="description" content="Read about Denman Place Mall's commitment to digital and on-site accessibility, conformance with WCAG 2.1 AA, and how to request assistance or report a barrier.">
 
 <meta property="og:type"        content="website">
 <meta property="og:site_name"   content="Denman Place Mall">
-<meta property="og:url"         content="https://denmanmall.com/terms">
-<meta property="og:title"       content="Terms of Use | Denman Place Mall, Vancouver, BC">
-<meta property="og:description" content="Understand the guidelines that govern your use of the Denman Place Mall website—acceptable use, intellectual property, liability and more.">
+<meta property="og:url"         content="https://denmanmall.com/accessibility">
+<meta property="og:title"       content="Accessibility Statement | Denman Place Mall, Vancouver, BC">
+<meta property="og:description" content="Our commitment to making denmanmall.com and the shopping centre usable by everyone, including people with disabilities.">
 <meta property="og:image"       content="assets/images/open-graph.webp">
 <meta property="og:image:width"  content="1920">
 <meta property="og:image:height" content="1080">
 
 <meta name="twitter:card"        content="summary_large_image">
-<meta name="twitter:url"         content="https://denmanmall.com/terms">
-<meta name="twitter:title"       content="Terms of Use | Denman Place Mall, Vancouver, BC">
-<meta name="twitter:description" content="Read the Denman Place Mall website Terms of Use covering acceptable use, intellectual property rights and limitation of liability.">
+<meta name="twitter:url"         content="https://denmanmall.com/accessibility">
+<meta name="twitter:title"       content="Accessibility Statement | Denman Place Mall, Vancouver, BC">
+<meta name="twitter:description" content="How Denman Place Mall works to meet WCAG 2.1 AA and how to contact us for accessibility support.">
 <meta name="twitter:image"       content="assets/images/open-graph.webp">
 <link rel="preload" href="assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <link href="assets/css/fontshare.css" rel="stylesheet">
@@ -34,17 +34,13 @@
 
 <script src="assets/scripts/hours-of-operation.js" defer></script>
 
-
-<!-- Global Header Scripts -->
-
-
-
 </head>
 <body class="antialiased bg-body text-body font-body">
+<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-black focus:text-white focus:rounded">Skip to main content</a>
 <div class="">
-                
+
       <section x-data="{ mobileNavOpen: false }" class="">
-        <nav>
+        <nav aria-label="Main navigation">
           <div class="container mx-auto px-4">
             <div class="relative flex h-24 items-center">
               <div class="hidden xl:flex items-center"><a class="inline-block text-black font-medium hover:underline mr-10" href="index.html">Home</a><a class="inline-block text-black font-medium hover:underline mr-10" href="directory.html">Store Directory</a></div>
@@ -60,8 +56,8 @@
      <p class="text-sm text-coolGray-800">Open Today | 8:00 AM to 10:00 PM</p>
     </div>
     </div>
-              <button x-on:click="mobileNavOpen = !mobileNavOpen" class="xl:hidden py-1 ml-auto">
-                <svg width="44" height="16" viewBox="0 0 44 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="44" height="2" rx="1" fill="black"></rect><rect y="14" width="44" height="2" rx="1" fill="black"></rect></svg>
+              <button x-on:click="mobileNavOpen = !mobileNavOpen" aria-label="Open menu" aria-expanded="false" x-bind:aria-expanded="mobileNavOpen.toString()" class="xl:hidden py-1 ml-auto">
+                <svg width="44" height="16" viewBox="0 0 44 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="44" height="2" rx="1" fill="black"></rect><rect y="14" width="44" height="2" rx="1" fill="black"></rect></svg>
               </button>
               <div class="hidden xl:flex ml-auto mr-12 items-center"><a class="inline-block text-black font-medium hover:underline mr-10" href="about.html">About Us</a><a class="inline-block text-black font-medium hover:underline" href="contact.html">Contact us</a></div>
             </div>
@@ -69,15 +65,15 @@
         </nav>
 <div x-cloak="" x-show="mobileNavOpen" x-transition="" class="fixed top-0 left-0 bottom-0 w-5/6 max-w-md z-50">
   <div x-on:click="mobileNavOpen = false" class="fixed inset-0 bg-gray-800 opacity-50"></div>
-          <nav class="relative flex flex-col py-8 px-8 w-full h-full bg-white overflow-y-auto">
+          <nav class="relative flex flex-col py-8 px-8 w-full h-full bg-white overflow-y-auto" aria-label="Mobile navigation">
             <div class="flex items-center mb-8">
                 <div class="mr-auto">
          <a href="index.html">
          <h1 class="text-2xl tracking-tighter mb-2">Denman Place Mall</h1></a>
         <p class="text-sm text-coolGray-700">Open Today | 8:00 AM to 10:00 PM</p>
-        </div> 
-              <button x-on:click="mobileNavOpen = false" aria-label="Close Menu">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        </div>
+              <button x-on:click="mobileNavOpen = false" aria-label="Close menu">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                   <path d="M6 18L18 6M6 6L18 18" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
               </button>
@@ -94,137 +90,129 @@
           </nav>
         </div>
       </section>
-                
+
+<main id="main-content">
    <section class="py-16 md:py-24 bg-black">
   <div class="container mx-auto px-6 md:px-12 xl:px-32">
     <div class="bg-black rounded-3xl border border-coolGray-700 p-8 sm:p-12 md:p-16 text-white">
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-12 text-center">Terms of Use</h1>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-12 text-center">Accessibility Statement</h1>
 
       <div class="max-w-4xl mx-auto text-base sm:text-lg leading-relaxed space-y-8">
 
-        <!-- Binding / acceptance language -->
         <p>
-          These Terms of Use (“Terms”) govern your access to and use of the Denman Place Mall website (the “Website”).
-          By accessing, browsing, or using the Website, you acknowledge that you have read, understood, and agree to be bound by these Terms.
-          If you do not agree to these Terms, you must not access or use the Website.
-        </p>
-
-        <p>
-          Your use of the Website is also subject to our
-          <a href="privacy-policy.html" class="underline text-coolGray-300 hover:text-white">Privacy Policy</a>,
-          which describes how we collect, use, and protect personal information.
+          Denman Place Mall is committed to making our shopping centre and our website accessible to everyone,
+          including people with disabilities. We believe that a welcoming community space starts with removing
+          barriers — both physical and digital — so that every visitor can find what they need with dignity and ease.
         </p>
 
         <div>
-          <h2 class="text-2xl font-semibold text-white mb-2">1. Permitted Use</h2>
+          <h2 class="text-2xl font-semibold text-white mb-2">1. Our Commitment</h2>
           <p>
-            You may use the Website for lawful, personal, and non-commercial purposes only, and in compliance with all applicable laws.
-            You agree not to misuse the Website or attempt to interfere with its normal operation.
+            We aim to align with the
+            <a href="https://www.w3.org/TR/WCAG21/" class="underline text-coolGray-300 hover:text-white" target="_blank" rel="noopener noreferrer">Web Content Accessibility Guidelines (WCAG) 2.1, Level AA</a>,
+            published by the World Wide Web Consortium (W3C). These guidelines explain how to make web content
+            more accessible to people with a wide range of disabilities, including visual, auditory, motor,
+            and cognitive impairments. We also work to meet the spirit and intent of the
+            <em>Accessible British Columbia Act</em> and the
+            <em>Accessible Canada Act</em>.
           </p>
         </div>
 
         <div>
-          <h2 class="text-2xl font-semibold text-white mb-2">2. Prohibited Activities</h2>
-          <p>Without limitation, you agree that you will not:</p>
+          <h2 class="text-2xl font-semibold text-white mb-2">2. Measures We Take</h2>
+          <p>To support an accessible experience on denmanmall.com, we work to:</p>
           <ul class="list-disc pl-6 space-y-1 marker:text-coolGray-300" style="list-style: disc; padding-left: 1.5rem;">
-            <li>attempt to gain unauthorized access to the Website, its servers, or any related systems</li>
-            <li>scrape, crawl, harvest, or collect information from the Website using automated means without our prior written consent</li>
-            <li>introduce viruses, malware, or any harmful code</li>
-            <li>interfere with, disrupt, or overload the Website or its security features</li>
-            <li>use the Website in any manner that violates any applicable law or infringes any third-party rights</li>
+            <li>provide descriptive alternative text for meaningful images</li>
+            <li>maintain a logical heading structure and clear page landmarks (header, navigation, main, footer)</li>
+            <li>ensure interactive elements (buttons, links, menus) are operable by keyboard and labeled for assistive technology</li>
+            <li>maintain sufficient colour contrast between text and background</li>
+            <li>use responsive layouts that scale to 200% zoom and adapt to small screens without loss of content</li>
+            <li>avoid auto-playing media and provide pause controls on the homepage slider</li>
+            <li>respect the operating system's reduced-motion preference where animation is used</li>
+            <li>use <code class="bg-coolGray-800 px-1 rounded">font-display: swap</code> so text remains readable while fonts load</li>
           </ul>
         </div>
 
         <div>
-          <h2 class="text-2xl font-semibold text-white mb-2">3. Intellectual Property</h2>
+          <h2 class="text-2xl font-semibold text-white mb-2">3. On-Site Accessibility</h2>
           <p>
-            The Website and all content made available on or through it (including text, graphics, logos, images, layout, and design)
-            are owned by Denman Place Mall or used under license, and are protected by applicable intellectual property laws.
-            Except as expressly permitted by these Terms, you may not copy, reproduce, modify, distribute, publish, display, or create
-            derivative works from any content on the Website without prior written permission from the applicable rights holder.
+            The shopping centre is located at street level on Denman Street with step-free access through the main
+            entrance. Most tenant storefronts are accessible from the interior corridor. Elevators and seating
+            are available within the building. If you need information about a specific
+            store's accessibility, please contact that business directly or
+            <a href="contact.html" class="underline text-coolGray-300 hover:text-white">reach out to our team</a>
+            and we will help connect you.
           </p>
         </div>
 
         <div>
-          <h2 class="text-2xl font-semibold text-white mb-2">4. Third-Party Links and Content</h2>
+          <h2 class="text-2xl font-semibold text-white mb-2">4. Conformance Status</h2>
           <p>
-            The Website may include links to third-party websites or resources (including tenant businesses or partners) provided for convenience.
-            Denman Place Mall does not control and is not responsible for the content, policies, or practices of third-party websites.
-            Your use of third-party websites is at your own risk and subject to their terms and policies.
+            This website is <strong>partially conformant</strong> with WCAG 2.1 Level AA. "Partially conformant"
+            means that some parts of the content do not yet fully meet the standard. Known limitations include
+            embedded third-party content (such as the contact form iframe) over which we have limited control.
+            We are working to address remaining gaps as part of ongoing site maintenance.
           </p>
         </div>
 
         <div>
-          <h2 class="text-2xl font-semibold text-white mb-2">5. Disclaimer</h2>
+          <h2 class="text-2xl font-semibold text-white mb-2">5. Assistive Technology Compatibility</h2>
           <p>
-            The Website and its content are provided on an “as is” and “as available” basis. To the fullest extent permitted by law,
-            Denman Place Mall disclaims all warranties, representations, and conditions (express, implied, or statutory), including
-            warranties of accuracy, reliability, non-infringement, merchantability, fitness for a particular purpose, and availability.
+            denmanmall.com is designed to be compatible with current versions of major browsers (Chrome, Firefox,
+            Safari, Edge) on desktop and mobile, and with screen readers including NVDA, JAWS, VoiceOver, and
+            TalkBack. Pages are built with semantic HTML and progressively enhanced so that core information
+            remains available even when JavaScript is disabled.
           </p>
         </div>
 
         <div>
-          <h2 class="text-2xl font-semibold text-white mb-2">6. Limitation of Liability</h2>
+          <h2 class="text-2xl font-semibold text-white mb-2">6. Feedback and Reporting a Barrier</h2>
           <p>
-            To the fullest extent permitted by law, Denman Place Mall will not be liable for any loss or damages of any kind arising out of
-            or relating to your access to or use of (or inability to access or use) the Website, including any direct, indirect, incidental,
-            consequential, special, exemplary, or punitive damages, even if advised of the possibility of such damages.
+            We welcome your feedback. If you encounter an accessibility barrier on this website, need information
+            in an alternative format, or have suggestions for how we can improve, please contact us. We aim to
+            respond to accessibility feedback within five business days.
           </p>
-        </div>
 
-        <!-- UPDATED: Indemnification + Headings -->
-        <div>
-          <h2 class="text-2xl font-semibold text-white mb-2">7. Indemnification</h2>
-          <p>
-            You agree to indemnify, defend, and hold harmless Denman Place Mall, its owners, subsidiaries, affiliates, directors, officers,
-            employees, agents, and representatives from and against any and all claims, demands, causes of action, liabilities, damages, losses,
-            costs, and expenses (including reasonable legal fees and expenses) arising out of or relating to your access to or use of the Website
-            or your breach of these Terms.
-          </p>
-        </div>
+          <div class="mt-6 mb-6 border border-coolGray-700 rounded-lg p-6 bg-coolGray-900/40">
+            <p class="font-semibold text-white mb-2">Email us</p>
+            <p><a href="mailto:marketing@denmanplacemall.com" class="underline text-coolGray-300 hover:text-white break-all">marketing@denmanplacemall.com</a></p>
+          </div>
 
-        <div>
-          <h2 class="text-2xl font-semibold text-white mb-2">8. Headings</h2>
           <p>
-            The section headings used in these Terms are for convenience of reference only and do not affect the interpretation of these Terms.
-          </p>
-        </div>
-
-        <!-- Renumbered -->
-        <div>
-          <h2 class="text-2xl font-semibold text-white mb-2">9. Changes to the Website and Terms</h2>
-          <p>
-            We may modify, suspend, or discontinue the Website (in whole or in part) at any time without notice. We may also update these Terms
-            from time to time. Updated Terms will be posted on this page with a revised “Last Updated” date. Your continued use of the Website
-            after changes are posted constitutes your acceptance of the updated Terms.
+            When reporting a barrier, please include the page address (URL), a description of the issue, and the
+            browser or assistive technology you were using if you can.
           </p>
         </div>
 
         <div>
-          <h2 class="text-2xl font-semibold text-white mb-2">10. Governing Law and Jurisdiction</h2>
+          <h2 class="text-2xl font-semibold text-white mb-2">7. Sustainability and Accessibility</h2>
           <p>
-            These Terms are governed by the laws of the Province of British Columbia and the applicable laws of Canada, without regard to
-            conflict of laws principles. You agree that any dispute arising out of or relating to these Terms or the Website will be brought
-            exclusively in the courts located in British Columbia, Canada, and you submit to the personal jurisdiction of those courts.
+            We see accessibility and sustainability as connected practices: both ask us to design with care for
+            people and the planet over the long term. The site uses optimised font formats (woff2 only),
+            modern image formats (WebP, AVIF), and a lean stylesheet to reduce data transfer and energy use,
+            which also tends to improve performance for visitors on low-bandwidth connections or older devices.
           </p>
         </div>
 
         <div>
-          <h2 class="text-2xl font-semibold text-white mb-2">11. Contact</h2>
+          <h2 class="text-2xl font-semibold text-white mb-2">8. Ongoing Improvement</h2>
           <p>
-            If you have questions about these Terms, please contact us at
-            <a href="mailto:marketing@denmanplacemall.com" class="underline text-coolGray-300 hover:text-white break-all">marketing@denmanplacemall.com</a>.
+            Accessibility is a process, not a destination. We periodically review new and updated pages against
+            WCAG 2.1 AA and update this statement when our practices change. If a specific issue affects your
+            ability to use the site today, please tell us — we will work with you to provide the information
+            you need by another means while we fix it.
           </p>
         </div>
 
         <p class="text-sm text-coolGray-400 mt-8 border-t border-coolGray-700 pt-4">
-          Last Updated: December 2025
+          Last Updated: May 2026
         </p>
 
       </div>
     </div>
   </div>
 </section>
+</main>
 
      <section class="py-12 md:py-20 bg-black">
         <div class="container mx-auto px-4">
@@ -268,16 +256,16 @@
               <h5 class="text-lg text-white mb-4 font-medium">Social Media</h5>
               <ul>
                 <li class="mb-4">
-                  <a class="inline-flex items-center text-coolGray-500 hover:text-white hover:underline" href="https://www.facebook.com/thedenmanplacemall" target="_blank">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <a class="inline-flex items-center text-coolGray-500 hover:text-white hover:underline" href="https://www.facebook.com/thedenmanplacemall" target="_blank" rel="noopener noreferrer">
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                       <path d="M22.675 0h-21.35C.599 0 0 .6 0 1.341v21.317C0 23.4.599 24 1.325 24H12.82v-9.294H9.692V11.27h3.128V8.414c0-3.1 1.894-4.788 4.66-4.788 1.325 0 2.464.099 2.796.143v3.24l-1.919.001c-1.504 0-1.794.715-1.794 1.763v2.31h3.587l-.467 3.436h-3.12V24h6.116c.728 0 1.324-.6 1.324-1.342V1.341C24 .6 23.403 0 22.675 0z" fill="currentColor"></path>
                     </svg>
                     <span class="ml-3">Facebook</span>
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a class="inline-flex items-center text-coolGray-500 hover:text-white hover:underline" href="https://www.instagram.com/thedenmanmall/" target="_blank">
-                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <a class="inline-flex items-center text-coolGray-500 hover:text-white hover:underline" href="https://www.instagram.com/thedenmanmall/" target="_blank" rel="noopener noreferrer">
+                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                       <path d="M10.0018 4.8916C7.73315 4.8916 5.89648 6.73027 5.89648 8.99694C5.89648 11.2656 7.73515 13.1023 10.0018 13.1023C12.2705 13.1023 14.1072 11.2636 14.1072 8.99694C14.1072 6.72827 12.2685 4.8916 10.0018 4.8916ZM10.0018 11.6616C8.52915 11.6616 7.33715 10.4689 7.33715 8.99694C7.33715 7.52494 8.52982 6.33227 10.0018 6.33227C11.4738 6.33227 12.6665 7.52494 12.6665 8.99694C12.6672 10.4689 11.4745 11.6616 10.0018 11.6616Z" fill="currentColor"></path>
                       <path d="M13.2988 1.05026C11.8268 0.981591 8.18082 0.984924 6.70749 1.05026C5.41282 1.11092 4.27082 1.42359 3.35015 2.34426C1.81148 3.88292 2.00815 5.95626 2.00815 8.99692C2.00815 12.1089 1.83482 14.1343 3.35015 15.6496C4.89482 17.1936 6.99815 16.9916 10.0028 16.9916C13.0855 16.9916 14.1495 16.9936 15.2395 16.5716C16.7215 15.9963 17.8402 14.6716 17.9495 12.2923C18.0188 10.8196 18.0148 7.17426 17.9495 5.70092C17.8175 2.89226 16.3102 1.18892 13.2988 1.05026ZM15.6288 14.6316C14.6202 15.6403 13.2208 15.5503 9.98349 15.5503C6.65015 15.5503 5.31348 15.5996 4.33815 14.6216C3.21482 13.5036 3.41815 11.7083 3.41815 8.98626C3.41815 5.30292 3.04015 2.65026 6.73682 2.46092C7.58615 2.43092 7.83615 2.42092 9.97415 2.42092L10.0042 2.44092C13.5568 2.44092 16.3442 2.06892 16.5115 5.76492C16.5495 6.60826 16.5582 6.86159 16.5582 8.99626C16.5575 12.2909 16.6202 13.6356 15.6288 14.6316Z" fill="currentColor"></path>
                       <path d="M14.2718 5.68869C14.8017 5.68869 15.2312 5.25918 15.2312 4.72935C15.2312 4.19953 14.8017 3.77002 14.2718 3.77002C13.742 3.77002 13.3125 4.19953 13.3125 4.72935C13.3125 5.25918 13.742 5.68869 14.2718 5.68869Z" fill="currentColor"></path>
@@ -286,8 +274,8 @@
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a class="inline-flex items-center text-coolGray-500 hover:text-white hover:underline" href="https://www.linkedin.com/company/denmanplacemall" target="_blank">
-                    <svg width="19" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <a class="inline-flex items-center text-coolGray-500 hover:text-white hover:underline" href="https://www.linkedin.com/company/denmanplacemall" target="_blank" rel="noopener noreferrer">
+                    <svg width="19" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                       <path d="M13.1004 13.0993V8.30161C13.1004 5.94368 12.5928 4.14249 9.84186 4.14249C8.51552 4.14249 7.6313 4.86297 7.27106 5.55069H7.23831V4.35536H4.63477V13.0993H7.35294V8.7601C7.35294 7.61388 7.5658 6.51679 8.97401 6.51679C10.3658 6.51679 10.3822 7.81038 10.3822 8.8256V13.083H13.1004V13.0993Z" fill="currentColor"></path>
                       <path d="M0.212891 4.35538H2.93106V13.0994H0.212891V4.35538Z" fill="currentColor"></path>
                       <path d="M1.57195 0C0.704104 0 0 0.704012 0 1.57186C0 2.43971 0.704104 3.16019 1.57195 3.16019C2.4398 3.16019 3.14391 2.43971 3.14391 1.57186C3.14391 0.704012 2.4398 0 1.57195 0Z" fill="currentColor"></path>
@@ -296,8 +284,8 @@
                   </a>
                 </li>
                 <li>
-                  <a class="inline-flex items-center text-coolGray-500 hover:text-white hover:underline" href="https://x.com/thedenmanmall" target="_blank">
-                    <svg width="19" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <a class="inline-flex items-center text-coolGray-500 hover:text-white hover:underline" href="https://x.com/thedenmanmall" target="_blank" rel="noopener noreferrer">
+                    <svg width="19" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                       <path d="M16.0809 1.78777C15.5109 2.03477 14.9219 2.20577 14.2949 2.28177C14.9409 1.90177 15.4349 1.29377 15.6629 0.552768C15.0549 0.913768 14.3899 1.16077 13.6869 1.31277C13.1169 0.704768 12.2999 0.324768 11.4069 0.324768C9.67786 0.324768 8.29086 1.73077 8.29086 3.44077C8.29086 3.68777 8.30986 3.91577 8.36686 4.14377C5.78286 4.02977 3.50286 2.77577 1.96386 0.894768C0.861859 2.87077 2.09686 4.50477 2.91386 5.05577C2.41986 5.05577 1.92586 4.90377 1.50786 4.67577C1.50786 6.21477 2.59086 7.48777 3.99686 7.77277C3.69286 7.86777 3.00886 7.92477 2.59086 7.82977C2.98986 9.06477 4.14886 9.97677 5.49786 9.99577C4.43386 10.8318 2.87586 11.4968 0.880859 11.2878C2.26786 12.1808 3.90186 12.6938 5.66886 12.6938C11.4069 12.6938 14.5229 7.94377 14.5229 3.83977C14.5229 3.70677 14.5229 3.57377 14.5039 3.44077C15.1499 2.96577 15.6819 2.41477 16.0809 1.78777Z" fill="currentColor"></path>
                     </svg>
                     <span class="ml-3">Twitter</span>
@@ -327,15 +315,15 @@
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
               <div class="text-center lg:text-left">
                 <span class="text-base font-medium text-coolGray-500">
-                  © <script>document.write(new Date().getFullYear())</script>  Denman Place Mall. All Rights Reserved.
+                  &copy; <script>document.write(new Date().getFullYear())</script>  Denman Place Mall. All Rights Reserved.
                   <span class="hidden lg:inline"><a href="terms.html" class="hover:underline">Terms of Use</a> | <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> | <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
                   <br>
-                  <span class="lg:hidden"><a href="terms.html" class="hover:underline">Terms of Use</a> • <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> &bull; <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
-                 
+                  <span class="lg:hidden"><a href="terms.html" class="hover:underline">Terms of Use</a> &bull; <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> &bull; <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
+
                 </span>
               </div>
               <div class="text-center lg:text-right">
-                <span class="text-base font-medium text-coolGray-500 lg:flex lg:items-center lg:justify-end">Website sustainably crafted by<a href="https://oasisofchange.com" target="_blank" class="underline text-green-600 hover:text-green-800 ml-1">Oasis of Change, Inc.</a></span>
+                <span class="text-base font-medium text-coolGray-500 lg:flex lg:items-center lg:justify-end">Website sustainably crafted by<a href="https://oasisofchange.com" target="_blank" rel="noopener noreferrer" class="underline text-green-600 hover:text-green-800 ml-1">Oasis of Change, Inc.</a></span>
               </div>
             </div>
         </div>
