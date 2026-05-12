@@ -30,13 +30,17 @@
 <link rel="stylesheet" href="assets/css/tailwind/min.css">
 
 <script src="assets/scripts/alpine.min.js" defer></script>
-<style>[x-cloak]{display:none!important}</style>
+<style>
+[x-cloak]{display:none!important}
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;}
+.skip-link:focus{position:fixed;left:0.5rem;top:0.5rem;width:auto;height:auto;z-index:9999;padding:0.75rem 1rem;background:#000;color:#fff;border:2px solid #fff;border-radius:0.25rem;text-decoration:none;font-weight:600;}
+</style>
 
 <script src="assets/scripts/hours-of-operation.js" defer></script>
 
 </head>
 <body class="antialiased bg-body text-body font-body">
-<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-black focus:text-white focus:rounded">Skip to main content</a>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="">
 
       <section x-data="{ mobileNavOpen: false }" class="">
