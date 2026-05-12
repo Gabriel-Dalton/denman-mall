@@ -1,0 +1,17 @@
+{
+  "nodes": [
+    {"id": "img:the-ice-cream-parlour.webp", "type": "image", "path": "assets/images/the-ice-cream-parlour.webp", "label": "The Ice Cream Parlour image"},
+    {"id": "img:ups.webp", "type": "image", "path": "assets/images/ups.webp", "label": "UPS image"},
+    {"id": "img:wesn.webp", "type": "image", "path": "assets/images/wesn.webp", "label": "WESN image"},
+    {"id": "img:yvr-travel-directory.webp", "type": "image", "path": "assets/images/yvr-travel-directory.webp", "label": "YVR Travel directory image"},
+    {"id": "img:yvr.webp", "type": "image", "path": "assets/images/yvr.webp", "label": "YVR Travel image"}
+  ],
+  "edges": [
+    {"source": "img:the-ice-cream-parlour.webp", "target": "page:the-ice-cream-parlour.html", "type": "depicts", "confidence": "INFERRED", "weight": 0.9},
+    {"source": "img:ups.webp", "target": "page:ups.html", "type": "depicts", "confidence": "INFERRED", "weight": 0.9},
+    {"source": "img:wesn.webp", "target": "page:wesn.html", "type": "depicts", "confidence": "INFERRED", "weight": 0.9},
+    {"source": "img:yvr-travel-directory.webp", "target": "page:yvr-travel.html", "type": "depicts", "confidence": "INFERRED", "weight": 0.9},
+    {"source": "img:yvr.webp", "target": "page:yvr-travel.html", "type": "depicts", "confidence": "INFERRED", "weight": 0.9},
+    {"source": "img:yvr-travel-directory.webp", "target": "img:yvr.webp", "type": "variant_of", "confidence": "INFERRED", "weight": 0.85}
+  ]
+}

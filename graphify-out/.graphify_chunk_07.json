@@ -1,0 +1,83 @@
+{
+  "nodes": [
+    {
+      "id": "image_mall_background",
+      "type": "image",
+      "label": "mall-background.webp",
+      "path": "assets/images/mall-background.webp",
+      "description": "Background hero image of Denman Mall, used as the primary hero/background visual on the index page."
+    },
+    {
+      "id": "image_minit_foto_directory",
+      "type": "image",
+      "label": "minit-foto-directory.webp",
+      "path": "assets/images/minit-foto-directory.webp",
+      "description": "Directory-listing thumbnail variant for Minit Foto storefront, used in the directory grid."
+    },
+    {
+      "id": "image_minit_foto",
+      "type": "image",
+      "label": "minit-foto.webp",
+      "path": "assets/images/minit-foto.webp",
+      "description": "Store-page hero/feature image for Minit Foto, displayed on the dedicated minit-foto.html page."
+    },
+    {
+      "id": "image_murrick",
+      "type": "image",
+      "label": "murrick.webp",
+      "path": "assets/images/murrick.webp",
+      "description": "Image representing Murrick Insurance storefront/branding."
+    },
+    {
+      "id": "image_no_frills",
+      "type": "image",
+      "label": "no-frills.webp",
+      "path": "assets/images/no-frills.webp",
+      "description": "Image representing the No Frills grocery store at Denman Mall."
+    }
+  ],
+  "edges": [
+    {
+      "source": "image_mall_background",
+      "target": "index_page",
+      "type": "hero_image",
+      "inferred": true,
+      "confidence_score": 0.8
+    },
+    {
+      "source": "image_minit_foto_directory",
+      "target": "minit_foto_store",
+      "type": "depicts",
+      "inferred": true,
+      "confidence_score": 0.9
+    },
+    {
+      "source": "image_minit_foto",
+      "target": "minit_foto_store",
+      "type": "depicts",
+      "inferred": true,
+      "confidence_score": 0.9
+    },
+    {
+      "source": "image_minit_foto_directory",
+      "target": "image_minit_foto",
+      "type": "variant_of",
+      "inferred": true,
+      "confidence_score": 0.85
+    },
+    {
+      "source": "image_murrick",
+      "target": "murrick_insurance_store",
+      "type": "depicts",
+      "inferred": true,
+      "confidence_score": 0.9
+    },
+    {
+      "source": "image_no_frills",
+      "target": "no_frills_store",
+      "type": "depicts",
+      "inferred": true,
+      "confidence_score": 0.9
+    }
+  ]
+}

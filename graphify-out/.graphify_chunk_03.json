@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {"id": "file:robots.txt", "type": "SEO_config", "label": "robots.txt", "path": "robots.txt", "confidence_score": 0.98},
+    {"id": "page:rose-stitching", "type": "Page", "label": "Rose Stitching", "path": "rose-stitching.html", "confidence_score": 0.98},
+    {"id": "store:rose-stitching", "type": "Store", "label": "Rose Stitching", "category": "Services", "confidence_score": 0.95},
+    {"id": "page:safety-updates", "type": "Policy", "label": "Safety & Emergency Information", "path": "safety-updates.html", "confidence_score": 0.98},
+    {"id": "page:scissors-comb-barbershop", "type": "Page", "label": "Scissors & Comb Barbershop", "path": "scissors-comb-barbershop.html", "confidence_score": 0.98},
+    {"id": "store:scissors-comb-barbershop", "type": "Store", "label": "Scissors & Comb Barbershop", "category": "Services", "confidence_score": 0.95},
+    {"id": "page:shoppers-drug-mart", "type": "Page", "label": "Shoppers Drug Mart", "path": "shoppers-drug-mart.html", "confidence_score": 0.98},
+    {"id": "store:shoppers-drug-mart", "type": "Store", "label": "Shoppers Drug Mart", "category": "Retail", "confidence_score": 0.95},
+    {"id": "page:specsavers", "type": "Page", "label": "Specsavers", "path": "specsavers.html", "confidence_score": 0.98},
+    {"id": "store:specsavers", "type": "Store", "label": "Specsavers", "category": "Retail", "confidence_score": 0.95},
+    {"id": "page:stanley-park-dental", "type": "Page", "label": "Stanley Park Dental", "path": "stanley-park-dental.html", "confidence_score": 0.98},
+    {"id": "store:stanley-park-dental", "type": "Store", "label": "Stanley Park Dental", "category": "Health & Wellness", "confidence_score": 0.95},
+    {"id": "page:teate-clinic", "type": "Page", "label": "Teate Clinic", "path": "teate-clinic.html", "confidence_score": 0.98},
+    {"id": "store:teate-clinic", "type": "Store", "label": "Teate Clinic", "category": "Health & Wellness", "confidence_score": 0.95},
+    {"id": "page:terms", "type": "Policy", "label": "Terms of Use", "path": "terms.html", "confidence_score": 0.98},
+    {"id": "page:the-ice-cream-parlour", "type": "Page", "label": "The Ice Cream Parlour", "path": "the-ice-cream-parlour.html", "confidence_score": 0.98},
+    {"id": "store:the-ice-cream-parlour", "type": "Store", "label": "The Ice Cream Parlour", "category": "Food", "confidence_score": 0.95},
+    {"id": "page:update-in-progress", "type": "Page", "label": "Update In Progress", "path": "update-in-progress.html", "confidence_score": 0.9},
+    {"id": "page:ups", "type": "Page", "label": "UPS", "path": "ups.html", "confidence_score": 0.98},
+    {"id": "store:ups", "type": "Store", "label": "UPS", "category": "Services", "confidence_score": 0.95},
+    {"id": "page:wesn", "type": "Page", "label": "WESN", "path": "wesn.html", "confidence_score": 0.95},
+    {"id": "store:wesn", "type": "Store", "label": "WESN", "category": "Retail", "confidence_score": 0.9},
+    {"id": "page:yvr-travel", "type": "Page", "label": "YVR Travel", "path": "yvr-travel.html", "confidence_score": 0.98},
+    {"id": "store:yvr-travel", "type": "Store", "label": "YVR Travel", "category": "Services", "confidence_score": 0.95},
+    {"id": "file:assets/README.md", "type": "Documentation", "label": "Assets README", "path": "assets/README.md", "confidence_score": 0.95}
+  ],
+  "edges": [
+    {"source": "page:rose-stitching", "target": "store:rose-stitching", "type": "EXTRACTED", "label": "describes", "confidence_score": 0.95},
+    {"source": "page:scissors-comb-barbershop", "target": "store:scissors-comb-barbershop", "type": "EXTRACTED", "label": "describes", "confidence_score": 0.95},
+    {"source": "page:shoppers-drug-mart", "target": "store:shoppers-drug-mart", "type": "EXTRACTED", "label": "describes", "confidence_score": 0.95},
+    {"source": "page:specsavers", "target": "store:specsavers", "type": "EXTRACTED", "label": "describes", "confidence_score": 0.95},
+    {"source": "page:stanley-park-dental", "target": "store:stanley-park-dental", "type": "EXTRACTED", "label": "describes", "confidence_score": 0.95},
+    {"source": "page:teate-clinic", "target": "store:teate-clinic", "type": "EXTRACTED", "label": "describes", "confidence_score": 0.95},
+    {"source": "page:the-ice-cream-parlour", "target": "store:the-ice-cream-parlour", "type": "EXTRACTED", "label": "describes", "confidence_score": 0.95},
+    {"source": "page:ups", "target": "store:ups", "type": "EXTRACTED", "label": "describes", "confidence_score": 0.95},
+    {"source": "page:wesn", "target": "store:wesn", "type": "EXTRACTED", "label": "describes", "confidence_score": 0.9},
+    {"source": "page:yvr-travel", "target": "store:yvr-travel", "type": "EXTRACTED", "label": "describes", "confidence_score": 0.95}
+  ]
+}

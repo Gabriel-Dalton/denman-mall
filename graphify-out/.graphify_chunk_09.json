@@ -1,0 +1,105 @@
+{
+  "nodes": [
+    {
+      "id": "img:shuffle-image-20",
+      "type": "image",
+      "label": "shuffle-image-20.png",
+      "path": "assets/images/shuffle-image-20.png",
+      "description": "Aerial drone photograph of Denman Place Mall complex showing the rooftop, surrounding high-rise residential towers, street-level storefronts, and West End Vancouver neighborhood context. Used as a shuffled/rotating hero or gallery image."
+    },
+    {
+      "id": "img:specsavers",
+      "type": "image",
+      "label": "specsavers.webp",
+      "path": "assets/images/specsavers.webp",
+      "description": "Specsavers logo: green double-oval mark with white 'Specsavers' wordmark."
+    },
+    {
+      "id": "img:stanley-park-dental-centre-directory",
+      "type": "image",
+      "label": "stanley-park-dental-centre-directory.webp",
+      "path": "assets/images/stanley-park-dental-centre-directory.webp",
+      "description": "Stanley Park Dental Centre logo variant (directory thumbnail): blue tooth icon with 'STANLEY PARK' wordmark inside a circular outline."
+    },
+    {
+      "id": "img:stanley-park-dental-centre",
+      "type": "image",
+      "label": "stanley-park-dental-centre.webp",
+      "path": "assets/images/stanley-park-dental-centre.webp",
+      "description": "Stanley Park Dental Centre primary logo: blue tooth icon with 'STANLEY PARK' wordmark in a circular frame."
+    },
+    {
+      "id": "img:teate-clinic",
+      "type": "image",
+      "label": "teate-clinic.webp",
+      "path": "assets/images/teate-clinic.webp",
+      "description": "Teate Clinic logo: stylized beige/taupe fairy or sprite figure brushstroke illustration."
+    }
+  ],
+  "edges": [
+    {
+      "source": "img:shuffle-image-20",
+      "target": "page:index",
+      "type": "depicts",
+      "confidence": 0.3,
+      "evidence": "AMBIGUOUS: shuffle-image-* assets typically rotate in a hero/gallery on the home page, but exact usage uncertain.",
+      "inferred": true
+    },
+    {
+      "source": "img:specsavers",
+      "target": "page:specsavers",
+      "type": "depicts",
+      "confidence": 0.95,
+      "evidence": "Filename matches specsavers.html store page.",
+      "inferred": true
+    },
+    {
+      "source": "img:specsavers",
+      "target": "page:directory",
+      "type": "depicts",
+      "confidence": 0.7,
+      "evidence": "Logo likely referenced from directory listing.",
+      "inferred": true
+    },
+    {
+      "source": "img:stanley-park-dental-centre",
+      "target": "page:stanley-park-dental",
+      "type": "depicts",
+      "confidence": 0.95,
+      "evidence": "Filename matches stanley-park-dental.html store page.",
+      "inferred": true
+    },
+    {
+      "source": "img:stanley-park-dental-centre-directory",
+      "target": "page:directory",
+      "type": "depicts",
+      "confidence": 0.9,
+      "evidence": "Filename suffix '-directory' indicates use in directory.html listing.",
+      "inferred": true
+    },
+    {
+      "source": "img:stanley-park-dental-centre-directory",
+      "target": "img:stanley-park-dental-centre",
+      "type": "variant_of",
+      "confidence": 0.85,
+      "evidence": "Two visually similar logo files differing in crop/sizing for directory vs store page use.",
+      "inferred": true
+    },
+    {
+      "source": "img:teate-clinic",
+      "target": "page:teate-clinic",
+      "type": "depicts",
+      "confidence": 0.95,
+      "evidence": "Filename matches teate-clinic.html store page.",
+      "inferred": true
+    },
+    {
+      "source": "img:teate-clinic",
+      "target": "page:directory",
+      "type": "depicts",
+      "confidence": 0.7,
+      "evidence": "Logo likely referenced from directory listing.",
+      "inferred": true
+    }
+  ]
+}
