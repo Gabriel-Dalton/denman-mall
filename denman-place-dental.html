@@ -235,7 +235,7 @@
 
     </div>
   </nav>
-  <div id="mobile-nav" x-cloak="" x-show="mobileNavOpen" x-transition="" class="fixed top-0 left-0 bottom-0 w-5/6 max-w-md z-50">
+  <div id="mobile-nav" x-cloak="" x-show="mobileNavOpen" x-transition="" style="display:none" class="fixed top-0 left-0 bottom-0 w-5/6 max-w-md z-50">
     <div x-on:click="mobileNavOpen = false" class="fixed inset-0 bg-gray-800 opacity-50"></div>
     <nav class="relative flex flex-col py-8 px-8 w-full h-full bg-white overflow-y-auto" aria-label="Mobile navigation">
       <div class="flex items-center mb-8">
@@ -307,7 +307,7 @@
   .mall-star-btn svg{width:1.1rem;height:1.1rem;}
 </style>
 <div class="notranslate" translate="no" x-data x-init="$store.mall && $store.mall.load && $store.mall.load()">
-  <button type="button" x-show="$store.mall && $store.mall.items.length > 0" @click="$store.mall.open = true" class="mall-list-fab" aria-label="Open my saved stores list">
+  <button type="button" x-show="$store.mall && $store.mall.items.length > 0" style="display:none" @click="$store.mall.open = true" class="mall-list-fab" aria-label="Open my saved stores list">
     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
     <span class="mall-list-fab-count" x-show="$store.mall && $store.mall.items.length" x-text="$store.mall && $store.mall.items.length"></span>
   </button>
@@ -676,20 +676,21 @@ document.addEventListener('alpine:init', function () {
      until the visitor accepts or declines. window.MallConsent exposes a small
      API so tracking scripts (e.g. analytics) can gate themselves on consent. -->
 <style id="mall-consent-css">
-  .mall-consent{position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:70;background:#111;color:#f9fafb;border-radius:.75rem;box-shadow:0 20px 50px -10px rgba(0,0,0,.45);padding:1rem 1.25rem;display:none;font-size:.9375rem;line-height:1.5;}
-  .mall-consent[data-visible="true"]{display:flex;flex-direction:column;gap:.75rem;}
-  @media (min-width: 768px){.mall-consent{flex-direction:row !important;align-items:center;gap:1.25rem;max-width:64rem;left:50%;right:auto;transform:translateX(-50%);padding:1rem 1.5rem;}}
+  .mall-consent{position:fixed;left:.75rem;right:.75rem;bottom:.75rem;z-index:70;background:#111;color:#f9fafb;border-radius:.625rem;box-shadow:0 20px 50px -10px rgba(0,0,0,.45);padding:.7rem .85rem;display:none;font-size:.8125rem;line-height:1.4;}
+  .mall-consent[data-visible="true"]{display:flex;flex-direction:column;gap:.55rem;}
+  @media (min-width: 768px){.mall-consent{flex-direction:row !important;align-items:center;gap:1.25rem;max-width:64rem;left:50%;right:auto;transform:translateX(-50%);padding:1rem 1.5rem;font-size:.9375rem;line-height:1.5;border-radius:.75rem;}}
   .mall-consent p{margin:0;flex:1;}
   .mall-consent a{color:#fff;text-decoration:underline;}
-  .mall-consent-actions{display:flex;gap:.5rem;flex-shrink:0;}
-  .mall-consent-actions button{cursor:pointer;border-radius:9999px;padding:.55rem 1.1rem;font-weight:600;font-size:.875rem;font-family:inherit;border:1px solid transparent;line-height:1;}
+  .mall-consent-actions{display:flex;gap:.4rem;flex-shrink:0;}
+  .mall-consent-actions button{cursor:pointer;border-radius:9999px;padding:.4rem .85rem;font-weight:600;font-size:.8125rem;font-family:inherit;border:1px solid transparent;line-height:1;flex:1;}
+  @media (min-width: 768px){.mall-consent-actions button{padding:.55rem 1.1rem;font-size:.875rem;flex:0 0 auto;}}
   .mall-consent-decline{background:transparent;color:#f9fafb;border-color:#4b5563;}
   .mall-consent-decline:hover,.mall-consent-decline:focus-visible{background:#1f2937;outline:none;}
   .mall-consent-accept{background:#fff;color:#111;}
   .mall-consent-accept:hover,.mall-consent-accept:focus-visible{background:#e5e7eb;outline:none;}
 </style>
 <div id="mall-consent" class="mall-consent notranslate" translate="no" role="dialog" aria-live="polite" aria-label="Cookie consent">
-  <p>We use a small number of cookies to remember your language preference and, with your consent, to measure site traffic so we can improve the experience. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+  <p>We use cookies to remember your language and, with your permission, measure traffic. <a href="privacy-policy.html">Privacy Policy</a>.</p>
   <div class="mall-consent-actions">
     <button type="button" class="mall-consent-decline" data-mall-consent-decline>Decline</button>
     <button type="button" class="mall-consent-accept" data-mall-consent-accept>Accept</button>
