@@ -40,34 +40,7 @@
   a:focus-visible,button:focus-visible,[tabindex]:focus-visible,summary:focus-visible{outline:2px solid #1a73e8;outline-offset:2px;border-radius:2px;}
 </style>
 
-<style id="page-styles">
-  .pg-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
-  @media (min-width:768px){.pg-grid-2{grid-template-columns:repeat(2,minmax(0,1fr));}}
-  @media (min-width:1024px){.pg-grid-3{grid-template-columns:repeat(3,minmax(0,1fr));}}
-  .pg-list{list-style:none;padding:0;margin:0;}
-  .pg-list>li{position:relative;padding-left:1.75rem;margin-bottom:.5rem;color:#d1d5db;}
-  .pg-list>li::before{content:"";position:absolute;left:.25rem;top:.7em;width:.5rem;height:.5rem;background:#fff;border-radius:9999px;}
-  .pg-list-tight>li{margin-bottom:.25rem;}
-  .pg-card{background:#0a0a0a;border:1px solid #374151;border-radius:1rem;padding:1.5rem;}
-  .pg-card h3{margin-top:0;}
-  .pg-icon{display:inline-flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;background:#1f2937;border:1px solid #374151;border-radius:9999px;color:#fff;flex-shrink:0;}
-  .pg-iconlg{width:3rem;height:3rem;}
-  .pg-section-head{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;}
-  .pg-callout{background:rgba(254,243,199,.08);border:1px solid rgba(251,191,36,.5);border-left:4px solid #f59e0b;border-radius:.75rem;padding:1.25rem 1.5rem;display:flex;gap:1rem;align-items:flex-start;}
-  .pg-callout .pg-callout-icon{flex-shrink:0;width:2rem;height:2rem;display:inline-flex;align-items:center;justify-content:center;color:#fbbf24;}
-  .pg-pill{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem 1rem;border:1px solid #9ca3af;border-radius:9999px;color:#fff;text-decoration:none;transition:background .15s,color .15s;}
-  .pg-pill:hover,.pg-pill:focus-visible{background:#fff;color:#000;}
-  .pg-route{display:inline-flex;align-items:center;gap:.5rem;background:#1f2937;border:1px solid #4b5563;border-radius:.5rem;padding:.5rem .85rem;color:#fff;text-decoration:none;font-weight:500;transition:background .15s;}
-  .pg-route:hover,.pg-route:focus-visible{background:#374151;}
-  .pg-route-num{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;height:2rem;padding:0 .5rem;background:#0a66c2;color:#fff;border-radius:.35rem;font-weight:700;font-size:.95rem;}
-  .pg-stop{display:flex;align-items:flex-start;gap:.75rem;padding:.75rem 0;border-top:1px solid #374151;}
-  .pg-stop:first-child{border-top:0;}
-  .pg-stop-meta{flex:1;}
-  .pg-stop-time{color:#9ca3af;font-size:.95rem;}
-  .pg-link{color:#fff;text-decoration:underline;text-underline-offset:3px;}
-  .pg-link:hover,.pg-link:focus-visible{color:#d1d5db;}
-  .pg-divider{height:1px;background:#374151;margin:2rem 0;border:0;}
-</style>
+<!-- Page component styles (.pg-*) ship in assets/css/tailwind/min.css -->
 </head>
 <body class="antialiased bg-body text-body font-body">
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -473,12 +446,420 @@ document.addEventListener('alpine:init', function () {
           <div class="pg-icon pg-iconlg" aria-hidden="true" style="margin:0 auto 1rem;">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="6" width="18" height="11" rx="2"/><line x1="3" y1="13" x2="21" y2="13"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg>
           </div>
-          <h1 id="pt-heading" class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">Parking &amp; Transit</h1>
-          <p class="text-lg text-coolGray-300 max-w-3xl mx-auto">Denman Place Mall is at 1030 Denman Street in Vancouver&rsquo;s West End, well served by bus, walking, cycling and nearby parking. Here&rsquo;s how to get here.</p>
+          <h1 id="pt-heading" class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">Getting Here</h1>
+          <p class="text-lg text-coolGray-300 max-w-3xl mx-auto">Denman Place Mall sits at <span class="notranslate" translate="no">1030 Denman Street</span> in Vancouver&rsquo;s West End. Buses, e-scooters, bike-share, car-share and the Seaside path all meet at our front door &mdash; here&rsquo;s the full picture.</p>
         </header>
 
         <div class="max-w-5xl mx-auto text-base sm:text-lg leading-relaxed">
 
+          <!-- Quick action chips -->
+          <div class="pg-chips mb-10 sm:justify-center">
+            <a href="https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6" target="_blank" rel="noopener noreferrer" class="pg-pill" aria-label="Open Denman Place Mall in Google Maps (opens in a new tab)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <span>Open in Google Maps</span>
+            </a>
+            <a href="https://www.translink.ca/trip-planner" target="_blank" rel="noopener noreferrer" class="pg-pill" aria-label="Open TransLink trip planner (opens in a new tab)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              <span>TransLink trip planner</span>
+            </a>
+            <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Current+Location&amp;destination=1030+Denman+Street+Vancouver+BC" target="_blank" rel="noopener noreferrer" class="pg-pill" aria-label="Get directions from your current location (opens in a new tab)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+              <span>Directions from here</span>
+            </a>
+            <a href="https://li.me/" target="_blank" rel="noopener noreferrer" class="pg-pill pg-pill-lime" aria-label="Find Lime e-scooters and e-bikes (opens in a new tab)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="5" cy="18" r="2.5"/><circle cx="19" cy="18" r="2.5"/><path d="M5 18l5-9h5"/><path d="M14 9h3l2 9"/></svg>
+              <span>Find a Lime nearby</span>
+            </a>
+          </div>
+
+          <!-- Hero: map + at-a-glance summary -->
+          <div class="pg-hero">
+            <div class="pg-mapwrap pg-hero-map">
+              <iframe
+                title="Interactive map showing Denman Place Mall at 1030 Denman Street, Vancouver"
+                src="https://maps.google.com/maps?q=1030+Denman+Street,+Vancouver,+BC&amp;output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <article class="pg-card" aria-labelledby="pt-hero-summary">
+              <div class="pg-section-head">
+                <span class="pg-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+                </span>
+                <h2 id="pt-hero-summary" class="text-xl font-semibold text-white m-0">At a glance</h2>
+              </div>
+              <ul class="pg-list pg-list-tight">
+                <li><strong class="text-white">3 frequent bus routes</strong> stop within a 2-minute walk (#5, #6, #19).</li>
+                <li><strong class="text-white">Lime e-scooters &amp; e-bikes</strong> are usually parked along Denman St and Beach Ave.</li>
+                <li><strong class="text-white">Seaside Bike Route</strong> &amp; Mobi bike-share are two blocks south.</li>
+                <li><strong class="text-white">10-minute walk</strong> to Stanley Park &amp; English Bay Beach.</li>
+                <li><strong class="text-white">Evo &amp; Modo car-share</strong> vehicles are within a block.</li>
+                <li><strong class="text-white">Burrard SkyTrain</strong> is a 15-minute walk or a 6-minute bus ride.</li>
+              </ul>
+            </article>
+          </div>
+
+          <!-- Stats row -->
+          <dl class="pg-stats" aria-label="Travel times from the mall">
+            <div class="pg-stat">
+              <dt class="pg-stat-label">Walk to English Bay</dt>
+              <dd class="pg-stat-num">~5 min</dd>
+            </div>
+            <div class="pg-stat">
+              <dt class="pg-stat-label">Walk to Stanley Park</dt>
+              <dd class="pg-stat-num">~10 min</dd>
+            </div>
+            <div class="pg-stat">
+              <dt class="pg-stat-label">Bus to Waterfront SkyTrain</dt>
+              <dd class="pg-stat-num">~12 min</dd>
+            </div>
+            <div class="pg-stat">
+              <dt class="pg-stat-label">Bike to Granville Island</dt>
+              <dd class="pg-stat-num">~15 min</dd>
+            </div>
+          </dl>
+
+          <!-- ====================== PUBLIC TRANSIT ====================== -->
+          <section aria-labelledby="pt-transit" class="mb-12">
+            <div class="pg-section-head">
+              <span class="pg-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 17V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11"/><path d="M4 13h16"/><path d="M5 17v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2"/><path d="M16 17v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2"/><circle cx="8" cy="16" r="1"/><circle cx="16" cy="16" r="1"/></svg>
+              </span>
+              <h2 id="pt-transit" class="text-2xl font-semibold text-white m-0">Public Transit</h2>
+            </div>
+            <p class="mb-6 text-coolGray-200">TransLink buses run along Denman, Davie and Robson Streets, putting the mall within a 2-minute walk of three Frequent Transit Network routes. Pay with a <a href="https://www.compasscard.ca/" target="_blank" rel="noopener noreferrer" class="pg-link">Compass card</a>, contactless credit card or a single-trip ticket from any bus stop pole reader.</p>
+
+            <!-- Route cards -->
+            <h3 class="text-xl font-semibold text-white mb-3">Bus routes serving Denman St</h3>
+            <div class="pg-grid pg-grid-2 mb-8">
+
+              <article class="pg-route-card">
+                <div class="pg-route-card-head">
+                  <span class="pg-route-num" aria-hidden="true">5</span>
+                  <p class="pg-route-card-name">Robson / Downtown</p>
+                  <span class="pg-tag pg-tag-frequent" title="Frequent Transit Network">Frequent</span>
+                </div>
+                <p class="pg-route-card-desc">Loops Robson Village &harr; Downtown via Robson and Davie Streets. Useful for Robson shopping, Robson Square and the central business district.</p>
+                <div class="pg-route-card-meta">
+                  <span><strong>Every 8&ndash;15 min</strong> daytime</span>
+                  <span><strong>~5:30 a&ndash;1:30 a</strong></span>
+                  <span>Compass &amp; tap-to-pay</span>
+                </div>
+                <a href="https://www.translink.ca/schedules-and-maps/bus/5" target="_blank" rel="noopener noreferrer" class="pg-route-link" aria-label="Route 5 Robson live schedule on TransLink (opens in a new tab)">Live schedule &amp; map &rarr;</a>
+              </article>
+
+              <article class="pg-route-card">
+                <div class="pg-route-card-head">
+                  <span class="pg-route-num" aria-hidden="true">6</span>
+                  <p class="pg-route-card-name">Davie / Downtown</p>
+                  <span class="pg-tag pg-tag-frequent" title="Frequent Transit Network">Frequent</span>
+                </div>
+                <p class="pg-route-card-desc">Davie Village &harr; Downtown along Davie Street. The fastest connection to Yaletown, BC Place and the Granville entertainment district.</p>
+                <div class="pg-route-card-meta">
+                  <span><strong>Every 8&ndash;15 min</strong> daytime</span>
+                  <span><strong>~5:30 a&ndash;1:30 a</strong></span>
+                  <span>Compass &amp; tap-to-pay</span>
+                </div>
+                <a href="https://www.translink.ca/schedules-and-maps/bus/6" target="_blank" rel="noopener noreferrer" class="pg-route-link" aria-label="Route 6 Davie live schedule on TransLink (opens in a new tab)">Live schedule &amp; map &rarr;</a>
+              </article>
+
+              <article class="pg-route-card">
+                <div class="pg-route-card-head">
+                  <span class="pg-route-num" aria-hidden="true">19</span>
+                  <p class="pg-route-card-name">Stanley Park &harr; Metrotown</p>
+                </div>
+                <p class="pg-route-card-desc">A one-seat ride from Stanley Park&rsquo;s Pipeline Road right through downtown to Metrotown shopping centre &mdash; a popular weekend route.</p>
+                <div class="pg-route-card-meta">
+                  <span><strong>Every 15&ndash;30 min</strong></span>
+                  <span><strong>~5:00 a&ndash;1:00 a</strong></span>
+                  <span>Wheelchair accessible</span>
+                </div>
+                <a href="https://www.translink.ca/schedules-and-maps/bus/19" target="_blank" rel="noopener noreferrer" class="pg-route-link" aria-label="Route 19 Metrotown live schedule on TransLink (opens in a new tab)">Live schedule &amp; map &rarr;</a>
+              </article>
+
+              <article class="pg-route-card">
+                <div class="pg-route-card-head">
+                  <span class="pg-route-num pg-route-num-night" aria-hidden="true">N6</span>
+                  <p class="pg-route-card-name">NightBus &mdash; Davie</p>
+                  <span class="pg-tag pg-tag-night">NightBus</span>
+                </div>
+                <p class="pg-route-card-desc">Overnight service between Downtown and Davie/Denman after the regular network shuts down. Stops are shared with the 6 daytime route.</p>
+                <div class="pg-route-card-meta">
+                  <span><strong>~1:30 a&ndash;4:30 a</strong></span>
+                  <span>Approx. every 30 min</span>
+                  <span>7 nights/week</span>
+                </div>
+                <a href="https://www.translink.ca/rider-info/nightbus" target="_blank" rel="noopener noreferrer" class="pg-route-link" aria-label="NightBus information on TransLink (opens in a new tab)">NightBus details &rarr;</a>
+              </article>
+
+            </div>
+
+            <!-- Stops + SkyTrain side-by-side -->
+            <div class="pg-grid pg-grid-2 mb-6">
+              <article class="pg-card" aria-labelledby="pt-stops">
+                <h3 id="pt-stops" class="text-xl font-semibold text-white mb-4">Nearest bus stops</h3>
+
+                <div class="pg-stop">
+                  <span class="pg-icon" aria-hidden="true" style="width:2rem;height:2rem;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/></svg>
+                  </span>
+                  <div class="pg-stop-meta">
+                    <p class="m-0 font-medium text-white">Denman St @ Comox St</p>
+                    <p class="pg-stop-time m-0">Directly outside the mall &middot; Routes <strong class="text-white">5</strong>, <strong class="text-white">N6</strong></p>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Denman+St+%40+Comox+St+Vancouver" target="_blank" rel="noopener noreferrer" class="pg-link" aria-label="View Denman at Comox bus stop on Google Maps (opens in a new tab)">View on map &rarr;</a>
+                  </div>
+                </div>
+
+                <div class="pg-stop">
+                  <span class="pg-icon" aria-hidden="true" style="width:2rem;height:2rem;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/></svg>
+                  </span>
+                  <div class="pg-stop-meta">
+                    <p class="m-0 font-medium text-white">Davie St @ Denman St</p>
+                    <p class="pg-stop-time m-0">~1 min walk &middot; Routes <strong class="text-white">6</strong>, <strong class="text-white">N6</strong></p>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Davie+St+%40+Denman+St+Vancouver" target="_blank" rel="noopener noreferrer" class="pg-link" aria-label="View Davie at Denman bus stop on Google Maps (opens in a new tab)">View on map &rarr;</a>
+                  </div>
+                </div>
+
+                <div class="pg-stop">
+                  <span class="pg-icon" aria-hidden="true" style="width:2rem;height:2rem;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/></svg>
+                  </span>
+                  <div class="pg-stop-meta">
+                    <p class="m-0 font-medium text-white">Robson St @ Denman St</p>
+                    <p class="pg-stop-time m-0">~3 min walk &middot; Routes <strong class="text-white">5</strong>, <strong class="text-white">19</strong></p>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Robson+St+%40+Denman+St+Vancouver" target="_blank" rel="noopener noreferrer" class="pg-link" aria-label="View Robson at Denman bus stop on Google Maps (opens in a new tab)">View on map &rarr;</a>
+                  </div>
+                </div>
+
+                <div class="pg-stop">
+                  <span class="pg-icon" aria-hidden="true" style="width:2rem;height:2rem;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/></svg>
+                  </span>
+                  <div class="pg-stop-meta">
+                    <p class="m-0 font-medium text-white">Davie St @ Bidwell St</p>
+                    <p class="pg-stop-time m-0">~2 min walk &middot; Route <strong class="text-white">6</strong></p>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Davie+St+%40+Bidwell+St+Vancouver" target="_blank" rel="noopener noreferrer" class="pg-link" aria-label="View Davie at Bidwell bus stop on Google Maps (opens in a new tab)">View on map &rarr;</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="pg-card" aria-labelledby="pt-skytrain">
+                <div class="pg-section-head">
+                  <span class="pg-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="3" width="16" height="16" rx="2"/><line x1="4" y1="11" x2="20" y2="11"/><path d="M8 19l-2 2"/><path d="M16 19l2 2"/><circle cx="8.5" cy="15" r="1"/><circle cx="15.5" cy="15" r="1"/></svg>
+                  </span>
+                  <h3 id="pt-skytrain" class="text-xl font-semibold text-white m-0">SkyTrain &amp; SeaBus</h3>
+                </div>
+                <p class="text-coolGray-300 mb-3"><strong class="text-white">Burrard Station</strong> on the Expo &amp; Millennium Lines is the closest SkyTrain &mdash; about a <strong class="text-white">15-minute walk</strong> or a 6-minute ride on the 5 bus.</p>
+                <p class="text-coolGray-300 mb-3"><strong class="text-white">Waterfront Station</strong> connects to all SkyTrain lines, the SeaBus to North Vancouver and the West Coast Express, and is a 12-minute ride on the 5 bus.</p>
+                <dl class="pg-kv mb-4">
+                  <dt>Expo Line</dt><dd>To Surrey, Burnaby, New West</dd>
+                  <dt>Millennium Line</dt><dd>To VCC&ndash;Clark &amp; the Broadway corridor</dd>
+                  <dt>Canada Line</dt><dd>To Richmond &amp; YVR Airport</dd>
+                  <dt>SeaBus</dt><dd>To Lonsdale Quay, North Vancouver</dd>
+                </dl>
+                <a href="https://www.google.com/maps/dir/?api=1&amp;origin=1030+Denman+Street+Vancouver+BC&amp;destination=Burrard+SkyTrain+Station+Vancouver&amp;travelmode=walking" target="_blank" rel="noopener noreferrer" class="pg-link" aria-label="Walking directions from the mall to Burrard SkyTrain Station (opens in a new tab)">Walk to Burrard Station &rarr;</a>
+              </article>
+            </div>
+
+            <article class="pg-card" aria-labelledby="pt-fares">
+              <div class="pg-section-head">
+                <span class="pg-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="6" width="18" height="12" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1.2"/></svg>
+                </span>
+                <h3 id="pt-fares" class="text-xl font-semibold text-white m-0">Fares &amp; apps</h3>
+              </div>
+              <div class="pg-grid pg-grid-2">
+                <a href="https://www.compasscard.ca/" target="_blank" rel="noopener noreferrer" class="pg-app" aria-label="Compass card information on TransLink (opens in a new tab)">
+                  <span class="pg-app-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="6" width="18" height="12" rx="2"/><line x1="3" y1="11" x2="21" y2="11"/></svg>
+                  </span>
+                  <span class="pg-app-text">
+                    <span class="pg-app-name">Compass card</span>
+                    <span class="pg-app-meta">Load fares on a card or in Apple/Google Wallet</span>
+                  </span>
+                </a>
+                <a href="https://transitapp.com/" target="_blank" rel="noopener noreferrer" class="pg-app" aria-label="Transit app for live arrivals (opens in a new tab)">
+                  <span class="pg-app-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+                  </span>
+                  <span class="pg-app-text">
+                    <span class="pg-app-name">Transit app</span>
+                    <span class="pg-app-meta">Live bus countdowns &amp; trip planning</span>
+                  </span>
+                </a>
+              </div>
+            </article>
+          </section>
+
+          <hr class="pg-divider" aria-hidden="true">
+
+          <!-- ====================== SHARED MOBILITY ====================== -->
+          <section aria-labelledby="pt-mobility" class="mb-12">
+            <div class="pg-section-head">
+              <span class="pg-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="5" cy="18" r="2.5"/><circle cx="19" cy="18" r="2.5"/><path d="M5 18l5-9h5"/><path d="M14 9h3l2 9"/><circle cx="12" cy="5" r="1.2"/></svg>
+              </span>
+              <h2 id="pt-mobility" class="text-2xl font-semibold text-white m-0">Lime, Mobi &amp; Car-share</h2>
+            </div>
+            <p class="mb-6 text-coolGray-200">Denman Street is one of Vancouver&rsquo;s busiest shared-mobility corridors. You&rsquo;ll usually find Lime e-scooters, Lime e-bikes and Mobi pedal bikes within a minute of the mall &mdash; plus Evo and Modo car-share vehicles a block away.</p>
+
+            <!-- Lime card (full-width feature) -->
+            <article class="pg-card pg-card-accent mb-6" aria-labelledby="pt-lime">
+              <div class="pg-section-head">
+                <span class="pg-icon" aria-hidden="true" style="background:#84cc16;border-color:#84cc16;color:#0a0a0a;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="5" cy="18" r="2.5"/><circle cx="19" cy="18" r="2.5"/><path d="M5 18l5-9h5"/><path d="M14 9h3l2 9"/></svg>
+                </span>
+                <h3 id="pt-lime" class="text-xl font-semibold text-white m-0">Lime e-scooters &amp; e-bikes</h3>
+                <span class="pg-tag pg-tag-lime">Micro-mobility</span>
+              </div>
+              <p class="text-coolGray-300 mb-4">Lime operates pay-as-you-go electric scooters and electric bikes throughout the West End. Denman Street and the Beach Avenue / Seaside path see the largest fleet in the neighbourhood &mdash; live availability shows in the <strong class="text-white">Lime app</strong>.</p>
+
+              <div class="pg-grid pg-grid-2 mb-4">
+                <div>
+                  <h4 class="text-base font-semibold text-white mb-2 mt-0">Designated parking zones near the mall</h4>
+                  <div class="pg-zone"><span class="pg-zone-dot" aria-hidden="true"></span><div><strong class="text-white">Denman St @ Comox St</strong> &mdash; right outside the mall, marked corral on the sidewalk.</div></div>
+                  <div class="pg-zone"><span class="pg-zone-dot" aria-hidden="true"></span><div><strong class="text-white">Davie St @ Denman St</strong> &mdash; high-turnover zone next to the crosswalk.</div></div>
+                  <div class="pg-zone"><span class="pg-zone-dot" aria-hidden="true"></span><div><strong class="text-white">Beach Ave @ Bidwell St</strong> &mdash; on the seawall, ideal after a beach stop.</div></div>
+                  <div class="pg-zone"><span class="pg-zone-dot" aria-hidden="true"></span><div><strong class="text-white">Robson St @ Denman St</strong> &mdash; for trips north toward Stanley Park.</div></div>
+                </div>
+                <div>
+                  <h4 class="text-base font-semibold text-white mb-2 mt-0">How it works</h4>
+                  <ul class="pg-list pg-list-tight">
+                    <li>Download the <strong class="text-white">Lime</strong> app and add a payment method.</li>
+                    <li>Scan the QR code on the scooter or e-bike to unlock.</li>
+                    <li>Helmets are <strong class="text-white">required</strong> in BC &mdash; bring your own or use the helmet stored on the bike where provided.</li>
+                    <li>Ride <strong class="text-white">on the road or in bike lanes</strong>, not on sidewalks.</li>
+                    <li>End your trip inside a green zone in the app to avoid a parking fee.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <p class="text-sm text-coolGray-400 mb-4">Pricing varies by city and promotion &mdash; check the Lime app for the current unlock fee and per-minute rate. Lime offers a <a href="https://www.li.me/community-impact/lime-access" target="_blank" rel="noopener noreferrer" class="pg-link">Lime Access</a> discount for qualifying riders.</p>
+
+              <div class="pg-grid pg-grid-2">
+                <a href="https://apps.apple.com/app/lime-its-your-ride/id1199780189" target="_blank" rel="noopener noreferrer" class="pg-app" aria-label="Download Lime on the App Store (opens in a new tab)">
+                  <span class="pg-app-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.05 13.07c-.03-2.7 2.2-3.99 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.11-1.66-.17-3.24.97-4.08.97-.85 0-2.14-.95-3.52-.92-1.81.03-3.48 1.05-4.41 2.67-1.88 3.26-.48 8.08 1.36 10.73.9 1.3 1.97 2.75 3.37 2.7 1.36-.06 1.87-.88 3.51-.88 1.64 0 2.1.88 3.53.85 1.46-.03 2.38-1.32 3.27-2.62 1.03-1.5 1.46-2.96 1.48-3.04-.03-.01-2.83-1.08-2.86-4.28zM14.52 5.45c.74-.9 1.24-2.14 1.1-3.39-1.06.05-2.36.71-3.12 1.6-.68.78-1.28 2.05-1.12 3.26 1.18.09 2.39-.6 3.14-1.47z"/></svg>
+                  </span>
+                  <span class="pg-app-text">
+                    <span class="pg-app-name">Lime &middot; iOS</span>
+                    <span class="pg-app-meta">App Store download</span>
+                  </span>
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.limebike" target="_blank" rel="noopener noreferrer" class="pg-app" aria-label="Download Lime on Google Play (opens in a new tab)">
+                  <span class="pg-app-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.6 1.6c-.4.2-.6.6-.6 1.1v18.7c0 .5.2.9.6 1.1l10.5-10.4L3.6 1.6zm12.3 12L5.6 23.2l8.5-4.9 1.8-4.7zm4.6-2.7-3.2-1.8-2 4.3 2 4.3 3.2-1.8c1.1-.6 1.1-2.4 0-3zM5.6.8 15.9 10l-1.8-4.7L5.6.8z"/></svg>
+                  </span>
+                  <span class="pg-app-text">
+                    <span class="pg-app-name">Lime &middot; Android</span>
+                    <span class="pg-app-meta">Google Play download</span>
+                  </span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Mobi + Car-share -->
+            <div class="pg-grid pg-grid-2">
+              <article class="pg-card" aria-labelledby="pt-mobi">
+                <div class="pg-section-head">
+                  <span class="pg-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17l4-7h5l3 7"/><path d="M10 10l-1-3h-2"/></svg>
+                  </span>
+                  <h3 id="pt-mobi" class="text-xl font-semibold text-white m-0">Mobi by Shaw Go</h3>
+                </div>
+                <p class="text-coolGray-300 mb-3">Vancouver&rsquo;s public bike-share has docking stations within a short walk of the mall, with regular and pedal-assist e-bikes.</p>
+                <h4 class="text-base font-semibold text-white mb-2 mt-0">Closest docking stations</h4>
+                <div class="pg-zone"><span class="pg-zone-dot" aria-hidden="true" style="background:#0a66c2;"></span><div><strong class="text-white">Denman &amp; Comox</strong> &mdash; outside the mall.</div></div>
+                <div class="pg-zone"><span class="pg-zone-dot" aria-hidden="true" style="background:#0a66c2;"></span><div><strong class="text-white">Denman &amp; Davie</strong> &mdash; one block south.</div></div>
+                <div class="pg-zone"><span class="pg-zone-dot" aria-hidden="true" style="background:#0a66c2;"></span><div><strong class="text-white">Beach Ave &amp; Bidwell</strong> &mdash; on the seawall.</div></div>
+                <a href="https://www.mobibikes.ca/" target="_blank" rel="noopener noreferrer" class="pg-link mt-4 inline-block" aria-label="Mobi by Shaw Go bike-share (opens in a new tab)">Day passes &amp; memberships &rarr;</a>
+              </article>
+
+              <article class="pg-card" aria-labelledby="pt-carshare">
+                <div class="pg-section-head">
+                  <span class="pg-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 17h14l-1.5-5a2 2 0 0 0-2-1.5h-7A2 2 0 0 0 6.5 12L5 17z"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg>
+                  </span>
+                  <h3 id="pt-carshare" class="text-xl font-semibold text-white m-0">Car-share</h3>
+                </div>
+                <p class="text-coolGray-300 mb-3">The West End is a Home Zone for both major car-share services &mdash; vehicles are usually parked on the street within a block of the mall.</p>
+                <h4 class="text-base font-semibold text-white mb-2 mt-0">Available services</h4>
+                <ul class="pg-list pg-list-tight">
+                  <li><strong class="text-white">Evo</strong> &mdash; free-floating, park anywhere in the Home Zone. <a href="https://evo.ca/" target="_blank" rel="noopener noreferrer" class="pg-link">evo.ca &rarr;</a></li>
+                  <li><strong class="text-white">Modo</strong> &mdash; round-trip co-op cars at fixed locations. <a href="https://modo.coop/" target="_blank" rel="noopener noreferrer" class="pg-link">modo.coop &rarr;</a></li>
+                </ul>
+                <p class="text-sm text-coolGray-400 mt-3">Need to drop someone off? The Comox Street curb beside the mall is a convenient passenger pick-up/drop-off zone.</p>
+              </article>
+            </div>
+          </section>
+
+          <hr class="pg-divider" aria-hidden="true">
+
+          <!-- ====================== CYCLING & WALKING ====================== -->
+          <section aria-labelledby="pt-active" class="mb-12">
+            <div class="pg-section-head">
+              <span class="pg-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17l4-7h5l3 7"/><path d="M10 10l-1-3h-2"/><circle cx="15" cy="6" r="1"/></svg>
+              </span>
+              <h2 id="pt-active" class="text-2xl font-semibold text-white m-0">Cycling &amp; Walking</h2>
+            </div>
+            <div class="pg-grid pg-grid-2">
+              <article class="pg-card">
+                <h3 class="text-xl font-semibold text-white mb-2">Cycling</h3>
+                <p class="text-coolGray-300 mb-3">The mall is two blocks from the <strong class="text-white">Seaside Bike Route</strong> &mdash; Vancouver&rsquo;s 28&nbsp;km separated waterfront path that loops Stanley Park, English Bay, False Creek and Granville Island.</p>
+                <ul class="pg-list pg-list-tight">
+                  <li>Free covered bike parking outside the main Denman St entrance.</li>
+                  <li><strong class="text-white">Comox&ndash;Helmcken Greenway</strong> connects east toward Yaletown and BC Place.</li>
+                  <li><strong class="text-white">Beach Ave bike lane</strong> is protected from traffic the whole way to Stanley Park.</li>
+                  <li>Cycling helmets are required by law in BC.</li>
+                </ul>
+              </article>
+              <article class="pg-card">
+                <h3 class="text-xl font-semibold text-white mb-2">Walking</h3>
+                <p class="text-coolGray-300 mb-3">Denman is one of the city&rsquo;s most walkable streets &mdash; tree-lined, flat and lined with cafes.</p>
+                <dl class="pg-kv">
+                  <dt>English Bay Beach</dt><dd>~5 min</dd>
+                  <dt>Stanley Park entrance</dt><dd>~10 min</dd>
+                  <dt>Sunset Beach &amp; Aquatic Centre</dt><dd>~12 min</dd>
+                  <dt>Burrard SkyTrain</dt><dd>~15 min</dd>
+                  <dt>Granville Island (via ferry)</dt><dd>~25 min</dd>
+                </dl>
+                <a href="https://www.google.com/maps/dir/?api=1&amp;origin=English+Bay+Beach+Vancouver&amp;destination=1030+Denman+Street+Vancouver+BC&amp;travelmode=walking" target="_blank" rel="noopener noreferrer" class="pg-link mt-3 inline-block" aria-label="Walking directions from English Bay Beach to the mall (opens in a new tab)">Walk from English Bay &rarr;</a>
+              </article>
+            </div>
+          </section>
+
+          <hr class="pg-divider" aria-hidden="true">
+
+          <!-- ====================== DRIVING ====================== -->
+          <section aria-labelledby="pt-driving" class="mb-12">
+            <div class="pg-section-head">
+              <span class="pg-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 17h14l-1.5-5a2 2 0 0 0-2-1.5h-7A2 2 0 0 0 6.5 12L5 17z"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg>
+              </span>
+              <h2 id="pt-driving" class="text-2xl font-semibold text-white m-0">Driving Here</h2>
+            </div>
+            <div class="pg-grid pg-grid-2 mb-6">
+              <article class="pg-card">
+                <h3 class="text-xl font-semibold text-white mb-2">From Downtown</h3>
+                <p class="text-coolGray-300 m-0">Take <strong class="text-white">Robson</strong>, <strong class="text-white">Davie</strong> or <strong class="text-white">Pacific Street</strong> westbound and turn onto Denman.</p>
+              </article>
+              <article class="pg-card">
+                <h3 class="text-xl font-semibold text-white mb-2">From the North Shore</h3>
+                <p class="text-coolGray-300 m-0">Cross the Lions Gate Bridge, follow the Stanley Park Causeway to <strong class="text-white">West Georgia Street</strong>, then turn south on Denman.</p>
+              </article>
+            </div>
+            <a href="https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6" target="_blank" rel="noopener noreferrer" class="pg-pill" aria-label="Open driving directions to the mall in Google Maps (opens in a new tab)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              <span>Open in Google Maps</span>
+            </a>
+          </section>
+
+          <hr class="pg-divider" aria-hidden="true">
+
+          <!-- ====================== PARKING ====================== -->
           <section aria-labelledby="pt-parking" class="mb-12">
             <div class="pg-section-head">
               <span class="pg-icon" aria-hidden="true">
@@ -533,114 +914,7 @@ document.addEventListener('alpine:init', function () {
 
           <hr class="pg-divider" aria-hidden="true">
 
-          <section aria-labelledby="pt-transit" class="mb-12">
-            <div class="pg-section-head">
-              <span class="pg-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 17V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11"/><path d="M4 13h16"/><path d="M5 17v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2"/><path d="M16 17v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2"/><circle cx="8" cy="16" r="1"/><circle cx="16" cy="16" r="1"/></svg>
-              </span>
-              <h2 id="pt-transit" class="text-2xl font-semibold text-white m-0">Public Transit</h2>
-            </div>
-            <p class="mb-6 text-coolGray-200">TransLink buses run along Denman, Davie and Robson Streets, putting the mall a short walk from several frequent routes.</p>
-
-            <div class="pg-grid pg-grid-2 mb-6">
-              <article class="pg-card" aria-labelledby="pt-stops">
-                <h3 id="pt-stops" class="text-xl font-semibold text-white mb-4">Nearest bus stops</h3>
-                <div class="pg-stop">
-                  <span class="pg-icon" aria-hidden="true" style="width:2rem;height:2rem;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/></svg>
-                  </span>
-                  <div class="pg-stop-meta">
-                    <p class="m-0 font-medium text-white">Davie St @ Denman St</p>
-                    <p class="pg-stop-time m-0">~1 min walk</p>
-                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Davie+St+%40+Denman+St+Vancouver" target="_blank" rel="noopener noreferrer" class="pg-link" aria-label="View Davie at Denman bus stop on Google Maps (opens in a new tab)">View on map &rarr;</a>
-                  </div>
-                </div>
-                <div class="pg-stop">
-                  <span class="pg-icon" aria-hidden="true" style="width:2rem;height:2rem;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/></svg>
-                  </span>
-                  <div class="pg-stop-meta">
-                    <p class="m-0 font-medium text-white">Denman St @ Comox St</p>
-                    <p class="pg-stop-time m-0">Directly outside the mall</p>
-                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Denman+St+%40+Comox+St+Vancouver" target="_blank" rel="noopener noreferrer" class="pg-link" aria-label="View Denman at Comox bus stop on Google Maps (opens in a new tab)">View on map &rarr;</a>
-                  </div>
-                </div>
-                <div class="pg-stop">
-                  <span class="pg-icon" aria-hidden="true" style="width:2rem;height:2rem;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/></svg>
-                  </span>
-                  <div class="pg-stop-meta">
-                    <p class="m-0 font-medium text-white">Davie St @ Bidwell St</p>
-                    <p class="pg-stop-time m-0">~2 min walk</p>
-                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Davie+St+%40+Bidwell+St+Vancouver" target="_blank" rel="noopener noreferrer" class="pg-link" aria-label="View Davie at Bidwell bus stop on Google Maps (opens in a new tab)">View on map &rarr;</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="pg-card" aria-labelledby="pt-routes">
-                <h3 id="pt-routes" class="text-xl font-semibold text-white mb-4">Routes that stop nearby</h3>
-                <ul class="flex flex-col gap-2" style="list-style:none;padding:0;margin:0;">
-                  <li><a href="https://www.translink.ca/schedules-and-maps/bus/5" target="_blank" rel="noopener noreferrer" class="pg-route" aria-label="TransLink Route 5 Robson schedule (opens in a new tab)"><span class="pg-route-num">5</span><span>Robson</span></a></li>
-                  <li><a href="https://www.translink.ca/schedules-and-maps/bus/6" target="_blank" rel="noopener noreferrer" class="pg-route" aria-label="TransLink Route 6 Davie schedule (opens in a new tab)"><span class="pg-route-num">6</span><span>Davie</span></a></li>
-                  <li><a href="https://www.translink.ca/schedules-and-maps/bus/19" target="_blank" rel="noopener noreferrer" class="pg-route" aria-label="TransLink Route 19 Metrotown / Stanley Park schedule (opens in a new tab)"><span class="pg-route-num">19</span><span>Metrotown / Stanley Park</span></a></li>
-                </ul>
-                <p class="text-sm text-coolGray-400 mt-4">Live schedules: <a href="https://www.translink.ca/schedules-and-maps" target="_blank" rel="noopener noreferrer" class="pg-link">TransLink</a> or the Transit app.</p>
-              </article>
-            </div>
-
-            <article class="pg-card">
-              <div class="pg-section-head">
-                <span class="pg-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="3" width="16" height="16" rx="2"/><line x1="4" y1="11" x2="20" y2="11"/><path d="M8 19l-2 2"/><path d="M16 19l2 2"/><circle cx="8.5" cy="15" r="1"/><circle cx="15.5" cy="15" r="1"/></svg>
-                </span>
-                <h3 class="text-xl font-semibold text-white m-0">SkyTrain</h3>
-              </div>
-              <p class="text-coolGray-300 mb-3">The closest SkyTrain station is <strong class="text-white">Burrard Station</strong> on the Expo Line, about a 15-minute walk from the mall &mdash; or a short ride on the 5 or 6 bus.</p>
-              <a href="https://www.google.com/maps/dir/?api=1&amp;origin=1030+Denman+Street+Vancouver+BC&amp;destination=Burrard+SkyTrain+Station+Vancouver&amp;travelmode=walking" target="_blank" rel="noopener noreferrer" class="pg-link" aria-label="Walking directions from the mall to Burrard SkyTrain Station (opens in a new tab)">Walking directions to Burrard Station &rarr;</a>
-            </article>
-          </section>
-
-          <hr class="pg-divider" aria-hidden="true">
-
-          <section aria-labelledby="pt-active" class="mb-12">
-            <div class="pg-section-head">
-              <span class="pg-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17l4-7h5l3 7"/><path d="M10 10l-1-3h-2"/><circle cx="15" cy="6" r="1"/></svg>
-              </span>
-              <h2 id="pt-active" class="text-2xl font-semibold text-white m-0">Cycling &amp; Walking</h2>
-            </div>
-            <div class="pg-grid pg-grid-2">
-              <article class="pg-card">
-                <h3 class="text-xl font-semibold text-white mb-2">Cycling</h3>
-                <p class="text-coolGray-300 mb-3">The mall is two blocks from the <strong class="text-white">Seaside Bike Route</strong> at English Bay, part of Vancouver&rsquo;s separated cycling network. Bike racks are available outside the main Denman Street entrance.</p>
-                <p class="text-coolGray-300">Mobi by Shaw Go bike-share stations are located along Denman and Davie Streets within a short walk.</p>
-              </article>
-              <article class="pg-card">
-                <h3 class="text-xl font-semibold text-white mb-2">Walking</h3>
-                <p class="text-coolGray-300 mb-3">On foot, the mall is about <strong class="text-white">5 minutes</strong> from English Bay Beach and <strong class="text-white">10 minutes</strong> from the entrance to Stanley Park.</p>
-                <a href="https://www.google.com/maps/dir/?api=1&amp;origin=English+Bay+Beach+Vancouver&amp;destination=1030+Denman+Street+Vancouver+BC&amp;travelmode=walking" target="_blank" rel="noopener noreferrer" class="pg-link" aria-label="Walking directions from English Bay Beach to the mall (opens in a new tab)">From English Bay Beach &rarr;</a>
-              </article>
-            </div>
-          </section>
-
-          <hr class="pg-divider" aria-hidden="true">
-
-          <section aria-labelledby="pt-driving" class="mb-12">
-            <div class="pg-section-head">
-              <span class="pg-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 17h14l-1.5-5a2 2 0 0 0-2-1.5h-7A2 2 0 0 0 6.5 12L5 17z"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg>
-              </span>
-              <h2 id="pt-driving" class="text-2xl font-semibold text-white m-0">Driving Here</h2>
-            </div>
-            <p class="mb-4 text-coolGray-200">From downtown, take Robson, Davie or Pacific Street westbound and turn onto Denman. From the North Shore, cross the Lions Gate Bridge and follow Stanley Park Causeway to West Georgia Street, then south on Denman.</p>
-            <a href="https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6" target="_blank" rel="noopener noreferrer" class="pg-pill" aria-label="Open driving directions to the mall in Google Maps (opens in a new tab)">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-              <span>Open in Google Maps</span>
-            </a>
-          </section>
-
-          <hr class="pg-divider" aria-hidden="true">
-
+          <!-- ====================== QUESTIONS ====================== -->
           <section class="pg-card" aria-labelledby="pt-questions">
             <div class="pg-section-head">
               <span class="pg-icon" aria-hidden="true">
