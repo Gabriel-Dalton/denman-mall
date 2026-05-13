@@ -132,8 +132,8 @@
     .mall-lang-btn .mall-lang-code{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600;}
     .mall-lang-btn .mall-lang-chev{transition:transform .2s ease;}
     .mall-lang-btn[aria-expanded="true"] .mall-lang-chev{transform:rotate(180deg);}
-    .mall-lang-btn--compact{padding:.4rem;border-radius:9999px;}
-    .mall-lang-btn--compact .mall-lang-code{margin-inline-start:.25rem;}
+    .mall-lang-btn--compact{padding:.5rem .7rem;border-radius:9999px;}
+    .mall-lang-btn--compact .mall-lang-code{margin-inline-start:.35rem;}
     /* Logical-property positioning so the menu flips correctly under direction:rtl. */
     .mall-lang-menu{position:absolute;inset-inline-end:0;top:calc(100% + .5rem);min-width:14rem;background:#fff;border:1px solid #e5e7eb;border-radius:.5rem;box-shadow:0 10px 25px -3px rgba(0,0,0,.12),0 4px 6px -2px rgba(0,0,0,.05);padding:.5rem 0;z-index:60;}
     .mall-lang-menu[data-align="left"]{inset-inline-end:auto;inset-inline-start:0;}
@@ -141,14 +141,7 @@
     .mall-lang-menu button:hover,.mall-lang-menu button:focus-visible{background:#f3f4f6;outline:none;}
     .mall-lang-menu button[aria-selected="true"]{font-weight:600;}
     .mall-lang-menu .mall-lang-code{font-size:.7rem;color:#6b7280;text-transform:uppercase;margin-inline-start:.75rem;letter-spacing:.05em;}
-    .mall-lang-mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
-    .mall-lang-mobile-grid button{text-align:start;padding:.625rem .75rem;border:1px solid #e5e7eb;border-radius:.375rem;background:#fff;font-size:1rem;cursor:pointer;font-family:inherit;color:#000;}
-    .mall-lang-mobile-grid button:hover,.mall-lang-mobile-grid button:focus-visible{background:#f3f4f6;outline:none;}
-    .mall-lang-mobile-grid .mall-lang-code{display:block;font-size:.7rem;color:#6b7280;text-transform:uppercase;margin-top:.15rem;letter-spacing:.05em;}
-    .mall-lang-mobile-section{margin-top:2rem;padding-top:1.5rem;border-top:1px solid #e5e7eb;}
-    .mall-lang-mobile-section p{font-size:.75rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem;}
-
-    /* RTL overrides for the bundled Tailwind utilities used in the nav.
+/* RTL overrides for the bundled Tailwind utilities used in the nav.
        The build ships physical margins (ml-auto, mr-10, ml-3) that don't
        auto-flip under direction:rtl, so map them to logical equivalents.
        Also clamp body overflow-x to prevent rogue horizontal scroll from any
@@ -202,40 +195,45 @@
         </div>
       </div>
 
-      <!-- Mobile (<xl): brand centred via absolute positioning; language switcher + hamburger flush to the inline-end. -->
-      <div class="xl:hidden relative flex h-24 items-center">
-        <div class="absolute" style="top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;">
-          <a href="index.html" style="pointer-events:auto;"><span translate="no" class="notranslate block tracking-tighter text-2xl sm:text-3xl md:text-4xl mb-1">Denman Place Mall</span></a>
-          <p class="text-sm text-coolGray-800">Open Today | 8:00 AM to 10:00 PM</p>
-        </div>
-        <div class="mall-lang-wrap notranslate" translate="no" x-data="{ langOpen: false, current: 'EN' }" x-init="current = (window.MallI18n && MallI18n.currentLabel()) || 'EN'" @mall-lang-change.window="current = $event.detail.label" @click.outside="langOpen = false" @keydown.escape.window="langOpen = false" style="margin-inline-start:auto;position:relative;z-index:1;">
-          <button type="button" @click="langOpen = !langOpen" :aria-expanded="langOpen.toString()" aria-haspopup="listbox" aria-label="Change language" class="mall-lang-btn mall-lang-btn--compact">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-            </svg>
-            <span class="mall-lang-code" x-text="current">EN</span>
+      <!-- Mobile (<xl): brand left-aligned with hours under it; compact language switcher
+           and hamburger grouped on the inline-end. Tailwind utilities for this site are
+           pre-purged into assets/css/tailwind/min.css — many spacing/min-width/truncate
+           utilities aren't shipped, so layout-critical values are inline. -->
+      <div class="xl:hidden flex items-center py-4 border-b border-coolGray-200" style="gap:1rem;">
+        <a href="index.html" class="flex-1 block" style="min-width:0;">
+          <span translate="no" class="notranslate block tracking-tighter text-2xl leading-tight whitespace-nowrap" style="overflow:hidden;text-overflow:ellipsis;">Denman Place Mall</span>
+          <p class="text-sm text-coolGray-700 whitespace-nowrap" style="overflow:hidden;text-overflow:ellipsis;margin-top:.25rem;">Open Today | 8:00 AM to 10:00 PM</p>
+        </a>
+        <div class="flex items-center" style="gap:1.25rem;flex-shrink:0;">
+          <div class="mall-lang-wrap notranslate" translate="no" x-data="{ langOpen: false, current: 'EN' }" x-init="current = (window.MallI18n && MallI18n.currentLabel()) || 'EN'" @mall-lang-change.window="current = $event.detail.label" @click.outside="langOpen = false" @keydown.escape.window="langOpen = false">
+            <button type="button" @click="langOpen = !langOpen" :aria-expanded="langOpen.toString()" aria-haspopup="listbox" aria-label="Change language" class="mall-lang-btn mall-lang-btn--compact">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span class="mall-lang-code" x-text="current">EN</span>
+            </button>
+            <ul x-show="langOpen" x-cloak x-transition.opacity role="listbox" aria-label="Select language" class="mall-lang-menu">
+              <template x-for="opt in (window.MallI18n ? MallI18n.options : [])" :key="opt.code">
+                <li>
+                  <button type="button" role="option" :aria-selected="(current === opt.label).toString()" @click="MallI18n.set(opt.code); langOpen = false" :dir="opt.rtl ? 'rtl' : 'ltr'">
+                    <span x-text="opt.native"></span>
+                    <span class="mall-lang-code" x-text="opt.label"></span>
+                  </button>
+                </li>
+              </template>
+            </ul>
+          </div>
+          <button x-on:click="mobileNavOpen = !mobileNavOpen" :aria-expanded="mobileNavOpen.toString()" aria-label="Open menu" aria-controls="mobile-nav" type="button" style="padding:.5rem;background:transparent;border:0;cursor:pointer;line-height:0;">
+            <svg width="28" height="18" viewBox="0 0 28 18" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect width="28" height="2.5" rx="1.25" fill="black"></rect><rect y="15.5" width="28" height="2.5" rx="1.25" fill="black"></rect></svg>
           </button>
-          <ul x-show="langOpen" x-cloak x-transition.opacity role="listbox" aria-label="Select language" class="mall-lang-menu">
-            <template x-for="opt in (window.MallI18n ? MallI18n.options : [])" :key="opt.code">
-              <li>
-                <button type="button" role="option" :aria-selected="(current === opt.label).toString()" @click="MallI18n.set(opt.code); langOpen = false" :dir="opt.rtl ? 'rtl' : 'ltr'">
-                  <span x-text="opt.native"></span>
-                  <span class="mall-lang-code" x-text="opt.label"></span>
-                </button>
-              </li>
-            </template>
-          </ul>
         </div>
-        <button x-on:click="mobileNavOpen = !mobileNavOpen" :aria-expanded="mobileNavOpen.toString()" aria-expanded="false" aria-label="Open menu" aria-controls="mobile-nav" class="py-1" style="margin-inline-start:0.75rem;position:relative;z-index:1;">
-          <svg width="44" height="16" viewBox="0 0 44 16" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect width="44" height="2" rx="1" fill="black"></rect><rect y="14" width="44" height="2" rx="1" fill="black"></rect></svg>
-        </button>
       </div>
 
     </div>
   </nav>
-  <div id="mobile-nav" x-cloak="" x-show="mobileNavOpen" x-transition="" class="fixed top-0 left-0 bottom-0 w-5/6 max-w-md z-50">
+  <div id="mobile-nav" x-cloak="" x-show="mobileNavOpen" x-transition="" style="display:none" class="fixed top-0 left-0 bottom-0 w-5/6 max-w-md z-50">
     <div x-on:click="mobileNavOpen = false" class="fixed inset-0 bg-gray-800 opacity-50"></div>
     <nav class="relative flex flex-col py-8 px-8 w-full h-full bg-white overflow-y-auto" aria-label="Mobile navigation">
       <div class="flex items-center mb-8">
@@ -256,17 +254,6 @@
           <li><a class="hover:underline" href="about.html">About Us</a></li>
           <li><a class="hover:underline" href="contact.html">Contact Us</a></li>
         </ul>
-      </div>
-      <div class="mall-lang-mobile-section notranslate" translate="no" x-data>
-        <p>Language / 语言 / زبان</p>
-        <div class="mall-lang-mobile-grid">
-          <template x-for="opt in (window.MallI18n ? MallI18n.options : [])" :key="opt.code">
-            <button type="button" @click="MallI18n.set(opt.code); mobileNavOpen = false" :dir="opt.rtl ? 'rtl' : 'ltr'">
-              <span x-text="opt.native"></span>
-              <span class="mall-lang-code" x-text="opt.label"></span>
-            </button>
-          </template>
-        </div>
       </div>
       <div class="mt-auto pt-8"><a class="block w-full px-4 py-4 text-center text-lg font-semibold text-black hover:text-white border border-black hover:bg-black rounded-full transition duration-200" href="directory.html">View Store Directory</a></div>
     </nav>
@@ -307,7 +294,7 @@
   .mall-star-btn svg{width:1.1rem;height:1.1rem;}
 </style>
 <div class="notranslate" translate="no" x-data x-init="$store.mall && $store.mall.load && $store.mall.load()">
-  <button type="button" x-show="$store.mall && $store.mall.items.length > 0" @click="$store.mall.open = true" class="mall-list-fab" aria-label="Open my saved stores list">
+  <button type="button" x-show="$store.mall && $store.mall.items.length > 0" style="display:none" @click="$store.mall.open = true" class="mall-list-fab" aria-label="Open my saved stores list">
     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
     <span class="mall-list-fab-count" x-show="$store.mall && $store.mall.items.length" x-text="$store.mall && $store.mall.items.length"></span>
   </button>
@@ -552,7 +539,7 @@ document.addEventListener('alpine:init', function () {
                 </div>
               </div>
               <div class="w-full lg:w-1/2 px-4">
-                <img src="assets/images/open-door-law.webp" alt="Open Door Law logo" class="block lg:ml-auto w-[480px] mx-auto max-w-full object-contain">
+                <img src="assets/images/open-door-law.webp" width="507" height="211" alt="Open Door Law logo" class="block lg:ml-auto w-[480px] mx-auto max-w-full object-contain">
               </div>
             </div>
           </div>
@@ -565,7 +552,7 @@ document.addEventListener('alpine:init', function () {
   <div class="container mx-auto px-4">
     <div class="flex flex-wrap -mx-4 mb-20">
       <div class="w-full xl:w-4/12 px-4 mb-12 xl:mb-0">
-        <img class="inline-block block h-10 mb-3 notranslate" translate="no" src="assets/images/denman-mall-logo.webp" alt="Denman Place Mall logo">
+        <img class="inline-block block h-10 mb-3 notranslate" translate="no" src="assets/images/denman-mall-logo.webp" width="543" height="74" alt="Denman Place Mall logo">
         <div class="border border-coolGray-700 rounded text-coolGray-300 text-lg mt-4 p-3" id="hours-section">
           <p class="font-medium mb-3 text-xl">Hours of Operation</p>
           <div data-hours-list="">
@@ -665,9 +652,9 @@ document.addEventListener('alpine:init', function () {
         <div class="text-center lg:text-left">
           <span class="text-base font-medium text-coolGray-400">
             &copy; <script>document.write(new Date().getFullYear())</script> <span class="notranslate" translate="no">Denman Place Mall</span>. All Rights Reserved.
-            <span class="hidden lg:inline"><a href="terms.html" class="hover:underline">Terms of Use</a> | <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> | <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
+            <span class="hidden lg:inline"><a href="terms.html" class="hover:underline">Terms of Use</a> | <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> | <a href="accessibility.html" class="hover:underline">Accessibility</a> | <a href="#" class="hover:underline" data-mall-consent-reopen>Cookie preferences</a></span>
             <br>
-            <span class="lg:hidden"><a href="terms.html" class="hover:underline">Terms of Use</a> &bull; <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> &bull; <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
+            <span class="lg:hidden"><a href="terms.html" class="hover:underline">Terms of Use</a> &bull; <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> &bull; <a href="accessibility.html" class="hover:underline">Accessibility</a> &bull; <a href="#" class="hover:underline" data-mall-consent-reopen>Cookie preferences</a></span>
           </span>
         </div>
         <div class="text-center lg:text-right">
@@ -677,6 +664,83 @@ document.addEventListener('alpine:init', function () {
     </div>
   </div>
 </section>
+
+<!-- Cookie / analytics consent banner (PIPEDA + general privacy). Banner shows
+     until the visitor accepts or declines. window.MallConsent exposes a small
+     API so tracking scripts (e.g. analytics) can gate themselves on consent. -->
+<style id="mall-consent-css">
+  .mall-consent{position:fixed;left:.75rem;right:.75rem;bottom:.75rem;z-index:70;background:#111;color:#f9fafb;border-radius:.625rem;box-shadow:0 20px 50px -10px rgba(0,0,0,.45);padding:.7rem .85rem;display:none;font-size:.8125rem;line-height:1.4;}
+  .mall-consent[data-visible="true"]{display:flex;flex-direction:column;gap:.55rem;}
+  @media (min-width: 768px){.mall-consent{flex-direction:row !important;align-items:center;gap:1.25rem;max-width:64rem;left:50%;right:auto;transform:translateX(-50%);padding:1rem 1.5rem;font-size:.9375rem;line-height:1.5;border-radius:.75rem;}}
+  .mall-consent p{margin:0;flex:1;}
+  .mall-consent a{color:#fff;text-decoration:underline;}
+  .mall-consent-actions{display:flex;gap:.4rem;flex-shrink:0;}
+  .mall-consent-actions button{cursor:pointer;border-radius:9999px;padding:.4rem .85rem;font-weight:600;font-size:.8125rem;font-family:inherit;border:1px solid transparent;line-height:1;flex:1;}
+  @media (min-width: 768px){.mall-consent-actions button{padding:.55rem 1.1rem;font-size:.875rem;flex:0 0 auto;}}
+  .mall-consent-decline{background:transparent;color:#f9fafb;border-color:#4b5563;}
+  .mall-consent-decline:hover,.mall-consent-decline:focus-visible{background:#1f2937;outline:none;}
+  .mall-consent-accept{background:#fff;color:#111;}
+  .mall-consent-accept:hover,.mall-consent-accept:focus-visible{background:#e5e7eb;outline:none;}
+</style>
+<div id="mall-consent" class="mall-consent notranslate" translate="no" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <p>We use cookies to remember your language and, with your permission, measure traffic. <a href="privacy-policy.html">Privacy Policy</a>.</p>
+  <div class="mall-consent-actions">
+    <button type="button" class="mall-consent-decline" data-mall-consent-decline>Decline</button>
+    <button type="button" class="mall-consent-accept" data-mall-consent-accept>Accept</button>
+  </div>
+</div>
+<script>
+(function(){
+  if (window.MallConsent) return;
+  var KEY = 'mallConsent';
+  var listeners = [];
+  function read(){ try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function write(v){ try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function hasChoice(){ var v = read(); return v === 'granted' || v === 'denied'; }
+  function granted(){ return read() === 'granted'; }
+  function setVisible(on){
+    var el = document.getElementById('mall-consent');
+    if (el) el.setAttribute('data-visible', on ? 'true' : 'false');
+  }
+  function fire(){
+    if (!granted()) return;
+    for (var i = 0; i < listeners.length; i++) {
+      try { listeners[i](); } catch (e) {}
+    }
+    listeners.length = 0;
+  }
+  function decide(value){
+    write(value);
+    setVisible(false);
+    if (value === 'granted') fire();
+  }
+  window.MallConsent = {
+    granted: granted,
+    hasChoice: hasChoice,
+    accept: function(){ decide('granted'); },
+    decline: function(){ decide('denied'); },
+    reopen: function(){ setVisible(true); },
+    onGranted: function(cb){ if (granted()) { try { cb(); } catch (e) {} } else { listeners.push(cb); } }
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    if (!hasChoice()) setVisible(true);
+    var root = document.getElementById('mall-consent');
+    if (root) {
+      var a = root.querySelector('[data-mall-consent-accept]');
+      var d = root.querySelector('[data-mall-consent-decline]');
+      if (a) a.addEventListener('click', function(){ window.MallConsent.accept(); });
+      if (d) d.addEventListener('click', function(){ window.MallConsent.decline(); });
+    }
+    var reopeners = document.querySelectorAll('[data-mall-consent-reopen]');
+    for (var i = 0; i < reopeners.length; i++) {
+      reopeners[i].addEventListener('click', function(e){
+        e.preventDefault();
+        window.MallConsent.reopen();
+      });
+    }
+  });
+})();
+</script>
 <!--/PARTIAL:footer-->
     </div>
 
