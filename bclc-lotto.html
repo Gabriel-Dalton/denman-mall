@@ -646,18 +646,22 @@ document.addEventListener('alpine:init', function () {
       </div>
     </div>
     <div class="mt-8 border-t border-coolGray-800 pt-8 px-4 max-w-screen-xl mx-auto">
-      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
-        <div class="text-center lg:text-left">
-          <span class="text-base font-medium text-coolGray-400">
-            &copy; <script>document.write(new Date().getFullYear())</script> <span class="notranslate" translate="no">Denman Place Mall</span>. All Rights Reserved.
-            <span class="hidden lg:inline"><a href="terms.html" class="hover:underline">Terms of Use</a> | <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> | <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
-            <br>
-            <span class="lg:hidden"><a href="terms.html" class="hover:underline">Terms of Use</a> &bull; <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> &bull; <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
-          </span>
+      <div class="footer-bottom">
+        <div>
+          <p class="footer-copyright">&copy; 2026 <span class="notranslate" translate="no">Denman Place Mall</span>. All rights reserved.</p>
+          <nav aria-label="Legal">
+            <ul class="footer-legal-list">
+              <li><a href="terms.html" class="footer-link">Terms of Use</a></li>
+              <li aria-hidden="true" class="footer-legal-sep">&bull;</li>
+              <li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+              <li aria-hidden="true" class="footer-legal-sep">&bull;</li>
+              <li><a href="accessibility.html" class="footer-link">Accessibility</a></li>
+              <li aria-hidden="true" class="footer-legal-sep">&bull;</li>
+              <li><a href="privacy-policy.html#cookies" class="footer-link">Cookie preferences</a></li>
+            </ul>
+          </nav>
         </div>
-        <div class="text-center lg:text-right">
-          <span class="text-base font-medium text-coolGray-400 lg:flex lg:items-center lg:justify-end">Website sustainably crafted by<a href="https://oasisofchange.com" target="_blank" rel="noopener noreferrer" class="underline text-green-600 hover:text-green-800 ml-1 notranslate" translate="no">Oasis of Change, Inc.</a></span>
-        </div>
+        <p class="footer-attribution">Website sustainably crafted by <a href="https://oasisofchange.com" target="_blank" rel="noopener noreferrer" class="footer-link footer-link--brand notranslate" translate="no">Oasis of Change, Inc.</a></p>
       </div>
     </div>
   </div>
