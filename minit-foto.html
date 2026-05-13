@@ -138,14 +138,7 @@
     .mall-lang-menu button:hover,.mall-lang-menu button:focus-visible{background:#f3f4f6;outline:none;}
     .mall-lang-menu button[aria-selected="true"]{font-weight:600;}
     .mall-lang-menu .mall-lang-code{font-size:.7rem;color:#6b7280;text-transform:uppercase;margin-inline-start:.75rem;letter-spacing:.05em;}
-    .mall-lang-mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
-    .mall-lang-mobile-grid button{text-align:start;padding:.625rem .75rem;border:1px solid #e5e7eb;border-radius:.375rem;background:#fff;font-size:1rem;cursor:pointer;font-family:inherit;color:#000;}
-    .mall-lang-mobile-grid button:hover,.mall-lang-mobile-grid button:focus-visible{background:#f3f4f6;outline:none;}
-    .mall-lang-mobile-grid .mall-lang-code{display:block;font-size:.7rem;color:#6b7280;text-transform:uppercase;margin-top:.15rem;letter-spacing:.05em;}
-    .mall-lang-mobile-section{margin-top:2rem;padding-top:1.5rem;border-top:1px solid #e5e7eb;}
-    .mall-lang-mobile-section p{font-size:.75rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem;}
-
-    /* RTL overrides for the bundled Tailwind utilities used in the nav.
+/* RTL overrides for the bundled Tailwind utilities used in the nav.
        The build ships physical margins (ml-auto, mr-10, ml-3) that don't
        auto-flip under direction:rtl, so map them to logical equivalents.
        Also clamp body overflow-x to prevent rogue horizontal scroll from any
@@ -258,17 +251,6 @@
           <li><a class="hover:underline" href="about.html">About Us</a></li>
           <li><a class="hover:underline" href="contact.html">Contact Us</a></li>
         </ul>
-      </div>
-      <div class="mall-lang-mobile-section notranslate" translate="no" x-data>
-        <p>Language / 语言 / زبان</p>
-        <div class="mall-lang-mobile-grid">
-          <template x-for="opt in (window.MallI18n ? MallI18n.options : [])" :key="opt.code">
-            <button type="button" @click="MallI18n.set(opt.code); mobileNavOpen = false" :dir="opt.rtl ? 'rtl' : 'ltr'">
-              <span x-text="opt.native"></span>
-              <span class="mall-lang-code" x-text="opt.label"></span>
-            </button>
-          </template>
-        </div>
       </div>
       <div class="mt-auto pt-8"><a class="block w-full px-4 py-4 text-center text-lg font-semibold text-black hover:text-white border border-black hover:bg-black rounded-full transition duration-200" href="directory.html">View Store Directory</a></div>
     </nav>
