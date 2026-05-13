@@ -536,7 +536,7 @@ document.addEventListener('alpine:init', function () {
                 </div>
               </div>
               <div class="w-full lg:w-1/2 px-4">
-                <img src="assets/images/93-coffee.webp" alt="93 Coffee logo" class="block lg:ml-auto w-[480px] mx-auto max-w-full object-contain">
+                <img src="assets/images/93-coffee.webp" width="1552" height="517" alt="93 Coffee logo" class="block lg:ml-auto w-[480px] mx-auto max-w-full object-contain">
               </div>
             </div>
           </div>
@@ -549,7 +549,7 @@ document.addEventListener('alpine:init', function () {
   <div class="container mx-auto px-4">
     <div class="flex flex-wrap -mx-4 mb-20">
       <div class="w-full xl:w-4/12 px-4 mb-12 xl:mb-0">
-        <img class="inline-block block h-10 mb-3 notranslate" translate="no" src="assets/images/denman-mall-logo.webp" alt="Denman Place Mall logo">
+        <img class="inline-block block h-10 mb-3 notranslate" translate="no" src="assets/images/denman-mall-logo.webp" width="543" height="74" alt="Denman Place Mall logo">
         <div class="border border-coolGray-700 rounded text-coolGray-300 text-lg mt-4 p-3" id="hours-section">
           <p class="font-medium mb-3 text-xl">Hours of Operation</p>
           <div data-hours-list="">
@@ -649,9 +649,9 @@ document.addEventListener('alpine:init', function () {
         <div class="text-center lg:text-left">
           <span class="text-base font-medium text-coolGray-400">
             &copy; <script>document.write(new Date().getFullYear())</script> <span class="notranslate" translate="no">Denman Place Mall</span>. All Rights Reserved.
-            <span class="hidden lg:inline"><a href="terms.html" class="hover:underline">Terms of Use</a> | <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> | <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
+            <span class="hidden lg:inline"><a href="terms.html" class="hover:underline">Terms of Use</a> | <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> | <a href="accessibility.html" class="hover:underline">Accessibility</a> | <a href="#" class="hover:underline" data-mall-consent-reopen>Cookie preferences</a></span>
             <br>
-            <span class="lg:hidden"><a href="terms.html" class="hover:underline">Terms of Use</a> &bull; <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> &bull; <a href="accessibility.html" class="hover:underline">Accessibility</a></span>
+            <span class="lg:hidden"><a href="terms.html" class="hover:underline">Terms of Use</a> &bull; <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> &bull; <a href="accessibility.html" class="hover:underline">Accessibility</a> &bull; <a href="#" class="hover:underline" data-mall-consent-reopen>Cookie preferences</a></span>
           </span>
         </div>
         <div class="text-center lg:text-right">
@@ -661,6 +661,82 @@ document.addEventListener('alpine:init', function () {
     </div>
   </div>
 </section>
+
+<!-- Cookie / analytics consent banner (PIPEDA + general privacy). Banner shows
+     until the visitor accepts or declines. window.MallConsent exposes a small
+     API so tracking scripts (e.g. analytics) can gate themselves on consent. -->
+<style id="mall-consent-css">
+  .mall-consent{position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:70;background:#111;color:#f9fafb;border-radius:.75rem;box-shadow:0 20px 50px -10px rgba(0,0,0,.45);padding:1rem 1.25rem;display:none;font-size:.9375rem;line-height:1.5;}
+  .mall-consent[data-visible="true"]{display:flex;flex-direction:column;gap:.75rem;}
+  @media (min-width: 768px){.mall-consent{flex-direction:row !important;align-items:center;gap:1.25rem;max-width:64rem;left:50%;right:auto;transform:translateX(-50%);padding:1rem 1.5rem;}}
+  .mall-consent p{margin:0;flex:1;}
+  .mall-consent a{color:#fff;text-decoration:underline;}
+  .mall-consent-actions{display:flex;gap:.5rem;flex-shrink:0;}
+  .mall-consent-actions button{cursor:pointer;border-radius:9999px;padding:.55rem 1.1rem;font-weight:600;font-size:.875rem;font-family:inherit;border:1px solid transparent;line-height:1;}
+  .mall-consent-decline{background:transparent;color:#f9fafb;border-color:#4b5563;}
+  .mall-consent-decline:hover,.mall-consent-decline:focus-visible{background:#1f2937;outline:none;}
+  .mall-consent-accept{background:#fff;color:#111;}
+  .mall-consent-accept:hover,.mall-consent-accept:focus-visible{background:#e5e7eb;outline:none;}
+</style>
+<div id="mall-consent" class="mall-consent notranslate" translate="no" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <p>We use a small number of cookies to remember your language preference and, with your consent, to measure site traffic so we can improve the experience. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+  <div class="mall-consent-actions">
+    <button type="button" class="mall-consent-decline" data-mall-consent-decline>Decline</button>
+    <button type="button" class="mall-consent-accept" data-mall-consent-accept>Accept</button>
+  </div>
+</div>
+<script>
+(function(){
+  if (window.MallConsent) return;
+  var KEY = 'mallConsent';
+  var listeners = [];
+  function read(){ try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function write(v){ try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function hasChoice(){ var v = read(); return v === 'granted' || v === 'denied'; }
+  function granted(){ return read() === 'granted'; }
+  function setVisible(on){
+    var el = document.getElementById('mall-consent');
+    if (el) el.setAttribute('data-visible', on ? 'true' : 'false');
+  }
+  function fire(){
+    if (!granted()) return;
+    for (var i = 0; i < listeners.length; i++) {
+      try { listeners[i](); } catch (e) {}
+    }
+    listeners.length = 0;
+  }
+  function decide(value){
+    write(value);
+    setVisible(false);
+    if (value === 'granted') fire();
+  }
+  window.MallConsent = {
+    granted: granted,
+    hasChoice: hasChoice,
+    accept: function(){ decide('granted'); },
+    decline: function(){ decide('denied'); },
+    reopen: function(){ setVisible(true); },
+    onGranted: function(cb){ if (granted()) { try { cb(); } catch (e) {} } else { listeners.push(cb); } }
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    if (!hasChoice()) setVisible(true);
+    var root = document.getElementById('mall-consent');
+    if (root) {
+      var a = root.querySelector('[data-mall-consent-accept]');
+      var d = root.querySelector('[data-mall-consent-decline]');
+      if (a) a.addEventListener('click', function(){ window.MallConsent.accept(); });
+      if (d) d.addEventListener('click', function(){ window.MallConsent.decline(); });
+    }
+    var reopeners = document.querySelectorAll('[data-mall-consent-reopen]');
+    for (var i = 0; i < reopeners.length; i++) {
+      reopeners[i].addEventListener('click', function(e){
+        e.preventDefault();
+        window.MallConsent.reopen();
+      });
+    }
+  });
+})();
+</script>
 <!--/PARTIAL:footer-->
     </div>
 

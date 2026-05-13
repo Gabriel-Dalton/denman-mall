@@ -1,21 +1,43 @@
-﻿<!-- Header Scripts (place inside <head>) -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17441759850">
-</script>
+<!-- Header Scripts (place inside <head>) -->
+<!-- Google tag (gtag.js) — only fires after the visitor accepts cookies via
+     the consent banner shipped from _partials/footer.html. window.MallConsent
+     is defined by that banner. -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-17441759850');
-</script><!-- Event snippet for Get directions conversion page --> <script> gtag('event', 'conversion', { 'send_to': 'AW-17441759850/zF3PCKfYp6gbEOrE8PxA', 'value': 1.0, 'currency': 'USD' }); </script>
+(function(){
+  function loadGtag(){
+    if (window.__gtagLoaded) return;
+    window.__gtagLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17441759850';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'AW-17441759850');
+    gtag('event', 'conversion', {
+      'send_to': 'AW-17441759850/zF3PCKfYp6gbEOrE8PxA',
+      'value': 1.0,
+      'currency': 'USD'
+    });
+  }
+  if (window.MallConsent && window.MallConsent.granted && window.MallConsent.granted()) {
+    loadGtag();
+  } else {
+    document.addEventListener('DOMContentLoaded', function(){
+      if (window.MallConsent && window.MallConsent.onGranted) window.MallConsent.onGranted(loadGtag);
+    });
+  }
+})();
+</script>
 
 <!-- Accessibility AI Remediation powered by AccessibilityChecker.org -->
 <script>
  window.ac_ai_js_client_settings = {
   domain_hash: "fc96cd7fde88a55675a2411f70144c3c",
  };
- 
+
  (function() {
   var script = document.createElement("script");
   script.src = "https://www.accessibilitychecker.org/ai-script/ac-fixes-client.min.js?v=" + Date.now();
