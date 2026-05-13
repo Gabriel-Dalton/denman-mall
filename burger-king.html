@@ -201,15 +201,16 @@
         </div>
       </div>
 
-      <!-- Mobile (<xl): brand left-aligned with hours under it; language switcher + hamburger
-           grouped on the inline-end. Flex layout (not absolute) so the brand can't wrap or
-           overlap the controls on narrow viewports. -->
-      <div class="xl:hidden flex h-20 items-center gap-3">
+      <!-- Mobile (<xl): brand left-aligned with hours under it; compact language switcher
+           and hamburger grouped on the inline-end. Flex layout (not absolute) keeps the
+           brand from wrapping or overlapping the controls. min-w-0 + truncate are the
+           safety net on very narrow viewports. -->
+      <div class="xl:hidden flex items-center gap-3 py-5 border-b border-coolGray-100">
         <a href="index.html" class="flex-1 min-w-0 block">
-          <span translate="no" class="notranslate block tracking-tighter text-lg sm:text-2xl md:text-3xl leading-tight truncate">Denman Place Mall</span>
-          <p class="text-xs sm:text-sm text-coolGray-800 truncate">Open Today | 8:00 AM&ndash;10:00 PM</p>
+          <span translate="no" class="notranslate block tracking-tighter text-2xl leading-tight truncate">Denman Place Mall</span>
+          <p class="text-sm text-coolGray-700 truncate mt-1">Open Today | 8:00 AM to 10:00 PM</p>
         </a>
-        <div class="flex items-center gap-2 flex-shrink-0">
+        <div class="flex items-center gap-3 flex-shrink-0">
           <div class="mall-lang-wrap notranslate" translate="no" x-data="{ langOpen: false, current: 'EN' }" x-init="current = (window.MallI18n && MallI18n.currentLabel()) || 'EN'" @mall-lang-change.window="current = $event.detail.label" @click.outside="langOpen = false" @keydown.escape.window="langOpen = false">
             <button type="button" @click="langOpen = !langOpen" :aria-expanded="langOpen.toString()" aria-haspopup="listbox" aria-label="Change language" class="mall-lang-btn mall-lang-btn--compact">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
@@ -219,7 +220,7 @@
               </svg>
               <span class="mall-lang-code" x-text="current">EN</span>
             </button>
-            <ul x-show="langOpen" x-cloak x-transition.opacity role="listbox" aria-label="Select language" class="mall-lang-menu" data-align="right">
+            <ul x-show="langOpen" x-cloak x-transition.opacity role="listbox" aria-label="Select language" class="mall-lang-menu">
               <template x-for="opt in (window.MallI18n ? MallI18n.options : [])" :key="opt.code">
                 <li>
                   <button type="button" role="option" :aria-selected="(current === opt.label).toString()" @click="MallI18n.set(opt.code); langOpen = false" :dir="opt.rtl ? 'rtl' : 'ltr'">
@@ -230,8 +231,8 @@
               </template>
             </ul>
           </div>
-          <button x-on:click="mobileNavOpen = !mobileNavOpen" :aria-expanded="mobileNavOpen.toString()" aria-label="Open menu" aria-controls="mobile-nav" class="p-2 -mr-2" type="button">
-            <svg width="28" height="14" viewBox="0 0 28 14" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect width="28" height="2" rx="1" fill="black"></rect><rect y="12" width="28" height="2" rx="1" fill="black"></rect></svg>
+          <button x-on:click="mobileNavOpen = !mobileNavOpen" :aria-expanded="mobileNavOpen.toString()" aria-label="Open menu" aria-controls="mobile-nav" class="p-1 -mr-1" type="button">
+            <svg width="32" height="20" viewBox="0 0 32 20" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="2.5" rx="1.25" fill="black"></rect><rect y="17.5" width="32" height="2.5" rx="1.25" fill="black"></rect></svg>
           </button>
         </div>
       </div>
