@@ -1,0 +1,21 @@
+{
+  "nodes": [
+    {"id": "slider1_image", "type": "image", "label": "Mall interior corridor showing Shoppers Drug Mart, WESN office, and Devak Lock & Key signage with motion-blurred shoppers", "source_file": "assets/images/slider-bg/slider1-1920x1080.webp"},
+    {"id": "slider2_image", "type": "image", "label": "Exterior entrance of Denman Place Mall with 'MALL' signage above glass doors and a passing pedestrian", "source_file": "assets/images/slider-bg/slider2-1920x1080.webp"},
+    {"id": "slider3_image", "type": "image", "label": "Interior mall corridor featuring ornate lamppost and Dollarama storefront in background", "source_file": "assets/images/slider-bg/slider3-1920x1080.webp"},
+    {"id": "slider4_image", "type": "image", "label": "Outdoor Mobi by Rogers bike share station with red rental bikes lined up beside the mall exterior", "source_file": "assets/images/slider-bg/slider4-1920x1080.webp"},
+    {"id": "slider5_image", "type": "image", "label": "Interior mall corridor showing Minit Foto storefront, directional signage, and shoppers walking past", "source_file": "assets/images/slider-bg/slider5-1920x1080.webp"}
+  ],
+  "edges": [
+    {"source": "slider1_image", "target": "index_page", "relation": "used_in_slider", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "assets/images/slider-bg/slider1-1920x1080.webp"},
+    {"source": "slider2_image", "target": "index_page", "relation": "used_in_slider", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "assets/images/slider-bg/slider2-1920x1080.webp"},
+    {"source": "slider3_image", "target": "index_page", "relation": "used_in_slider", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "assets/images/slider-bg/slider3-1920x1080.webp"},
+    {"source": "slider4_image", "target": "index_page", "relation": "used_in_slider", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "assets/images/slider-bg/slider4-1920x1080.webp"},
+    {"source": "slider5_image", "target": "index_page", "relation": "used_in_slider", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "assets/images/slider-bg/slider5-1920x1080.webp"}
+  ],
+  "hyperedges": [
+    {"id": "hero_slider_rotation", "label": "Homepage hero slider rotation", "nodes": ["slider1_image", "slider2_image", "slider3_image", "slider4_image", "slider5_image"], "relation": "participate_in", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "assets/images/slider-bg"}
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -1,0 +1,109 @@
+- generic [ref=e2]:
+  - navigation [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e8]:
+        - link "Denman Place Mall" [ref=e9] [cursor=pointer]:
+          - /url: /home
+          - heading "Denman Place Mall" [level=1] [ref=e10]
+        - paragraph [ref=e11]: Open Today | 8:00 AM to 10:00 PM
+      - button [ref=e12] [cursor=pointer]:
+        - img [ref=e13]
+  - generic [ref=e19]:
+    - generic [ref=e21]:
+      - heading "Devak Lock & Key" [level=2] [ref=e22]
+      - paragraph [ref=e23]: Trusted Vancouver locksmiths since 1980, now operating as Accurate Lock & Safe. Residential, commercial, and emergency service, right here in Denman Place Mall.
+      - generic [ref=e24]:
+        - link "Visit website" [ref=e25] [cursor=pointer]:
+          - /url: https://www.devaklock.ca/
+          - generic [ref=e26]: Visit website
+          - img [ref=e28]
+        - link "Call 604-669-6947" [ref=e31] [cursor=pointer]:
+          - /url: tel:604-669-6947
+          - generic [ref=e32]: Call 604-669-6947
+          - img [ref=e34]
+    - img "Devak Lock & Key logo" [ref=e38]
+  - generic [ref=e40]:
+    - generic [ref=e41]:
+      - generic [ref=e42]:
+        - img "Denman Place Mall Logo" [ref=e43]
+        - generic [ref=e44]:
+          - paragraph [ref=e45]: Hours of Operation
+          - generic [ref=e46]:
+            - paragraph [ref=e47]: "Monday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e48]: "Tuesday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e49]: "Wednesday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e50]: "Thursday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e51]: "Friday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e52]: "Saturday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e53]: "Sunday: 8:00 AM – 10:00 PM"
+          - paragraph [ref=e54]: "Note: Some stores open earlier/later than shopping centre hours. Please check directly with stores for their hours."
+      - generic [ref=e55]:
+        - heading "Visitor Info" [level=5] [ref=e56]
+        - list [ref=e57]:
+          - listitem [ref=e58]:
+            - link "Store Directory" [ref=e59] [cursor=pointer]:
+              - /url: /directory
+          - listitem [ref=e60]:
+            - link "Events" [ref=e61] [cursor=pointer]:
+              - /url: /events
+          - listitem [ref=e62]:
+            - link "FAQs" [ref=e63] [cursor=pointer]:
+              - /url: /home#faq
+      - generic [ref=e64]:
+        - heading "About the Mall" [level=5] [ref=e65]
+        - list [ref=e66]:
+          - listitem [ref=e67]:
+            - link "About Us" [ref=e68] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e69]:
+            - link "Contact Us" [ref=e70] [cursor=pointer]:
+              - /url: /contact
+          - listitem [ref=e71]:
+            - link "Customer Testimonials" [ref=e72] [cursor=pointer]:
+              - /url: /home#customer_testimonials
+      - generic [ref=e73]:
+        - heading "Social Media" [level=5] [ref=e74]
+        - list [ref=e75]:
+          - listitem [ref=e76]:
+            - link "Facebook" [ref=e77] [cursor=pointer]:
+              - /url: https://www.facebook.com/thedenmanplacemall
+              - img [ref=e78]
+              - generic [ref=e80]: Facebook
+          - listitem [ref=e81]:
+            - link "Instagram" [ref=e82] [cursor=pointer]:
+              - /url: https://www.instagram.com/thedenmanmall/
+              - img [ref=e83]
+              - generic [ref=e87]: Instagram
+          - listitem [ref=e88]:
+            - link "LinkedIn" [ref=e89] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/denmanplacemall
+              - img [ref=e90]
+              - generic [ref=e94]: LinkedIn
+          - listitem [ref=e95]:
+            - link "Twitter" [ref=e96] [cursor=pointer]:
+              - /url: https://x.com/thedenmanmall
+              - img [ref=e97]
+              - generic [ref=e99]: Twitter
+      - generic [ref=e100]:
+        - heading "Address" [level=5] [ref=e101]
+        - list [ref=e102]:
+          - listitem [ref=e103]:
+            - paragraph [ref=e104]:
+              - text: 1030 Denman St.
+              - text: Vancouver, BC
+              - text: V6G 2M6
+            - link "See on Google Maps" [ref=e105] [cursor=pointer]:
+              - /url: https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6
+    - generic [ref=e107]:
+      - generic [ref=e109]:
+        - text: © 2026 Denman Place Mall. All Rights Reserved.
+        - generic [ref=e110]:
+          - link "Terms of Use" [ref=e111] [cursor=pointer]:
+            - /url: /terms
+          - text: "|"
+          - link "Privacy Policy" [ref=e112] [cursor=pointer]:
+            - /url: /privacy-policy
+      - generic [ref=e114]:
+        - text: Website sustainably crafted by
+        - link "Web-Ready" [ref=e115] [cursor=pointer]:
+          - /url: https://web-ready.org

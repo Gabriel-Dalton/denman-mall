@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    {"id": "open_door_law_image", "type": "image", "label": "open-door-law.webp", "path": "assets/images/open-door-law.webp"},
+    {"id": "open_graph_image", "type": "image", "label": "open-graph.webp", "path": "assets/images/open-graph.webp"},
+    {"id": "rose_healing_image", "type": "image", "label": "rose-healing.webp", "path": "assets/images/rose-healing.webp"},
+    {"id": "scissors_and_comb_image", "type": "image", "label": "scissors-and-comb.webp", "path": "assets/images/scissors-and-comb.webp"},
+    {"id": "shoppers_image", "type": "image", "label": "shoppers.webp", "path": "assets/images/shoppers.webp"}
+  ],
+  "edges": [
+    {"source": "open_door_law_image", "target": "open_door_law_store", "type": "depicts", "inferred": true, "confidence_score": 0.9},
+    {"source": "open_graph_image", "target": "index_page", "type": "used_as_social_card", "inferred": true, "confidence_score": 0.95},
+    {"source": "rose_healing_image", "target": "rose_stitching_store", "type": "depicts", "inferred": true, "confidence_score": 0.7, "note": "filename divergence: rose-healing vs rose-stitching"},
+    {"source": "scissors_and_comb_image", "target": "scissors_comb_barbershop_store", "type": "depicts", "inferred": true, "confidence_score": 0.9},
+    {"source": "shoppers_image", "target": "shoppers_drug_mart_store", "type": "depicts", "inferred": true, "confidence_score": 0.9}
+  ]
+}

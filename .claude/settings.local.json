@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($f = \"C:\\\\Users\\\\Gabriel\\\\Documents\\\\GitHub\\\\denman-mall\\\\index.html\"; $bytes = [System.IO.File]::ReadAllBytes\\($f\\); $text = [System.Text.Encoding]::UTF8.GetString\\($bytes\\); $orig = $text; $text = $text.Replace\\('alt=\"Denman Place Mall Logo\"', 'alt=\"Denman Place Mall logo\"'\\); Write-Output \\(\"equal? \" + \\($text -eq $orig\\)\\); Write-Output \\(\"orig contains Logo: \" + $orig.Contains\\('Mall Logo'\\)\\); Write-Output \\(\"new contains Logo: \" + $text.Contains\\('Mall Logo'\\)\\); Write-Output \\(\"new contains logo: \" + $text.Contains\\('Mall logo'\\)\\))",
+      "WebSearch",
+      "WebFetch(domain:oasisofchange.com)"
+    ]
+  }
+}

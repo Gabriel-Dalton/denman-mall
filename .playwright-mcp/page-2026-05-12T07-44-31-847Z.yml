@@ -1,0 +1,310 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - navigation "Main navigation" [ref=e5]:
+      - generic [ref=e7]:
+        - generic [ref=e9]:
+          - link "Denman Place Mall" [ref=e10] [cursor=pointer]:
+            - /url: index.html
+            - generic [ref=e11]: Denman Place Mall
+          - paragraph [ref=e12]: Open Today | 8:00 AM to 10:00 PM
+        - button "Open menu" [ref=e13] [cursor=pointer]:
+          - img [ref=e14]
+    - main [ref=e18]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - heading "Stores & Services" [level=1] [ref=e22]
+          - text: (30 of 30)
+        - generic [ref=e23]:
+          - text: Search stores
+          - generic [ref=e24]:
+            - img [ref=e25]
+            - searchbox "Search stores by name or category" [ref=e27]
+        - generic [ref=e28]:
+          - button "All" [ref=e29] [cursor=pointer]
+          - button "Groceries" [ref=e30] [cursor=pointer]
+          - button "Food & Drink" [ref=e31] [cursor=pointer]
+          - button "Health & Wellness" [ref=e32] [cursor=pointer]
+          - button "Services & Tech" [ref=e33] [cursor=pointer]
+          - button "Retail & Specialty" [ref=e34] [cursor=pointer]
+          - button "Community" [ref=e35] [cursor=pointer]
+          - button "Kiosks" [ref=e36] [cursor=pointer]
+        - generic [ref=e37]:
+          - generic [ref=e39]:
+            - img "Brandon & Joanny's No Frills" [ref=e41]
+            - link "Visit Brandon & Joanny's No Frills website" [ref=e42] [cursor=pointer]:
+              - /url: no-frills.html
+              - img [ref=e43]
+            - heading "Brandon & Joanny's No Frills" [level=2] [ref=e47]
+          - generic [ref=e49]:
+            - img "Shoppers Drug Mart" [ref=e51]
+            - link "Visit Shoppers Drug Mart website" [ref=e52] [cursor=pointer]:
+              - /url: shoppers-drug-mart.html
+              - img [ref=e53]
+            - heading "Shoppers Drug Mart" [level=2] [ref=e57]
+          - generic [ref=e59]:
+            - img "Burger King" [ref=e61]
+            - link "Visit Burger King website" [ref=e62] [cursor=pointer]:
+              - /url: burger-king.html
+              - img [ref=e63]
+            - heading "Burger King" [level=2] [ref=e67]
+          - generic [ref=e69]:
+            - img "Dollarama" [ref=e71]
+            - link "Visit Dollarama website" [ref=e72] [cursor=pointer]:
+              - /url: dollarama.html
+              - img [ref=e73]
+            - heading "Dollarama" [level=2] [ref=e77]
+          - generic [ref=e79]:
+            - img "Denman Beer Wine & Spirits" [ref=e81]
+            - link "Visit Denman Beer Wine & Spirits website" [ref=e82] [cursor=pointer]:
+              - /url: denman-liquor-store.html
+              - img [ref=e83]
+            - heading "Denman Beer Wine & Spirits" [level=2] [ref=e87]
+          - generic [ref=e89]:
+            - img "Specsavers" [ref=e91]
+            - link "Visit Specsavers website" [ref=e92] [cursor=pointer]:
+              - /url: specsavers.html
+              - img [ref=e93]
+            - heading "Specsavers" [level=2] [ref=e97]
+          - generic [ref=e99]:
+            - img "UPS Store" [ref=e101]
+            - link "Visit UPS Store website" [ref=e102] [cursor=pointer]:
+              - /url: ups.html
+              - img [ref=e103]
+            - heading "UPS Store" [level=2] [ref=e107]
+          - generic [ref=e109]:
+            - img "93 Coffee" [ref=e111]
+            - link "Visit 93 Coffee website" [ref=e112] [cursor=pointer]:
+              - /url: 93-coffee.html
+              - img [ref=e113]
+            - heading "93 Coffee" [level=2] [ref=e117]
+          - generic [ref=e119]:
+            - img "Denman Place Dental Centre" [ref=e121]
+            - link "Visit Denman Place Dental Centre website" [ref=e122] [cursor=pointer]:
+              - /url: denman-place-dental.html
+              - img [ref=e123]
+            - heading "Denman Place Dental Centre" [level=2] [ref=e127]
+          - generic [ref=e129]:
+            - img "Canada Post Outlet" [ref=e131]
+            - link "Visit Canada Post Outlet website" [ref=e132] [cursor=pointer]:
+              - /url: canada-post.html
+              - img [ref=e133]
+            - heading "Canada Post Outlet" [level=2] [ref=e137]
+          - generic [ref=e139]:
+            - img "Key's Place (WESN)" [ref=e141]
+            - link "Visit Key's Place (WESN) website" [ref=e142] [cursor=pointer]:
+              - /url: wesn.html
+              - img [ref=e143]
+            - heading "Key's Place (WESN)" [level=2] [ref=e147]
+          - generic [ref=e149]:
+            - img "Denman Chiropractic & Massage" [ref=e151]
+            - link "Visit Denman Chiropractic & Massage website" [ref=e152] [cursor=pointer]:
+              - /url: denman-chiropractic.html
+              - img [ref=e153]
+            - heading "Denman Chiropractic & Massage" [level=2] [ref=e157]
+          - generic [ref=e159]:
+            - img "Stanley Park Dental Centre" [ref=e161]
+            - link "Visit Stanley Park Dental Centre website" [ref=e162] [cursor=pointer]:
+              - /url: stanley-park-dental.html
+              - img [ref=e163]
+            - heading "Stanley Park Dental Centre" [level=2] [ref=e167]
+          - generic [ref=e169]:
+            - img "Murrick Insurance" [ref=e171]
+            - link "Visit Murrick Insurance website" [ref=e172] [cursor=pointer]:
+              - /url: murrick-insurance.html
+              - img [ref=e173]
+            - heading "Murrick Insurance" [level=2] [ref=e177]
+          - generic [ref=e179]:
+            - img "BCLC Lotto" [ref=e181]
+            - link "Visit BCLC Lotto website" [ref=e182] [cursor=pointer]:
+              - /url: bclc-lotto.html
+              - img [ref=e183]
+            - heading "BCLC Lotto" [level=2] [ref=e187]
+          - generic [ref=e189]:
+            - img "MP Hedy Fry Vancouver Centre" [ref=e191]
+            - link "Visit MP Hedy Fry Vancouver Centre website" [ref=e192] [cursor=pointer]:
+              - /url: hedy-fry.html
+              - img [ref=e193]
+            - heading "MP Hedy Fry Vancouver Centre" [level=2] [ref=e197]
+          - generic [ref=e199]:
+            - img "TE.A.TE CLINIC" [ref=e201]
+            - link "Visit TE.A.TE CLINIC website" [ref=e202] [cursor=pointer]:
+              - /url: teate-clinic.html
+              - img [ref=e203]
+            - heading "TE.A.TE CLINIC" [level=2] [ref=e207]
+          - generic [ref=e209]:
+            - img "Accountax Financial" [ref=e211]
+            - link "Visit Accountax Financial website" [ref=e212] [cursor=pointer]:
+              - /url: accountax.html
+              - img [ref=e213]
+            - heading "Accountax Financial" [level=2] [ref=e217]
+          - generic [ref=e219]:
+            - img "Scissors & Comb Barbers" [ref=e221]
+            - link "Visit Scissors & Comb Barbers website" [ref=e222] [cursor=pointer]:
+              - /url: scissors-comb-barbershop.html
+              - img [ref=e223]
+            - heading "Scissors & Comb Barbers" [level=2] [ref=e227]
+          - generic [ref=e229]:
+            - img "English Bay Jewellers" [ref=e231]
+            - link "Visit English Bay Jewellers website" [ref=e232] [cursor=pointer]:
+              - /url: english-bay-jewellers.html
+              - img [ref=e233]
+            - heading "English Bay Jewellers" [level=2] [ref=e237]
+          - generic [ref=e239]:
+            - img "The Ice Cream Parlour (Eyewear)" [ref=e241]
+            - link "Visit The Ice Cream Parlour (Eyewear) website" [ref=e242] [cursor=pointer]:
+              - /url: the-ice-cream-parlour.html
+              - img [ref=e243]
+            - heading "The Ice Cream Parlour (Eyewear)" [level=2] [ref=e247]
+          - generic [ref=e249]:
+            - img "Rose Stitching & Healing" [ref=e251]
+            - link "Visit Rose Stitching & Healing website" [ref=e252] [cursor=pointer]:
+              - /url: rose-stitching.html
+              - img [ref=e253]
+            - heading "Rose Stitching & Healing" [level=2] [ref=e257]
+          - generic [ref=e259]:
+            - img "Open Door Law" [ref=e261]
+            - link "Visit Open Door Law website" [ref=e262] [cursor=pointer]:
+              - /url: open-door-law.html
+              - img [ref=e263]
+            - heading "Open Door Law" [level=2] [ref=e267]
+          - generic [ref=e269]:
+            - img "Devak Lock & Key" [ref=e271]
+            - link "Visit Devak Lock & Key website" [ref=e272] [cursor=pointer]:
+              - /url: devak-key-lock.html
+              - img [ref=e273]
+            - heading "Devak Lock & Key" [level=2] [ref=e277]
+          - generic [ref=e279]:
+            - img "Lost Lagoon Frames" [ref=e281]
+            - link "Visit Lost Lagoon Frames website" [ref=e282] [cursor=pointer]:
+              - /url: lost-lagoon-frames.html
+              - img [ref=e283]
+            - heading "Lost Lagoon Frames" [level=2] [ref=e287]
+          - generic [ref=e289]:
+            - img "Clothes & Collectables (WESN)" [ref=e291]
+            - link "Visit Clothes & Collectables (WESN) website" [ref=e292] [cursor=pointer]:
+              - /url: clothes-collectibles.html
+              - img [ref=e293]
+            - heading "Clothes & Collectables (WESN)" [level=2] [ref=e297]
+          - generic [ref=e299]:
+            - img "YVR Travel Service" [ref=e301]
+            - link "Visit YVR Travel Service website" [ref=e302] [cursor=pointer]:
+              - /url: yvr-travel.html
+              - img [ref=e303]
+            - heading "YVR Travel Service" [level=2] [ref=e307]
+          - generic [ref=e309]:
+            - img "Minit Foto" [ref=e311]
+            - link "Visit Minit Foto website" [ref=e312] [cursor=pointer]:
+              - /url: minit-foto.html
+              - img [ref=e313]
+            - heading "Minit Foto" [level=2] [ref=e317]
+          - generic [ref=e320]:
+            - heading "Express Stop" [level=2] [ref=e321]
+            - generic [ref=e322]:
+              - paragraph [ref=e323]: Cell phone repairs kiosk
+              - link "778-323-6209" [ref=e324] [cursor=pointer]:
+                - /url: tel:7783236209
+          - generic [ref=e327]:
+            - heading "Cell Universe" [level=2] [ref=e328]
+            - generic [ref=e329]:
+              - paragraph [ref=e330]: Phone accessories kiosk
+              - link "778-919-5500" [ref=e331] [cursor=pointer]:
+                - /url: tel:7789195500
+    - generic [ref=e333]:
+      - generic [ref=e334]:
+        - generic [ref=e335]:
+          - img "Denman Place Mall logo" [ref=e336]
+          - generic [ref=e337]:
+            - paragraph [ref=e338]: Hours of Operation
+            - generic [ref=e339]:
+              - paragraph [ref=e340]: "Monday: 8:00 AM – 10:00 PM"
+              - paragraph [ref=e341]: "Tuesday: 8:00 AM – 10:00 PM"
+              - paragraph [ref=e342]: "Wednesday: 8:00 AM – 10:00 PM"
+              - paragraph [ref=e343]: "Thursday: 8:00 AM – 10:00 PM"
+              - paragraph [ref=e344]: "Friday: 8:00 AM – 10:00 PM"
+              - paragraph [ref=e345]: "Saturday: 8:00 AM – 10:00 PM"
+              - paragraph [ref=e346]: "Sunday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e347]: "Note: Some stores open earlier/later than shopping centre hours. Please check directly with stores for their hours."
+        - generic [ref=e348]:
+          - heading "Visitor Info" [level=5] [ref=e349]
+          - list [ref=e350]:
+            - listitem [ref=e351]:
+              - link "Store Directory" [ref=e352] [cursor=pointer]:
+                - /url: directory.html
+            - listitem [ref=e353]:
+              - link "Mall Map" [ref=e354] [cursor=pointer]:
+                - /url: map.html
+            - listitem [ref=e355]:
+              - link "Parking & Transit" [ref=e356] [cursor=pointer]:
+                - /url: parking-transit.html
+            - listitem [ref=e357]:
+              - link "Events" [ref=e358] [cursor=pointer]:
+                - /url: events.html
+            - listitem [ref=e359]:
+              - link "Safety & Emergency Information" [ref=e360] [cursor=pointer]:
+                - /url: safety-updates.html
+            - listitem [ref=e361]:
+              - link "FAQs" [ref=e362] [cursor=pointer]:
+                - /url: index.html#faq
+        - generic [ref=e363]:
+          - heading "About the Mall" [level=5] [ref=e364]
+          - list [ref=e365]:
+            - listitem [ref=e366]:
+              - link "About Us" [ref=e367] [cursor=pointer]:
+                - /url: about.html
+            - listitem [ref=e368]:
+              - link "Contact Us" [ref=e369] [cursor=pointer]:
+                - /url: contact.html
+            - listitem [ref=e370]:
+              - link "Customer Testimonials" [ref=e371] [cursor=pointer]:
+                - /url: index.html#customer_testimonials
+        - generic [ref=e372]:
+          - heading "Social Media" [level=5] [ref=e373]
+          - list [ref=e374]:
+            - listitem [ref=e375]:
+              - link "Facebook" [ref=e376] [cursor=pointer]:
+                - /url: https://www.facebook.com/thedenmanplacemall
+                - img [ref=e377]
+                - generic [ref=e379]: Facebook
+            - listitem [ref=e380]:
+              - link "Instagram" [ref=e381] [cursor=pointer]:
+                - /url: https://www.instagram.com/thedenmanmall/
+                - img [ref=e382]
+                - generic [ref=e386]: Instagram
+            - listitem [ref=e387]:
+              - link "LinkedIn" [ref=e388] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/denmanplacemall
+                - img [ref=e389]
+                - generic [ref=e393]: LinkedIn
+            - listitem [ref=e394]:
+              - link "Twitter" [ref=e395] [cursor=pointer]:
+                - /url: https://x.com/thedenmanmall
+                - img [ref=e396]
+                - generic [ref=e398]: Twitter
+        - generic [ref=e399]:
+          - heading "Address" [level=5] [ref=e400]
+          - list [ref=e401]:
+            - listitem [ref=e402]:
+              - paragraph [ref=e403]:
+                - text: 1030 Denman St.
+                - text: Vancouver, BC
+                - text: V6G 2M6
+              - link "See on Google Maps" [ref=e404] [cursor=pointer]:
+                - /url: https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6
+      - generic [ref=e406]:
+        - generic [ref=e408]:
+          - text: © 2026 Denman Place Mall. All Rights Reserved.
+          - generic [ref=e409]:
+            - link "Terms of Use" [ref=e410] [cursor=pointer]:
+              - /url: terms.html
+            - text: "|"
+            - link "Privacy Policy" [ref=e411] [cursor=pointer]:
+              - /url: privacy-policy.html
+            - text: "|"
+            - link "Accessibility" [ref=e412] [cursor=pointer]:
+              - /url: accessibility.html
+        - generic [ref=e414]:
+          - text: Website sustainably crafted by
+          - link "Oasis of Change, Inc." [ref=e415] [cursor=pointer]:
+            - /url: https://oasisofchange.com

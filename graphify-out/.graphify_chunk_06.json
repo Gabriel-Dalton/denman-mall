@@ -1,0 +1,76 @@
+{
+  "nodes": [
+    {
+      "id": "english_bay_jewellers_image",
+      "type": "image",
+      "label": "English Bay Jewellers logo",
+      "description": "Logo wordmark reading 'English-Bay Jewellers' in a rust-orange script font on a transparent background.",
+      "file_path": "assets/images/english-bay-jewellers.webp"
+    },
+    {
+      "id": "favicon_image",
+      "type": "image",
+      "label": "Denman Place favicon",
+      "description": "Circular black favicon featuring stylized white 'dP' monogram representing Denman Place.",
+      "file_path": "assets/images/favicon.png"
+    },
+    {
+      "id": "halloween_image",
+      "type": "image",
+      "label": "Halloween display photograph",
+      "description": "Photograph of an elaborate Halloween display with skeletons, a mariachi skeleton with guitar, a creepy doll bride, werewolf, tombstones, spiderwebs, black cats, ghost, and skull decorations.",
+      "file_path": "assets/images/halloween.webp"
+    },
+    {
+      "id": "hedy_fry_image",
+      "type": "image",
+      "label": "Hedy Fry MP logo",
+      "description": "Campaign-style logo with 'Hedy' handwritten in red script above bold black 'FRY' and 'VANCOUVER CENTRE' text.",
+      "file_path": "assets/images/hedy-fry.webp"
+    },
+    {
+      "id": "lost_lagoon_frames_image",
+      "type": "image",
+      "label": "Lost Lagoon Frames logo",
+      "description": "Black ornate vintage-style wordmark 'Lost Lagoon' flanked by diamond ornaments, with tagline 'Frames. Curation. Aesthetics.' underneath.",
+      "file_path": "assets/images/lost-lagoon-frames.webp"
+    }
+  ],
+  "edges": [
+    {
+      "source": "english_bay_jewellers_image",
+      "target": "english_bay_jewellers_page",
+      "type": "depicts",
+      "inferred": true,
+      "confidence_score": 0.95
+    },
+    {
+      "source": "favicon_image",
+      "target": "index_page",
+      "type": "is_icon_of",
+      "inferred": true,
+      "confidence_score": 0.95
+    },
+    {
+      "source": "halloween_image",
+      "target": "halloween_page",
+      "type": "depicts",
+      "inferred": true,
+      "confidence_score": 0.95
+    },
+    {
+      "source": "hedy_fry_image",
+      "target": "hedy_fry_page",
+      "type": "depicts",
+      "inferred": true,
+      "confidence_score": 0.95
+    },
+    {
+      "source": "lost_lagoon_frames_image",
+      "target": "lost_lagoon_frames_page",
+      "type": "depicts",
+      "inferred": true,
+      "confidence_score": 0.95
+    }
+  ]
+}

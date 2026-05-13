@@ -1,0 +1,389 @@
+<section x-data="{ mobileNavOpen: false }" class="">
+  <style id="mall-i18n-css">
+    /* Language switcher: stays LTR even when page is RTL so globe/code/chevron keep order. */
+    .mall-lang-wrap{position:relative;display:inline-flex;align-items:center;direction:ltr;}
+    .mall-lang-btn{position:relative;display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .7rem;color:#000;font-weight:500;border:1px solid #000;border-radius:9999px;background:transparent;font-size:.875rem;line-height:1;cursor:pointer;transition:background .15s,color .15s;font-family:inherit;}
+    .mall-lang-btn:hover,.mall-lang-btn[aria-expanded="true"]{background:#000;color:#fff;}
+    .mall-lang-btn .mall-lang-code{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600;}
+    .mall-lang-btn .mall-lang-chev{transition:transform .2s ease;}
+    .mall-lang-btn[aria-expanded="true"] .mall-lang-chev{transform:rotate(180deg);}
+    .mall-lang-btn--compact{padding:.4rem;border-radius:9999px;}
+    .mall-lang-btn--compact .mall-lang-code{margin-inline-start:.25rem;}
+    /* Logical-property positioning so the menu flips correctly under direction:rtl. */
+    .mall-lang-menu{position:absolute;inset-inline-end:0;top:calc(100% + .5rem);min-width:14rem;background:#fff;border:1px solid #e5e7eb;border-radius:.5rem;box-shadow:0 10px 25px -3px rgba(0,0,0,.12),0 4px 6px -2px rgba(0,0,0,.05);padding:.5rem 0;z-index:60;}
+    .mall-lang-menu[data-align="left"]{inset-inline-end:auto;inset-inline-start:0;}
+    .mall-lang-menu button{display:flex;width:100%;text-align:start;padding:.55rem 1rem;align-items:center;justify-content:space-between;background:transparent;border:0;font-size:1rem;cursor:pointer;color:#000;font-family:inherit;}
+    .mall-lang-menu button:hover,.mall-lang-menu button:focus-visible{background:#f3f4f6;outline:none;}
+    .mall-lang-menu button[aria-selected="true"]{font-weight:600;}
+    .mall-lang-menu .mall-lang-code{font-size:.7rem;color:#6b7280;text-transform:uppercase;margin-inline-start:.75rem;letter-spacing:.05em;}
+    .mall-lang-mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
+    .mall-lang-mobile-grid button{text-align:start;padding:.625rem .75rem;border:1px solid #e5e7eb;border-radius:.375rem;background:#fff;font-size:1rem;cursor:pointer;font-family:inherit;color:#000;}
+    .mall-lang-mobile-grid button:hover,.mall-lang-mobile-grid button:focus-visible{background:#f3f4f6;outline:none;}
+    .mall-lang-mobile-grid .mall-lang-code{display:block;font-size:.7rem;color:#6b7280;text-transform:uppercase;margin-top:.15rem;letter-spacing:.05em;}
+    .mall-lang-mobile-section{margin-top:2rem;padding-top:1.5rem;border-top:1px solid #e5e7eb;}
+    .mall-lang-mobile-section p{font-size:.75rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem;}
+
+    /* RTL overrides for the bundled Tailwind utilities used in the nav.
+       The build ships physical margins (ml-auto, mr-10, ml-3) that don't
+       auto-flip under direction:rtl, so map them to logical equivalents.
+       Also clamp body overflow-x to prevent rogue horizontal scroll from any
+       element that hasn't been migrated to logical properties yet. */
+    html[dir="rtl"] body{overflow-x:hidden;}
+    html[dir="rtl"] .ml-auto{margin-left:0 !important;margin-inline-start:auto;}
+    html[dir="rtl"] .mr-10{margin-right:0 !important;margin-inline-end:2.5rem;}
+    html[dir="rtl"] .mr-12{margin-right:0 !important;margin-inline-end:3rem;}
+    html[dir="rtl"] .ml-3{margin-left:0 !important;margin-inline-start:.75rem;}
+    html[dir="rtl"] .mall-rtl-ms{margin-left:0 !important;margin-inline-start:var(--mall-rtl-ms,0);}
+  </style>
+  <nav aria-label="Main navigation">
+    <div class="container mx-auto px-4">
+
+      <!-- Desktop (xl+): three-section flex — brand sits at true horizontal centre,
+           side groups fill equal-width flex columns so the page stays balanced
+           regardless of how many items each side has. -->
+      <div class="hidden xl:flex h-24 items-center">
+        <div style="flex:1;display:flex;justify-content:flex-start;align-items:center;gap:2.5rem;padding-inline-start:1rem;">
+          <a class="inline-block text-black font-medium hover:underline" href="index.html">Home</a>
+          <a class="inline-block text-black font-medium hover:underline" href="directory.html">Store Directory</a>
+        </div>
+        <div class="text-center" style="flex:0 0 auto;margin:0 1.5rem">
+          <a href="index.html"><span translate="no" class="notranslate block text-3xl tracking-tighter mb-1">Denman Place Mall</span></a>
+          <p class="text-lg text-coolGray-900">Open Today | 8:00 AM to 10:00 PM</p>
+        </div>
+        <div style="flex:1;display:flex;justify-content:flex-end;align-items:center;gap:2.5rem;padding-inline-end:1rem;">
+          <a class="inline-block text-black font-medium hover:underline" href="about.html">About Us</a>
+          <a class="inline-block text-black font-medium hover:underline" href="contact.html">Contact Us</a>
+          <div class="mall-lang-wrap notranslate" translate="no" x-data="{ langOpen: false, current: 'EN' }" x-init="current = (window.MallI18n && MallI18n.currentLabel()) || 'EN'" @mall-lang-change.window="current = $event.detail.label" @click.outside="langOpen = false" @keydown.escape.window="langOpen = false">
+            <button type="button" @click="langOpen = !langOpen" :aria-expanded="langOpen.toString()" aria-haspopup="listbox" aria-label="Change language" class="mall-lang-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span class="mall-lang-code" x-text="current">EN</span>
+              <svg width="10" height="10" viewBox="0 0 10 10" class="mall-lang-chev" aria-hidden="true" focusable="false"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <ul x-show="langOpen" x-cloak x-transition.opacity role="listbox" aria-label="Select language" class="mall-lang-menu">
+              <template x-for="opt in (window.MallI18n ? MallI18n.options : [])" :key="opt.code">
+                <li>
+                  <button type="button" role="option" :aria-selected="(current === opt.label).toString()" @click="MallI18n.set(opt.code); langOpen = false" :dir="opt.rtl ? 'rtl' : 'ltr'">
+                    <span x-text="opt.native"></span>
+                    <span class="mall-lang-code" x-text="opt.label"></span>
+                  </button>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile (<xl): brand centred via absolute positioning; language switcher + hamburger flush to the inline-end. -->
+      <div class="xl:hidden relative flex h-24 items-center">
+        <div class="absolute" style="top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;">
+          <a href="index.html" style="pointer-events:auto;"><span translate="no" class="notranslate block tracking-tighter text-2xl sm:text-3xl md:text-4xl mb-1">Denman Place Mall</span></a>
+          <p class="text-sm text-coolGray-800">Open Today | 8:00 AM to 10:00 PM</p>
+        </div>
+        <div class="mall-lang-wrap notranslate" translate="no" x-data="{ langOpen: false, current: 'EN' }" x-init="current = (window.MallI18n && MallI18n.currentLabel()) || 'EN'" @mall-lang-change.window="current = $event.detail.label" @click.outside="langOpen = false" @keydown.escape.window="langOpen = false" style="margin-inline-start:auto;position:relative;z-index:1;">
+          <button type="button" @click="langOpen = !langOpen" :aria-expanded="langOpen.toString()" aria-haspopup="listbox" aria-label="Change language" class="mall-lang-btn mall-lang-btn--compact">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span class="mall-lang-code" x-text="current">EN</span>
+          </button>
+          <ul x-show="langOpen" x-cloak x-transition.opacity role="listbox" aria-label="Select language" class="mall-lang-menu">
+            <template x-for="opt in (window.MallI18n ? MallI18n.options : [])" :key="opt.code">
+              <li>
+                <button type="button" role="option" :aria-selected="(current === opt.label).toString()" @click="MallI18n.set(opt.code); langOpen = false" :dir="opt.rtl ? 'rtl' : 'ltr'">
+                  <span x-text="opt.native"></span>
+                  <span class="mall-lang-code" x-text="opt.label"></span>
+                </button>
+              </li>
+            </template>
+          </ul>
+        </div>
+        <button x-on:click="mobileNavOpen = !mobileNavOpen" :aria-expanded="mobileNavOpen.toString()" aria-expanded="false" aria-label="Open menu" aria-controls="mobile-nav" class="py-1" style="margin-inline-start:0.75rem;position:relative;z-index:1;">
+          <svg width="44" height="16" viewBox="0 0 44 16" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect width="44" height="2" rx="1" fill="black"></rect><rect y="14" width="44" height="2" rx="1" fill="black"></rect></svg>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+  <div id="mobile-nav" x-cloak="" x-show="mobileNavOpen" x-transition="" class="fixed top-0 left-0 bottom-0 w-5/6 max-w-md z-50">
+    <div x-on:click="mobileNavOpen = false" class="fixed inset-0 bg-gray-800 opacity-50"></div>
+    <nav class="relative flex flex-col py-8 px-8 w-full h-full bg-white overflow-y-auto" aria-label="Mobile navigation">
+      <div class="flex items-center mb-8">
+        <div class="mr-auto">
+          <a href="index.html"><span translate="no" class="notranslate block text-2xl tracking-tighter mb-2">Denman Place Mall</span></a>
+          <p class="text-sm text-coolGray-700">Open Today | 8:00 AM to 10:00 PM</p>
+        </div>
+        <button x-on:click="mobileNavOpen = false" aria-label="Close menu">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 18L18 6M6 6L18 18" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="py-10">
+        <ul class="flex flex-col space-y-12 text-xl sm:text-2xl font-medium text-black">
+          <li><a class="hover:underline" href="index.html">Home</a></li>
+          <li><a class="hover:underline" href="directory.html">Store Directory</a></li>
+          <li><a class="hover:underline" href="about.html">About Us</a></li>
+          <li><a class="hover:underline" href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="mall-lang-mobile-section notranslate" translate="no" x-data>
+        <p>Language / 语言 / زبان</p>
+        <div class="mall-lang-mobile-grid">
+          <template x-for="opt in (window.MallI18n ? MallI18n.options : [])" :key="opt.code">
+            <button type="button" @click="MallI18n.set(opt.code); mobileNavOpen = false" :dir="opt.rtl ? 'rtl' : 'ltr'">
+              <span x-text="opt.native"></span>
+              <span class="mall-lang-code" x-text="opt.label"></span>
+            </button>
+          </template>
+        </div>
+      </div>
+      <div class="mt-auto pt-8"><a class="block w-full px-4 py-4 text-center text-lg font-semibold text-black hover:text-white border border-black hover:bg-black rounded-full transition duration-200" href="directory.html">View Store Directory</a></div>
+    </nav>
+  </div>
+</section>
+
+<!-- My List: floating button + drawer (global, persists across pages) -->
+<style id="mall-list-css">
+  .mall-list-fab{position:fixed;bottom:1.25rem;right:1.25rem;z-index:55;display:inline-flex;align-items:center;justify-content:center;width:3.25rem;height:3.25rem;border-radius:9999px;background:#000;color:#fff;border:0;cursor:pointer;box-shadow:0 6px 18px -4px rgba(0,0,0,.35);transition:transform .15s,background .15s;}
+  .mall-list-fab:hover,.mall-list-fab:focus-visible{background:#1f2937;transform:translateY(-2px);outline:none;}
+  .mall-list-fab-count{position:absolute;top:-.25rem;right:-.25rem;min-width:1.25rem;height:1.25rem;padding:0 .35rem;border-radius:9999px;background:#dc2626;color:#fff;font-size:.7rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;border:2px solid #fff;}
+  .mall-list-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;}
+  .mall-list-drawer{position:fixed;top:0;right:0;bottom:0;width:90vw;max-width:24rem;background:#fff;z-index:61;display:flex;flex-direction:column;box-shadow:-10px 0 30px -10px rgba(0,0,0,.2);}
+  html[dir="rtl"] .mall-list-drawer{right:auto;left:0;box-shadow:10px 0 30px -10px rgba(0,0,0,.2);}
+  html[dir="rtl"] .mall-list-fab{right:auto;left:1.25rem;}
+  .mall-list-drawer header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid #e5e7eb;}
+  .mall-list-drawer h2{font-size:1.25rem;font-weight:600;margin:0;}
+  .mall-list-drawer .mall-list-close{background:transparent;border:0;cursor:pointer;padding:.25rem;color:#374151;}
+  .mall-list-drawer .mall-list-body{flex:1;overflow-y:auto;padding:1rem 1.5rem;}
+  .mall-list-empty{color:#6b7280;font-size:.95rem;line-height:1.5;text-align:center;padding:2rem 1rem;}
+  .mall-list-empty svg{width:2.5rem;height:2.5rem;color:#d1d5db;margin:0 auto .75rem;display:block;}
+  .mall-list-items{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem;}
+  .mall-list-items li{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.625rem .75rem;border:1px solid #e5e7eb;border-radius:.5rem;}
+  .mall-list-items a{color:#000;font-weight:500;text-decoration:none;flex:1;}
+  .mall-list-items a:hover{text-decoration:underline;}
+  .mall-list-items .mall-list-remove{background:transparent;border:0;cursor:pointer;color:#6b7280;padding:.25rem;line-height:0;}
+  .mall-list-items .mall-list-remove:hover{color:#dc2626;}
+  .mall-list-drawer footer{padding:1rem 1.5rem;border-top:1px solid #e5e7eb;display:flex;flex-direction:column;gap:.5rem;}
+  .mall-list-drawer .mall-list-footer-row{display:flex;gap:.5rem;}
+  .mall-list-drawer .mall-list-clear{flex:1;background:transparent;border:1px solid #e5e7eb;border-radius:.375rem;padding:.5rem;cursor:pointer;font-size:.875rem;color:#374151;}
+  .mall-list-drawer .mall-list-clear:hover{background:#f3f4f6;}
+  .mall-list-drawer .mall-list-hide{background:transparent;border:0;cursor:pointer;font-size:.8125rem;color:#6b7280;text-decoration:underline;padding:.25rem;align-self:center;}
+  .mall-list-drawer .mall-list-hide:hover{color:#111;}
+  /* Star button used by directory cards and store pages */
+  .mall-star-btn{position:absolute;top:.5rem;right:.5rem;z-index:5;background:rgba(255,255,255,.92);border:1px solid #e5e7eb;border-radius:9999px;width:2.25rem;height:2.25rem;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:#6b7280;transition:color .15s,background .15s,transform .15s;}
+  .mall-star-btn:hover,.mall-star-btn:focus-visible{background:#fff;color:#111;outline:none;transform:scale(1.05);}
+  .mall-star-btn[aria-pressed="true"]{color:#f59e0b;}
+  .mall-star-btn svg{width:1.1rem;height:1.1rem;}
+</style>
+<div class="notranslate" translate="no" x-data x-init="$store.mall && $store.mall.load && $store.mall.load()">
+  <button type="button" x-show="$store.mall && $store.mall.items.length > 0" @click="$store.mall.open = true" class="mall-list-fab" aria-label="Open my saved stores list">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    <span class="mall-list-fab-count" x-show="$store.mall && $store.mall.items.length" x-text="$store.mall && $store.mall.items.length"></span>
+  </button>
+  <template x-if="$store.mall && $store.mall.open">
+    <div>
+      <div class="mall-list-overlay" @click="$store.mall.open = false"></div>
+      <aside class="mall-list-drawer" role="dialog" aria-label="My saved stores" x-transition>
+        <header>
+          <h2>My List</h2>
+          <button type="button" class="mall-list-close" @click="$store.mall.open = false" aria-label="Close my list">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </header>
+        <div class="mall-list-body">
+          <template x-if="!$store.mall.items.length">
+            <div class="mall-list-empty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <p>No stores saved yet.<br>Tap the <strong>★</strong> on any store card to add it here.</p>
+            </div>
+          </template>
+          <ul class="mall-list-items">
+            <template x-for="item in $store.mall.items" :key="item.id">
+              <li>
+                <a :href="item.url" x-text="item.name"></a>
+                <button type="button" class="mall-list-remove" @click="$store.mall.remove(item.id)" :aria-label="'Remove ' + item.name + ' from my list'">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+              </li>
+            </template>
+          </ul>
+        </div>
+        <footer x-show="$store.mall.items.length">
+          <div class="mall-list-footer-row">
+            <button type="button" class="mall-list-clear" @click="$store.mall.clear()">Clear all</button>
+          </div>
+        </footer>
+      </aside>
+    </div>
+  </template>
+</div>
+<script>
+document.addEventListener('alpine:init', function () {
+  Alpine.store('mall', {
+    items: [],
+    open: false,
+    load: function () {
+      try { this.items = JSON.parse(localStorage.getItem('mallList') || '[]'); }
+      catch (e) { this.items = []; }
+      // Clean up any legacy dismissal keys from earlier iterations
+      try { localStorage.removeItem('mallListHidden'); localStorage.removeItem('mallListDismissed'); } catch (e) {}
+    },
+    save: function () { localStorage.setItem('mallList', JSON.stringify(this.items)); },
+    has: function (id) { return this.items.some(function (i) { return i.id === id; }); },
+    toggle: function (store) {
+      var idx = this.items.findIndex(function (i) { return i.id === store.id; });
+      if (idx >= 0) this.items.splice(idx, 1);
+      else this.items.push({ id: store.id, name: store.name, url: store.url });
+      this.save();
+    },
+    remove: function (id) {
+      this.items = this.items.filter(function (i) { return i.id !== id; });
+      // When list becomes empty, close the drawer too — nothing to show.
+      if (!this.items.length) this.open = false;
+      this.save();
+    },
+    clear: function () {
+      this.items = [];
+      this.open = false;
+      this.save();
+    }
+  });
+});
+</script>
+
+<!-- Google Translate (hidden, driven by MallI18n) -->
+<div id="google_translate_element" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;"></div>
+<style id="mall-i18n-gt-css">
+  /* Blanket-hide every Google Translate chrome element with stacked suppressors
+     so a single property collision can't expose the banner. */
+  #google_translate_element,
+  .skiptranslate,
+  .goog-te-banner-frame,
+  .goog-te-banner-frame.skiptranslate,
+  iframe.goog-te-banner-frame,
+  iframe.goog-te-menu-frame,
+  .goog-te-balloon-frame,
+  #goog-gt-tt,
+  .goog-tooltip,
+  .goog-tooltip:hover,
+  .goog-tooltip-container,
+  .goog-te-gadget,
+  .goog-te-gadget-simple,
+  .goog-te-gadget-icon,
+  .goog-logo-link,
+  .goog-te-gadget img {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Reset the body offset Google forces at runtime when it shows the banner. */
+  body { top: 0 !important; position: static !important; }
+  html { margin-top: 0 !important; }
+
+  /* Keep the hidden <select> reachable so programmatic dispatch still works. */
+  .goog-te-combo {
+    position: absolute !important; left: -9999px !important; top: -9999px !important;
+  }
+
+  /* Suppress the yellow hover highlight on translated text. */
+  .goog-text-highlight {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    box-decoration-break: clone;
+  }
+
+  /* Normalise Google's <font> wrappers so they don't shift baselines. */
+  font[style*="vertical-align"] {
+    vertical-align: inherit !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    color: inherit !important;
+  }
+
+  /* RTL when Persian is active. */
+  html[data-mall-lang="fa"] body { direction: rtl; }
+</style>
+<script>
+(function () {
+  if (window.MallI18n) return;
+  var LANGS = [
+    { code: 'en',    label: 'EN',    native: 'English'  },
+    { code: 'zh-CN', label: 'ZH',    native: '中文 (简体)' },
+    { code: 'zh-TW', label: 'ZH-TW', native: '中文 (繁體)' },
+    { code: 'fa',    label: 'FA',    native: 'فارسی', rtl: true },
+    { code: 'es',    label: 'ES',    native: 'Español' },
+    { code: 'ko',    label: 'KO',    native: '한국어'  },
+    { code: 'ja',    label: 'JA',    native: '日本語'  },
+    { code: 'tl',    label: 'TL',    native: 'Tagalog' },
+    { code: 'ru',    label: 'RU',    native: 'Русский' },
+    { code: 'fr',    label: 'FR',    native: 'Français' }
+  ];
+  var byCode = {};
+  LANGS.forEach(function (l) { byCode[l.code] = l; });
+  function readCookie(name) {
+    var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return m ? decodeURIComponent(m[1]) : null;
+  }
+  function writeCookie(name, value) {
+    document.cookie = name + '=' + value + '; path=/; max-age=' + 60 * 60 * 24 * 365;
+    var host = location.hostname.replace(/^www\./, '');
+    if (host) document.cookie = name + '=' + value + '; path=/; domain=.' + host + '; max-age=' + 60 * 60 * 24 * 365;
+  }
+  function parseLang() {
+    var c = readCookie('googtrans');
+    if (c) {
+      var parts = c.split('/');
+      var t = parts[parts.length - 1];
+      if (byCode[t]) return t;
+    }
+    var stored = localStorage.getItem('mallLang');
+    return stored && byCode[stored] ? stored : 'en';
+  }
+  var currentBootLang = parseLang();
+  function setLang(code) {
+    if (!byCode[code]) return;
+    if (code === currentBootLang) return; // no-op
+    localStorage.setItem('mallLang', code);
+    // For 'en', clear the cookie by setting an expired one + null value
+    if (code === 'en') {
+      document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+      var host = location.hostname.replace(/^www\./, '');
+      if (host) document.cookie = 'googtrans=; path=/; domain=.' + host + '; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+    } else {
+      writeCookie('googtrans', '/en/' + code);
+    }
+    // Always reload: lets Google read the cookie on next paint and render translated
+    // without ever injecting its banner mid-page.
+    location.reload();
+  }
+  function currentLabel() {
+    var c = parseLang();
+    return (byCode[c] || byCode.en).label;
+  }
+  document.documentElement.setAttribute('data-mall-lang', currentBootLang);
+  if (byCode[currentBootLang] && byCode[currentBootLang].rtl) document.documentElement.setAttribute('dir', 'rtl');
+  window.MallI18n = { options: LANGS, set: setLang, current: function () { return parseLang(); }, currentLabel: currentLabel };
+  window.googleTranslateElementInit = function () {
+    new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: LANGS.filter(function (l) { return l.code !== 'en'; }).map(function (l) { return l.code; }).join(','), autoDisplay: false, layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+  };
+  function loadGT() {
+    if (document.getElementById('mall-gt-script')) return;
+    var s = document.createElement('script');
+    s.id = 'mall-gt-script';
+    s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  if (document.readyState === 'complete') loadGT();
+  else window.addEventListener('load', loadGT);
+})();
+</script>

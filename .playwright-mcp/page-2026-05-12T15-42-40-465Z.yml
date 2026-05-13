@@ -1,0 +1,352 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - navigation "Main navigation" [ref=e5]:
+      - generic [ref=e7]:
+        - generic:
+          - link "Denman Place Mall" [ref=e8] [cursor=pointer]:
+            - /url: index.html
+            - generic [ref=e9]: Denman Place Mall
+          - paragraph: Open Today | 8:00 AM to 10:00 PM
+        - button "Change language" [ref=e11] [cursor=pointer]:
+          - img [ref=e12]
+          - generic [ref=e15]: EN
+        - button "Open menu" [ref=e16] [cursor=pointer]:
+          - img [ref=e17]
+    - main [ref=e20]:
+      - region "Mall Map & Floor Plan" [ref=e21]:
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - img [ref=e26]
+            - heading "Mall Map & Floor Plan" [level=1] [ref=e29]
+            - paragraph [ref=e30]: Denman Place Mall sits on the corner of Denman and Comox Streets in Vancouver’s West End, a short walk from English Bay and Stanley Park. Use the guide below to find your way around.
+          - generic [ref=e31]:
+            - region "Where We Are" [ref=e32]:
+              - generic [ref=e33]:
+                - img [ref=e35]
+                - heading "Where We Are" [level=2] [ref=e38]
+              - paragraph [ref=e39]:
+                - strong [ref=e40]: 1030 Denman Street
+                - text: ", Vancouver, BC V6G 2M6"
+              - iframe [ref=e42]:
+                
+              - generic [ref=e43]:
+                - link "Open Denman Place Mall location in Google Maps (opens in a new tab)" [ref=e44] [cursor=pointer]:
+                  - /url: https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6
+                  - img [ref=e45]
+                  - generic [ref=e49]: Open in Google Maps
+                - link "Get directions to Denman Place Mall (opens in a new tab)" [ref=e50] [cursor=pointer]:
+                  - /url: https://www.google.com/maps/dir/?api=1&destination=1030+Denman+Street+Vancouver+BC
+                  - img [ref=e51]
+                  - generic [ref=e53]: Get Directions
+            - separator [ref=e54]
+            - region "Entrances" [ref=e55]:
+              - generic [ref=e56]:
+                - img [ref=e58]
+                - heading "Entrances" [level=2] [ref=e62]
+              - generic [ref=e63]:
+                - article [ref=e64]:
+                  - heading "Denman Street (main)" [level=3] [ref=e65]
+                  - paragraph [ref=e66]: Primary entrance directly off Denman, between Comox and Nelson Streets. Step-free access.
+                  - link "Directions to the Denman Street entrance (opens in a new tab)" [ref=e67] [cursor=pointer]:
+                    - /url: https://www.google.com/maps/dir/?api=1&destination=1030+Denman+Street+Vancouver+BC
+                    - text: Directions to this entrance →
+                - article [ref=e68]:
+                  - heading "Nelson Street (rear)" [level=3] [ref=e69]
+                  - paragraph [ref=e70]: Rear access connecting from the adjacent paid parking lot, on the Nelson Street side of the building.
+                  - link "Directions to the Nelson Street entrance (opens in a new tab)" [ref=e71] [cursor=pointer]:
+                    - /url: https://www.google.com/maps/dir/?api=1&destination=Nelson+Street+%26+Denman+Street+Vancouver+BC
+                    - text: Directions to this entrance →
+            - separator [ref=e72]
+            - region "Interactive Floor Plan" [ref=e73]:
+              - generic [ref=e74]:
+                - img [ref=e76]
+                - heading "Interactive Floor Plan" [level=2] [ref=e78]
+              - paragraph [ref=e79]: Use the zoom and pan controls to explore the mall. Tap any unit to see store details, then choose “Route from here” and tap a destination to draw a path.
+              - generic [ref=e81]:
+                - tablist "Floor selector" [ref=e82]:
+                  - tab "Ground Floor" [selected] [ref=e83] [cursor=pointer]:
+                    - img [ref=e84]
+                    - text: Ground Floor
+                  - tab "Lower Level" [ref=e86] [cursor=pointer]:
+                    - img [ref=e87]
+                    - text: Lower Level
+                - list "Category colour legend" [ref=e89]:
+                  - listitem [ref=e90]: Groceries
+                  - listitem [ref=e92]: Food & Drink
+                  - listitem [ref=e94]: Health & Wellness
+                  - listitem [ref=e96]: Services & Tech
+                  - listitem [ref=e98]: Retail & Specialty
+                  - listitem [ref=e100]: Community
+                  - listitem [ref=e102]: Kiosks
+                - generic [ref=e104]:
+                  - tabpanel "Ground floor map" [ref=e105]:
+                    - group "Map controls" [ref=e106]:
+                      - button "Zoom in" [ref=e107] [cursor=pointer]:
+                        - img [ref=e108]
+                      - button "Zoom out" [disabled] [ref=e111]:
+                        - img [ref=e112]
+                      - button "Reset view" [ref=e115] [cursor=pointer]:
+                        - img [ref=e116]
+                    - img "Ground floor schematic of Denman Place Mall Schematic, not to scale. Use the mouse wheel or buttons to zoom, drag to pan. Activate a unit to see details and set routing endpoints." [ref=e119]:
+                      - generic [ref=e121]:
+                        - generic: Main Concourse
+                        - generic: ELEV
+                        - generic: WC
+                      - link "No Frills, Suite 101, Groceries" [ref=e126] [cursor=pointer]:
+                        - /url: no-frills.html
+                        - generic: No Frills
+                        - generic: Suite 101
+                      - link "Shoppers Drug Mart, Suite 128, Health & Wellness" [ref=e129] [cursor=pointer]:
+                        - /url: shoppers-drug-mart.html
+                        - generic: Shoppers Drug Mart
+                        - generic: Suite 128
+                      - link "Burger King, Suite 102, Food & Drink" [ref=e132] [cursor=pointer]:
+                        - /url: burger-king.html
+                        - generic: "102"
+                        - generic: Burger Ki…
+                      - link "93 Coffee, Suite 103, Food & Drink" [ref=e135] [cursor=pointer]:
+                        - /url: 93-coffee.html
+                        - generic: "103"
+                        - generic: 93 Coffee
+                      - link "Denman Beer Wine & Spirits, Suite 104, Food & Drink" [ref=e138] [cursor=pointer]:
+                        - /url: denman-liquor-store.html
+                        - generic: "104"
+                        - generic: Denman Be…
+                      - link "Specsavers, Suite 105, Health & Wellness" [ref=e141] [cursor=pointer]:
+                        - /url: specsavers.html
+                        - generic: "105"
+                        - generic: Specsavers
+                      - link "Denman Place Dental Centre, Suite 106, Health & Wellness" [ref=e144] [cursor=pointer]:
+                        - /url: denman-place-dental.html
+                        - generic: "106"
+                        - generic: Denman Pl…
+                      - link "Stanley Park Dental Centre, Suite 107, Health & Wellness" [ref=e147] [cursor=pointer]:
+                        - /url: stanley-park-dental.html
+                        - generic: "107"
+                        - generic: Stanley P…
+                      - link "Denman Chiropractic & Massage, Suite 108, Health & Wellness" [ref=e150] [cursor=pointer]:
+                        - /url: denman-chiropractic.html
+                        - generic: "108"
+                        - generic: Denman Ch…
+                      - link "TE.A.TE Clinic, Suite 109, Health & Wellness" [ref=e153] [cursor=pointer]:
+                        - /url: teate-clinic.html
+                        - generic: "109"
+                        - generic: TE.A.TE C…
+                      - link "The Ice Cream Parlour, Suite 110, Health & Wellness" [ref=e156] [cursor=pointer]:
+                        - /url: the-ice-cream-parlour.html
+                        - generic: "110"
+                        - generic: The Ice C…
+                      - link "Rose Stitching & Healing, Suite 111, Retail & Specialty" [ref=e159] [cursor=pointer]:
+                        - /url: rose-stitching.html
+                        - generic: "111"
+                        - generic: Rose Stit…
+                      - link "English Bay Jewellers, Suite 112, Retail & Specialty" [ref=e162] [cursor=pointer]:
+                        - /url: english-bay-jewellers.html
+                        - generic: "112"
+                        - generic: English B…
+                      - link "Lost Lagoon Frames, Suite 113, Retail & Specialty" [ref=e165] [cursor=pointer]:
+                        - /url: lost-lagoon-frames.html
+                        - generic: "113"
+                        - generic: Lost Lago…
+                      - link "BCLC Lotto, Suite 114, Retail & Specialty" [ref=e168] [cursor=pointer]:
+                        - /url: bclc-lotto.html
+                        - generic: "114"
+                        - generic: BCLC Lotto
+                      - link "Accountax Financial, Suite 115, Services & Tech" [ref=e171] [cursor=pointer]:
+                        - /url: accountax.html
+                        - generic: "115"
+                        - generic: Accountax…
+                      - link "Open Door Law, Suite 116, Services & Tech" [ref=e174] [cursor=pointer]:
+                        - /url: open-door-law.html
+                        - generic: "116"
+                        - generic: Open Door…
+                      - link "Murrick Insurance, Suite 117, Services & Tech" [ref=e177] [cursor=pointer]:
+                        - /url: murrick-insurance.html
+                        - generic: "117"
+                        - generic: Murrick I…
+                      - link "UPS Store, Suite 118, Services & Tech" [ref=e180] [cursor=pointer]:
+                        - /url: ups.html
+                        - generic: "118"
+                        - generic: UPS Store
+                      - link "Canada Post Outlet, Suite 119, Services & Tech" [ref=e183] [cursor=pointer]:
+                        - /url: canada-post.html
+                        - generic: "119"
+                        - generic: Canada Po…
+                      - link "Devak Lock & Key, Suite 120, Services & Tech" [ref=e186] [cursor=pointer]:
+                        - /url: devak-key-lock.html
+                        - generic: "120"
+                        - generic: Devak Loc…
+                      - link "Scissors & Comb Barbers, Suite 121, Services & Tech" [ref=e189] [cursor=pointer]:
+                        - /url: scissors-comb-barbershop.html
+                        - generic: "121"
+                        - generic: Scissors …
+                      - link "YVR Travel Service, Suite 122, Services & Tech" [ref=e192] [cursor=pointer]:
+                        - /url: yvr-travel.html
+                        - generic: "122"
+                        - generic: YVR Trave…
+                      - link "Minit Foto, Suite 123, Services & Tech" [ref=e195] [cursor=pointer]:
+                        - /url: minit-foto.html
+                        - generic: "123"
+                        - generic: Minit Foto
+                      - link "MP Hedy Fry Vancouver Centre, Suite 124, Community" [ref=e198] [cursor=pointer]:
+                        - /url: hedy-fry.html
+                        - generic: "124"
+                        - generic: MP Hedy F…
+                      - link "Express Stop, Suite K1, Kiosks" [ref=e201] [cursor=pointer]:
+                        - /url: "#"
+                        - generic: K1
+                        - generic: Express Stop
+                      - link "Cell Universe, Suite K2, Kiosks" [ref=e204] [cursor=pointer]:
+                        - /url: "#"
+                        - generic: K2
+                        - generic: Cell Universe
+                  - complementary [ref=e206]:
+                    - paragraph [ref=e207]: Hover, tap, or keyboard-focus a unit on the map to see store details here.
+              - paragraph [ref=e208]: Schematic only — unit positions and suite numbers shown here are placeholders for layout purposes and may not match the mall’s actual floor plan. For the exact location of a specific store, please check the directory signage at the main entrance or ask staff.
+            - separator [ref=e209]
+            - region "Find What You Need" [ref=e210]:
+              - generic [ref=e211]:
+                - img [ref=e213]
+                - heading "Find What You Need" [level=2] [ref=e216]
+              - paragraph [ref=e217]: "Jump straight to a category in the store directory:"
+              - list [ref=e218]:
+                - listitem [ref=e219]:
+                  - link "Groceries" [ref=e220] [cursor=pointer]:
+                    - /url: directory.html
+                - listitem [ref=e221]:
+                  - link "Food & Drink" [ref=e222] [cursor=pointer]:
+                    - /url: directory.html
+                - listitem [ref=e223]:
+                  - link "Health & Wellness" [ref=e224] [cursor=pointer]:
+                    - /url: directory.html
+                - listitem [ref=e225]:
+                  - link "Services & Tech" [ref=e226] [cursor=pointer]:
+                    - /url: directory.html
+                - listitem [ref=e227]:
+                  - link "Retail & Specialty" [ref=e228] [cursor=pointer]:
+                    - /url: directory.html
+                - listitem [ref=e229]:
+                  - link "Community" [ref=e230] [cursor=pointer]:
+                    - /url: directory.html
+                - listitem [ref=e231]:
+                  - link "Kiosks" [ref=e232] [cursor=pointer]:
+                    - /url: directory.html
+            - separator [ref=e233]
+            - generic [ref=e234]:
+              - region "Getting Here" [ref=e235]:
+                - generic [ref=e236]:
+                  - img [ref=e238]
+                  - heading "Getting Here" [level=2] [ref=e242]
+                - paragraph [ref=e243]:
+                  - text: By car, on foot, by bike, or by transit — see our
+                  - link "Parking & Transit page" [ref=e244] [cursor=pointer]:
+                    - /url: parking-transit.html
+                  - text: for details on the adjacent parking lot, bus routes serving Denman Street, and the walk from Burrard SkyTrain Station.
+              - region "Accessibility" [ref=e245]:
+                - generic [ref=e246]:
+                  - img [ref=e248]
+                  - heading "Accessibility" [level=2] [ref=e253]
+                - paragraph [ref=e254]:
+                  - text: The ground floor is step-free from the Denman Street entrance, and the elevator connects to the lower level. See our
+                  - link "Accessibility Statement" [ref=e255] [cursor=pointer]:
+                    - /url: accessibility.html
+                  - text: for full details and how to request assistance.
+    - generic [ref=e257]:
+      - generic [ref=e258]:
+        - generic [ref=e259]:
+          - img "Denman Place Mall logo" [ref=e260]
+          - generic [ref=e261]:
+            - paragraph [ref=e262]: Hours of Operation
+            - generic [ref=e263]:
+              - paragraph [ref=e264]: "Monday: 8:00 AM – 10:00 PM"
+              - paragraph [ref=e265]: "Tuesday: 8:00 AM – 10:00 PM"
+              - paragraph [ref=e266]: "Wednesday: 8:00 AM – 10:00 PM"
+              - paragraph [ref=e267]: "Thursday: 8:00 AM – 10:00 PM"
+              - paragraph [ref=e268]: "Friday: 8:00 AM – 10:00 PM"
+              - paragraph [ref=e269]: "Saturday: 8:00 AM – 10:00 PM"
+              - paragraph [ref=e270]: "Sunday: 8:00 AM – 10:00 PM"
+            - paragraph [ref=e271]: "Note: Some stores open earlier/later than shopping centre hours. Please check directly with stores for their hours."
+        - generic [ref=e272]:
+          - heading "Visitor Info" [level=5] [ref=e273]
+          - list [ref=e274]:
+            - listitem [ref=e275]:
+              - link "Store Directory" [ref=e276] [cursor=pointer]:
+                - /url: directory.html
+            - listitem [ref=e277]:
+              - link "Mall Map" [ref=e278] [cursor=pointer]:
+                - /url: map.html
+            - listitem [ref=e279]:
+              - link "Parking & Transit" [ref=e280] [cursor=pointer]:
+                - /url: parking-transit.html
+            - listitem [ref=e281]:
+              - link "Events" [ref=e282] [cursor=pointer]:
+                - /url: events.html
+            - listitem [ref=e283]:
+              - link "Safety & Emergency Information" [ref=e284] [cursor=pointer]:
+                - /url: safety-updates.html
+            - listitem [ref=e285]:
+              - link "FAQs" [ref=e286] [cursor=pointer]:
+                - /url: index.html#faq
+        - generic [ref=e287]:
+          - heading "About the Mall" [level=5] [ref=e288]
+          - list [ref=e289]:
+            - listitem [ref=e290]:
+              - link "About Us" [ref=e291] [cursor=pointer]:
+                - /url: about.html
+            - listitem [ref=e292]:
+              - link "Contact Us" [ref=e293] [cursor=pointer]:
+                - /url: contact.html
+            - listitem [ref=e294]:
+              - link "Customer Testimonials" [ref=e295] [cursor=pointer]:
+                - /url: index.html#customer_testimonials
+        - generic [ref=e296]:
+          - heading "Social Media" [level=5] [ref=e297]
+          - list [ref=e298]:
+            - listitem [ref=e299]:
+              - link "Facebook" [ref=e300] [cursor=pointer]:
+                - /url: https://www.facebook.com/thedenmanplacemall
+                - img [ref=e301]
+                - generic [ref=e303]: Facebook
+            - listitem [ref=e304]:
+              - link "Instagram" [ref=e305] [cursor=pointer]:
+                - /url: https://www.instagram.com/thedenmanmall/
+                - img [ref=e306]
+                - generic [ref=e310]: Instagram
+            - listitem [ref=e311]:
+              - link "LinkedIn" [ref=e312] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/denmanplacemall
+                - img [ref=e313]
+                - generic [ref=e317]: LinkedIn
+            - listitem [ref=e318]:
+              - link "Twitter" [ref=e319] [cursor=pointer]:
+                - /url: https://x.com/thedenmanmall
+                - img [ref=e320]
+                - generic [ref=e322]: Twitter
+        - generic [ref=e323]:
+          - heading "Address" [level=5] [ref=e324]
+          - list [ref=e325]:
+            - listitem [ref=e326]:
+              - paragraph [ref=e327]:
+                - text: 1030 Denman St.
+                - text: Vancouver, BC
+                - text: V6G 2M6
+              - link "See on Google Maps" [ref=e328] [cursor=pointer]:
+                - /url: https://maps.app.goo.gl/u1XnMwUVHSuPKNBJ6
+      - generic [ref=e330]:
+        - generic [ref=e332]:
+          - text: © 2026 Denman Place Mall. All Rights Reserved.
+          - generic [ref=e333]:
+            - link "Terms of Use" [ref=e334] [cursor=pointer]:
+              - /url: terms.html
+            - text: "|"
+            - link "Privacy Policy" [ref=e335] [cursor=pointer]:
+              - /url: privacy-policy.html
+            - text: "|"
+            - link "Accessibility" [ref=e336] [cursor=pointer]:
+              - /url: accessibility.html
+        - generic [ref=e338]:
+          - text: Website sustainably crafted by
+          - link "Oasis of Change, Inc." [ref=e339] [cursor=pointer]:
+            - /url: https://oasisofchange.com

@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    {"id": "denman-chiropractic_image", "label": "Denman Chiropractic Acupuncture and Massage wordmark logo", "file_type": "image", "source_file": "assets/images/denman-chiropractic.webp"},
+    {"id": "denman-dental-centre_image", "label": "Denman Dental Centre stylized blue tooth logo", "file_type": "image", "source_file": "assets/images/denman-dental-centre.webp"},
+    {"id": "denman-mall-logo_image", "label": "Denman Place Mall logo (light/white variant)", "file_type": "image", "source_file": "assets/images/denman-mall-logo.webp"},
+    {"id": "devak_image", "label": "Devak Lock & Key Bonded Locksmiths logo with padlock and key icons", "file_type": "image", "source_file": "assets/images/devak.webp"},
+    {"id": "dollarama_image", "label": "Dollarama green and yellow brand logo with $1 plus emblem", "file_type": "image", "source_file": "assets/images/dollarama.webp"}
+  ],
+  "edges": [
+    {"source": "denman-chiropractic_image", "target": "denman_chiropractic", "relation": "depicts", "confidence_score": 0.9},
+    {"source": "denman-dental-centre_image", "target": "denman_place_dental", "relation": "depicts", "confidence_score": 0.9},
+    {"source": "denman-mall-logo_image", "target": "denman_mall", "relation": "is_brand_of", "confidence_score": 0.95},
+    {"source": "devak_image", "target": "devak_key_lock", "relation": "depicts", "confidence_score": 0.9},
+    {"source": "dollarama_image", "target": "dollarama", "relation": "depicts", "confidence_score": 0.9}
+  ]
+}
